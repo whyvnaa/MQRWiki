@@ -10,5 +10,5 @@ files here, they are replaced on every build. Monkey Quest art © Nickelodeon, M
 To preview it locally, run this in this folder and open http://localhost:8000/:
 
 ```bash
-python -m http.server 8000
+python -m http.server 8000 -b 127.0.0.1
 ```
