@@ -1,0 +1,366 @@
+/* Monkey Quest theme for MkDocs Material.
+ * Art comes from assets/game/theme/ in the repo (scripts/extract_ui_assets.py), copied to docs/assets/theme/ by build_wiki.py.
+ * Light = "jungle day" (parchment), dark = "jungle night". */
+
+@font-face { font-family: "Grobold"; src: url("theme/GROBOLD.ttf") format("truetype"); font-display: swap; }
+
+/* ------------------------------------------------------------------ palette */
+:root {
+  --mq-grass: #212d08;        /* silhouette green of the loading screens (matches theme/grass-edge.png) */
+  --mq-jungle: #2b3a0d;
+  --mq-leaf: #5b8a17;
+  --mq-leaf-dark: #3f6410;
+  --mq-lime: #c5d93a;
+  --mq-lime-light: #e9f08a;
+  --mq-banana: #f6d03f;
+  --mq-banana-dark: #d9a90f;
+  --mq-parch: #f6edcf;
+  --mq-parch-2: #efe2b5;
+  --mq-wood: #8a6a2a;
+  --mq-terra: #b5482a;
+  --mq-ink: #2b2410;
+  --mq-tribe: var(--mq-leaf);
+  --mq-heading: "Grobold", "Nunito", system-ui, sans-serif;
+}
+[data-md-color-scheme="default"] {
+  --md-primary-fg-color: var(--mq-grass);
+  --md-primary-fg-color--light: var(--mq-jungle);
+  --md-primary-fg-color--dark: #151d05;
+  --md-primary-bg-color: #fff6d6;
+  --md-primary-bg-color--light: #fff6d6b3;
+  --md-accent-fg-color: var(--mq-banana-dark);
+  --md-accent-fg-color--transparent: #f6d03f40;
+  --md-default-bg-color: #fbf5e1;
+  --md-default-fg-color: #2b2410de;
+  --md-default-fg-color--light: #2b24109e;
+  --md-default-fg-color--lighter: #2b241066;
+  --md-default-fg-color--lightest: #2b24101f;
+  --md-typeset-color: var(--mq-ink);
+  --md-typeset-a-color: var(--mq-leaf-dark);
+  --md-code-bg-color: #f1e8c8;
+  --md-code-fg-color: #4a3b12;
+  --md-footer-bg-color: var(--mq-grass);
+  --md-footer-bg-color--dark: #172005;
+  --mq-card: var(--mq-parch);
+  --mq-card-border: var(--mq-wood);
+  --mq-th: linear-gradient(#eef39b, #cfdc4f);
+  --mq-th-fg: #2c3a06;
+  --mq-row-hover: #f6d03f2e;
+  --mq-h: var(--mq-leaf-dark);
+}
+[data-md-color-scheme="slate"] {
+  --md-hue: 80;
+  --md-primary-fg-color: #121905;
+  --md-primary-fg-color--light: #1d2808;
+  --md-primary-fg-color--dark: #0c1103;
+  --md-primary-bg-color: #f6e9b8;
+  --md-primary-bg-color--light: #f6e9b8b3;
+  --md-accent-fg-color: var(--mq-banana);
+  --md-accent-fg-color--transparent: #f6d03f33;
+  --md-default-bg-color: #182009;
+  --md-default-bg-color--light: #1f290c;
+  --md-default-fg-color: #eee7cbdd;
+  --md-default-fg-color--light: #eee7cba0;
+  --md-default-fg-color--lighter: #eee7cb66;
+  --md-default-fg-color--lightest: #eee7cb1f;
+  --md-typeset-color: #ece5c9;
+  --md-typeset-a-color: var(--mq-lime);
+  --md-code-bg-color: #232f0e;
+  --md-code-fg-color: #e9e0b8;
+  --md-footer-bg-color: var(--mq-grass);
+  --md-footer-bg-color--dark: #121905;
+  --mq-card: #232f0e;
+  --mq-card-border: #7f9a22;
+  --mq-th: linear-gradient(#41541a, #2f3e0f);
+  --mq-th-fg: var(--mq-lime-light);
+  --mq-row-hover: #c5d93a1a;
+  --mq-h: var(--mq-banana);
+}
+
+/* diagrams (Material passes these to Mermaid): pastel level-band boxes in both schemes, so labels stay dark ink */
+:root, [data-md-color-scheme="slate"] {
+  --md-mermaid-font-family: "Nunito", system-ui, sans-serif;
+  --md-mermaid-edge-color: #6a9a1e;
+  --md-mermaid-node-bg-color: #f6edcf;
+  --md-mermaid-node-fg-color: #8a6a2a;
+  --md-mermaid-label-bg-color: #f6edcf;
+  --md-mermaid-label-fg-color: #2b2410;
+  --md-mermaid-sequence-number-bg-color: #f6d03f;
+}
+
+/* ------------------------------------------------------------------ type */
+.md-typeset h1, .md-typeset h2, .md-typeset h3,
+.md-header__topic, .md-nav__title, .md-nav__item--section > .md-nav__link, .md-button, .md-footer__title {
+  font-family: var(--mq-heading);
+  font-weight: 400;
+  letter-spacing: .02em;
+}
+.md-typeset h1 { color: var(--mq-h); font-size: 2.1em; margin-bottom: .6em;
+                 text-shadow: 0 2px 0 rgba(0, 0, 0, .12); border-bottom: 4px solid var(--mq-tribe); padding-bottom: .15em; }
+[data-md-color-scheme="slate"] .md-typeset h1 { text-shadow: 0 3px 0 #000; }
+.md-typeset h2 { color: var(--mq-h); font-size: 1.45em; display: flex; align-items: center; gap: .4em; }
+.md-typeset h2::before { content: ""; flex: 0 0 auto; width: 1.05em; height: 1.05em;
+                         background: url("theme/leaves/monstera.png") center / contain no-repeat; transform: rotate(-20deg); }
+.md-typeset h3 { color: var(--mq-h); font-size: 1.15em; }
+.md-typeset h2 .headerlink, .md-typeset h1 .headerlink { margin-left: auto; }
+
+/* ------------------------------------------------------------------ header: logo, vine, banana-tree leaf */
+.md-header { overflow: visible; box-shadow: 0 3px 0 rgba(0, 0, 0, .25); }
+.md-header__button.md-logo { padding: 0; margin: 0 .3rem; }
+.md-header__button.md-logo img { height: 2.6rem; width: auto; margin-bottom: -.7rem; filter: drop-shadow(0 2px 2px rgba(0, 0, 0, .5)); }
+.md-header__topic { color: var(--mq-banana); text-shadow: 0 2px 0 #000; }
+.md-header::after { content: ""; position: absolute; top: calc(100% - 6px); right: 30%; width: 120px; height: 102px; pointer-events: none;
+                    background: url("theme/leaves/vine-loop.png") top center / contain no-repeat; z-index: 1; }
+.md-header::before { content: ""; position: absolute; top: calc(100% - 10px); left: 18%; width: 90px; height: 49px; pointer-events: none;
+                     background: url("theme/leaves/palm-frond.png") top center / contain no-repeat; transform: scaleX(-1); z-index: 1; }
+@media screen and (max-width: 60em) { .md-header::after, .md-header::before { display: none; } }
+.md-search__form { border-radius: 1rem; }
+
+/* ------------------------------------------------------------------ navigation */
+.md-nav__item--section > .md-nav__link { color: var(--mq-h) !important; font-size: .8rem; }
+.md-nav__link--active, .md-nav__item .md-nav__link--active {
+  color: var(--mq-ink) !important; background: var(--mq-banana); border-radius: .8rem; padding: 0 .5rem; margin-left: -.5rem; font-weight: 700;
+}
+[data-md-color-scheme="slate"] .md-nav__link--active { color: #1a1503 !important; }
+.md-nav__link:hover { color: var(--mq-banana-dark) !important; }
+[data-md-color-scheme="slate"] .md-nav__link:hover { color: var(--mq-banana) !important; }
+
+/* ------------------------------------------------------------------ content cards: tables, admonitions, buttons */
+.md-typeset table:not([class]) { border: 2px solid var(--mq-card-border); border-radius: .5rem; box-shadow: 0 3px 0 rgba(0, 0, 0, .12);
+                                 background: var(--md-default-bg-color); }
+.md-typeset table:not([class]) th { background: var(--mq-th); color: var(--mq-th-fg); font-weight: 800; border-bottom: 2px solid var(--mq-card-border); }
+.md-typeset table:not([class]) tr:hover { background: var(--mq-row-hover); box-shadow: none; }
+
+.md-typeset .admonition, .md-typeset details {
+  position: relative; background: var(--mq-card); border: 2px solid var(--mq-card-border); border-left-width: .3rem;
+  border-radius: .55rem; box-shadow: 0 3px 0 rgba(0, 0, 0, .15); font-size: .78rem; overflow: visible;
+}
+.md-typeset .admonition::after, .md-typeset details::after {   /* a leaf tucked behind the top-right corner */
+  content: ""; position: absolute; top: -14px; right: -8px; width: 26px; height: 46px; pointer-events: none;
+  background: url("theme/leaves/banana-leaf.png") center / contain no-repeat; transform: rotate(35deg);
+}
+.md-typeset .admonition-title, .md-typeset summary { font-family: var(--mq-heading); font-weight: 400; background: transparent !important; }
+.md-typeset .tip > .admonition-title::before, .md-typeset .tip > summary::before,
+.md-typeset .warning > .admonition-title::before, .md-typeset .warning > summary::before,
+.md-typeset .note > .admonition-title::before, .md-typeset .info > .admonition-title::before {
+  -webkit-mask-image: none; mask-image: none; background: center / contain no-repeat; width: 1.1rem; height: 1.1rem;
+}
+.md-typeset .tip > .admonition-title::before, .md-typeset .tip > summary::before { background-image: url("theme/banana.png"); }
+.md-typeset .warning > .admonition-title::before, .md-typeset .warning > summary::before { background-image: url("theme/quest-available.png"); }
+.md-typeset .note > .admonition-title::before, .md-typeset .info > .admonition-title::before { background-image: url("theme/monkey-king.png"); }
+
+.md-typeset .md-button { border-radius: 1.2rem; border: 2px solid var(--mq-grass); color: var(--mq-ink); background: var(--mq-parch);
+                         box-shadow: 0 3px 0 var(--mq-grass); padding: .45em 1.3em; transition: transform .1s, box-shadow .1s; }
+.md-typeset .md-button--primary { background: linear-gradient(#ffe36b, var(--mq-banana-dark)); color: #2a1d00; }
+.md-typeset .md-button:hover, .md-typeset .md-button:focus { transform: translateY(-1px); box-shadow: 0 4px 0 var(--mq-grass);
+                                                             background: var(--mq-banana); color: #2a1d00; border-color: var(--mq-grass); }
+.md-typeset .md-button:active { transform: translateY(2px); box-shadow: 0 1px 0 var(--mq-grass); }
+
+/* lists: little bananas instead of dots (top-level lists in the content only) */
+.md-content__inner > ul:not(.task-list) > li { list-style: none; position: relative; }
+.md-content__inner > ul:not(.task-list) > li::before { content: ""; position: absolute; left: -1.3em; top: .25em; width: .95em; height: .95em;
+                                                       background: url("theme/banana-small.png") center / contain no-repeat; }
+
+/* tribe crests, zone pictures, quest markers */
+.md-typeset img.crest { width: 20px; height: 20px; vertical-align: -5px; }
+.md-typeset h2 img.crest { width: 1.2em; height: 1.2em; }
+.md-typeset img.quest-marker { height: .95em; width: auto; vertical-align: -.08em; margin-right: .35rem; }
+.md-typeset img.zone-pic { float: right; margin: 0 0 1rem 1.2rem; width: 160px; transform: rotate(2deg); border-radius: .6rem; border: 3px solid var(--mq-card-border);
+                           box-shadow: 0 4px 0 rgba(0, 0, 0, .2); background: var(--mq-card); }
+.md-typeset img.zone-thumb { width: 40px; height: auto; vertical-align: middle; border-radius: .3rem; }
+.ladder a.zone img.ladder-pic { float: left; width: 36px; height: auto; margin: 0 .4rem .1rem 0; border-radius: .25rem; }
+
+/* ------------------------------------------------------------------ tribe banner (overrides/main.html) */
+.mq-tribe-hero { position: relative; height: 8.5rem; background: var(--mq-grass) center 72% / cover no-repeat;
+                 box-shadow: inset 0 -30px 30px -10px var(--mq-grass); overflow: hidden; }
+.mq-tribe-hero__inner { height: 100%; display: flex; align-items: flex-end; gap: .7rem; padding: 0 1.2rem 1rem; }
+.mq-tribe-hero__crest { width: 3.4rem; height: 3.4rem; filter: drop-shadow(0 3px 2px rgba(0, 0, 0, .6)); }
+.mq-tribe-hero__name { font-family: var(--mq-heading); font-size: 1.5rem; color: #fff6d6; text-shadow: 0 3px 0 #000, 0 0 12px #000; }
+.mq-tribe-bone::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 4.5rem; pointer-events: none;
+                         background: url("theme/moss.png") top left / auto 100% repeat-x; opacity: .95; }
+body:has(.mq-tribe-crossroads) { --mq-tribe: #c9a227; }
+body:has(.mq-tribe-shadow) { --mq-tribe: #6a62c9; }
+body:has(.mq-tribe-bone) { --mq-tribe: #5b8a17; }
+body:has(.mq-tribe-outlaw) { --mq-tribe: #c0392b; }
+body:has(.mq-tribe-wild) { --mq-tribe: #3fb8c9; }
+
+/* ------------------------------------------------------------------ footer: grass silhouette + monkey king */
+.md-footer { position: relative; margin-top: 5.5rem; }
+.md-footer::before { content: ""; position: absolute; left: 0; right: 0; bottom: calc(100% - 1px); height: 5.5rem; pointer-events: none;
+                     background: url("theme/grass-edge.png") bottom center / auto 100% repeat-x; }
+.md-footer-meta { background: var(--md-footer-bg-color--dark); }
+.md-copyright { display: flex; align-items: center; gap: .6rem; }
+.md-copyright::before { content: ""; flex: 0 0 auto; width: 2.2rem; height: 3rem; background: url("theme/monkey-king.png") center / contain no-repeat; }
+
+/* ------------------------------------------------------------------ home page (overrides/home.html) */
+.mq-home-hero { position: relative; overflow: hidden; min-height: 26rem; background: var(--mq-grass) center 35% / cover no-repeat;
+                border-bottom: 5px solid var(--mq-lime); box-shadow: 0 4px 0 var(--mq-grass);
+                display: flex; align-items: center; }
+.mq-home-hero__foliage { position: absolute; top: 0; width: 34rem; height: 26rem; pointer-events: none; z-index: 1;
+                         -webkit-mask-image: linear-gradient(to bottom, #000 60%, transparent); mask-image: linear-gradient(to bottom, #000 60%, transparent); }
+.mq-home-hero__foliage--left { left: -6rem; background: url("theme/foliage-left.png") left top / contain no-repeat; }
+.mq-home-hero__foliage--right { right: -6rem; background: url("theme/foliage-right.png") right top / contain no-repeat; }
+.mq-home-hero__inner { position: relative; z-index: 2; text-align: center; padding: 1.5rem 1rem 2.5rem; }
+.mq-home-hero__logo { width: min(22rem, 70vw); filter: drop-shadow(0 6px 6px rgba(0, 0, 0, .45)); }
+.mq-home-hero__tagline { max-width: 34rem; margin: .4rem auto 1rem; color: #fff8dc; font-size: .95rem; font-weight: 700;
+                         text-shadow: 0 2px 0 #000, 0 0 10px rgba(0, 0, 0, .8); }
+.mq-home-hero__actions { display: flex; gap: .6rem; justify-content: center; flex-wrap: wrap; }
+.mq-home-hero__actions .md-button { font-family: var(--mq-heading); font-size: .85rem; border-radius: 1.2rem; border: 2px solid var(--mq-grass);
+                                    color: var(--mq-ink); background: var(--mq-parch); box-shadow: 0 3px 0 var(--mq-grass); padding: .5em 1.4em; }
+.mq-home-hero__actions .md-button--primary { background: linear-gradient(#ffe36b, var(--mq-banana-dark)); color: #2a1d00; }
+.mq-home-hero__actions .md-button:hover { background: var(--mq-banana); color: #2a1d00; }
+.mq-home-hero__monkey { position: absolute; z-index: 3; right: 9%; top: -1.2rem; height: 22rem; transform-origin: 50% 0;
+                        animation: mq-swing 4s ease-in-out infinite; filter: drop-shadow(0 8px 8px rgba(0, 0, 0, .45)); }
+@keyframes mq-swing { 0%, 100% { transform: rotate(6deg); } 50% { transform: rotate(-6deg); } }
+@media (prefers-reduced-motion: reduce) { .mq-home-hero__monkey { animation: none; } }
+@media screen and (max-width: 60em) { .mq-home-hero__monkey { height: 12rem; right: 2%; opacity: .9; }
+                                      .mq-home-hero__foliage { width: 18rem; height: 14rem; } }
+@media screen and (max-width: 40em) { .mq-home-hero__monkey { display: none; } }
+/* the home page h1 duplicates the banner logo for readers; keep it for search and screen readers only */
+.md-content:has(.mq-tiles) h1:first-of-type { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
+.mq-tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr)); gap: 1rem; margin: 1.5rem 0 2rem; }
+.md-typeset a.mq-tile { position: relative; display: grid; grid-template-columns: 3.2rem 1fr; grid-template-rows: auto 1fr; column-gap: .7rem;
+                        align-items: start; padding: .8rem .9rem; background: var(--mq-card); border: 2px solid var(--mq-card-border);
+                        border-radius: .8rem; box-shadow: 0 4px 0 rgba(0, 0, 0, .18); color: var(--md-typeset-color);
+                        transition: transform .12s, box-shadow .12s; }
+.md-typeset a.mq-tile:hover { transform: translateY(-3px) rotate(-.4deg); box-shadow: 0 7px 0 rgba(0, 0, 0, .18); border-color: var(--mq-banana-dark); }
+.md-typeset a.mq-tile img { grid-row: 1 / 3; width: 3.2rem; height: 3.2rem; object-fit: contain; filter: drop-shadow(0 2px 1px rgba(0, 0, 0, .3)); }
+.md-typeset a.mq-tile b { font-family: var(--mq-heading); font-weight: 400; font-size: 1.05rem; color: var(--mq-h); }
+.md-typeset a.mq-tile span { font-size: .72rem; line-height: 1.35; opacity: .85; }
+.md-typeset a.mq-tile:nth-child(4n+1)::after { content: ""; position: absolute; top: -12px; left: -10px; width: 24px; height: 42px;
+                                               background: url("theme/leaves/monstera-2.png") center / contain no-repeat; transform: rotate(-30deg); }
+
+/* ------------------------------------------------------------------ running monkey (loading indicator) */
+.mq-loading { display: flex; align-items: center; gap: .6rem; font-family: var(--mq-heading); }
+.mq-loading::before { content: ""; width: 2.6rem; height: 2.6rem; background: center / contain no-repeat; border-radius: 50%;
+                      background-color: var(--mq-grass); animation: mq-run .6s steps(1) infinite; }
+@keyframes mq-run { 0% { background-image: url("theme/run/0.png"); } 20% { background-image: url("theme/run/1.png"); }
+                    40% { background-image: url("theme/run/2.png"); } 60% { background-image: url("theme/run/3.png"); }
+                    80% { background-image: url("theme/run/4.png"); } }
+
+/* ------------------------------------------------------------------ calculator touches */
+.calc-form fieldset { background: var(--mq-card); border: 2px solid var(--mq-card-border) !important; box-shadow: 0 3px 0 rgba(0, 0, 0, .12); }
+.calc-form legend { font-family: var(--mq-heading); font-weight: 400 !important; color: var(--mq-h); display: flex; align-items: center; gap: .35rem; }
+.calc-form legend::before { content: ""; width: 1.6rem; height: 1.6rem; background: center / contain no-repeat; }
+.calc-form fieldset:nth-of-type(1) legend::before { background-image: url("theme/monkeys/head.png"); }
+.calc-form fieldset:nth-of-type(2) legend::before { background-image: url("theme/monkeys/map.png"); }
+.calc-form fieldset:nth-of-type(3) legend::before { background-image: url("theme/monkeys/funky.png"); }
+.calc-form fieldset:nth-of-type(4) legend::before { background-image: url("theme/banana.png"); }
+.calc-form fieldset:nth-of-type(5) legend::before { background-image: url("theme/level-badge.png"); }
+.calc-card { background: var(--mq-card) !important; border: 2px solid var(--mq-card-border) !important; border-radius: .8rem !important;
+             position: relative; box-shadow: 0 4px 0 rgba(0, 0, 0, .15); }
+.calc-card::after { content: ""; position: absolute; top: -20px; right: 14px; width: 60px; height: 51px;
+                    background: url("theme/leaves/vine-loop.png") center / contain no-repeat; }
+.calc-card-title { font-family: var(--mq-heading); font-weight: 400 !important; color: var(--mq-h); font-size: 1.05rem; }
+.md-typeset tr.calc-sel td { background: #f6d03f55 !important; }
+
+/* keep crest + tribe and icon + item name on one line; wide tables scroll sideways */
+.md-typeset .tribe, .md-typeset .item { white-space: nowrap; }
+.md-nav--primary .md-nav__title { background: var(--md-default-bg-color); box-shadow: 0 6px 6px -6px rgba(0, 0, 0, .25); }
+
+/* ------------------------------------------------------------------ sortable tables + show more (assets/tables.js) */
+.md-typeset th.mq-sortable { cursor: pointer; user-select: none; white-space: nowrap; }
+.md-typeset th.mq-sortable::after { content: "\2195"; margin-left: .3em; opacity: .35; font-size: .9em; }
+.md-typeset th.mq-sortable[aria-sort="ascending"]::after { content: "\25B2"; opacity: .9; }
+.md-typeset th.mq-sortable[aria-sort="descending"]::after { content: "\25BC"; opacity: .9; }
+.md-typeset th.mq-sortable:hover, .md-typeset th.mq-sortable:focus-visible { text-decoration: underline; outline: none; }
+.mq-more-bar { display: flex; align-items: center; gap: .5rem; flex-wrap: wrap; margin: .2rem 0 1.2rem; font-size: .72rem; }
+.mq-more-bar[hidden] { display: none; }
+.mq-more-count { opacity: .75; }
+.mq-more-bar button, .mq-rest-btn { font: inherit; font-family: var(--mq-heading); cursor: pointer; border-radius: 1rem; padding: .15rem .8rem;
+                                    border: 2px solid var(--mq-grass); background: var(--mq-parch); color: var(--mq-ink); box-shadow: 0 2px 0 var(--mq-grass); }
+.mq-more-bar button:hover, .mq-rest-btn:hover { background: var(--mq-banana); }
+.mq-rest-btn { font-size: .62rem; padding: 0 .5rem; margin-left: .3rem; box-shadow: none; border-width: 1px; }
+.mq-rest.mq-collapsed { display: none; }
+
+/* ---- World map (build_wiki.WorldMap, assets/world-map.js): the game's own map art, with links and tooltips ---- */
+.wm svg { display: block; width: 100%; height: auto; }
+.wm a { cursor: pointer; outline: none; }
+.wm .hl { opacity: 0; transition: opacity .15s; }
+.wm a:hover .hl, .wm a:focus-visible .hl { opacity: 1; }
+.wm .wm-loc image, .wm .wm-region image { transition: filter .15s; }
+.wm .wm-loc:hover image, .wm .wm-region:hover image, .wm a:focus-visible image { filter: drop-shadow(0 0 5px #ffe066) drop-shadow(0 0 2px #fff6d6); }
+.wm .wm-hot { fill: transparent; stroke: transparent; transition: fill .15s; }
+.wm a:hover .wm-hot, .wm a:focus-visible .wm-hot { fill: #ffe0663d; stroke: var(--mq-banana); stroke-width: 2.5; }
+.wm .wm-badge circle { fill: var(--mq-parch); stroke: var(--mq-banana-dark); stroke-width: 3.5; filter: drop-shadow(0 2px 2px #0008); transition: fill .15s; }
+.wm a:hover .wm-badge circle, .wm a:focus-visible .wm-badge circle { fill: var(--mq-banana); }
+.wm .wm-open:hover image { filter: brightness(1.06); }
+.wm .wm-focus { fill: none; stroke: var(--mq-banana); stroke-width: 4; filter: drop-shadow(0 0 4px #000a); animation: wm-pulse 1.4s ease-in-out infinite; pointer-events: none; }
+@keyframes wm-pulse { 50% { stroke-opacity: .25; } }
+
+/* Board: all tabs side by side, banana trails between a region's exit and its highway junction on the Ook map. */
+.wm-board { max-width: min(100%, 1000px); margin: .6rem auto 1.4rem; }
+.wm-link path { fill: none; stroke-linecap: round; pointer-events: stroke; }
+.wm-link .wm-link-bg { stroke: #4a2f0b; stroke-width: 14; opacity: .85; }
+.wm-link .wm-link-fg { stroke: #ffb400; stroke-width: 7; stroke-dasharray: 16 10; animation: wm-march 1.2s linear infinite; }
+.wm-link circle { fill: #ffb400; stroke: #4a2f0b; stroke-width: 4; }
+.wm-link:hover .wm-link-fg { stroke: #ffe066; }
+@keyframes wm-march { to { stroke-dashoffset: -26; } }
+@media (prefers-reduced-motion: reduce) { .wm-link .wm-link-fg, .wm .wm-focus { animation: none; } }
+
+/* Viewer: one map at a time, with the list of its places on parchment. */
+.wm-viewer { max-width: 621px; margin: .6rem auto 1.6rem; scroll-margin-top: 3.5rem; }
+.wm-viewer .wm-panel[hidden] { display: none; }
+.md-typeset .wm-title { margin: 0 0 .4rem; text-align: center; }
+.wm-places { margin-top: .6rem; padding: .5rem 1rem; background: var(--mq-card); border: 2px solid var(--mq-card-border); border-radius: .6rem; font-size: .75rem; }
+.md-typeset .wm-places ul { columns: 14rem auto; margin: .2rem 0 .4rem; }
+.md-typeset .wm-places li { margin: 0 0 .15rem; break-inside: avoid; }
+.wm-places li span { opacity: .7; font-size: .65rem; }
+.md-typeset .wm-places p { margin: .3rem 0; }
+
+/* Zone page mini map. */
+.wm-minimap { max-width: 26rem; margin: .4rem 0 1rem; }
+.wm-minimap svg { border: 3px solid var(--mq-card-border); border-radius: .7rem; }
+.md-typeset .wm-minimap .wm-more { display: inline-block; margin-top: .3rem; font-size: .75rem; }
+
+.wm-tip { position: fixed; z-index: 20; display: none; pointer-events: none; max-width: 18rem; padding: .3rem .6rem;
+  background: var(--mq-parch); color: var(--mq-ink); border: 2px solid var(--mq-wood); border-radius: .5rem;
+  font: .75rem/1.3 var(--mq-heading); box-shadow: 0 3px 8px #0006; }
+
+/* ---- Quest journal (build_wiki.QuestJournal, assets/quest-journal.js): the in-game journal window and questline map ---- */
+.qj svg { display: block; width: 100%; height: auto; }
+.qj-journal { max-width: 777px; margin: .4rem auto 1.6rem; scroll-margin-top: 3.5rem; }
+.qj-journal .qj-panel[hidden] { display: none; }
+.qj .qj-heading { font: 22px var(--mq-heading); fill: #fff6d6; text-anchor: middle; paint-order: stroke; stroke: #1d2a06; stroke-width: 4px; }
+.qj .qj-tribe { font: 24px var(--mq-heading); fill: #fff6d6; text-anchor: middle; paint-order: stroke; stroke: #2c3a06; stroke-width: 4px; }
+.qj .qj-tab rect { fill: transparent; transition: fill .15s; }
+.qj .qj-tab:hover rect { fill: #ffe0664d; }
+.qj-view { cursor: grab; touch-action: none; }
+.qj-view.dragging { cursor: grabbing; }
+.qj-view.dragging a { pointer-events: none; }
+.qj .qj-node image, .qj .qj-reward image { transition: filter .15s; }
+.qj .qj-node:hover image { filter: drop-shadow(0 0 3px #ffb400) drop-shadow(0 0 2px #ffe066); }
+.qj .qj-reward:hover image { filter: drop-shadow(0 0 4px #ffe066); }
+.qj .qj-title text { font: 13px var(--mq-heading); }
+.qj .qj-title:hover text { text-decoration: underline; }
+.qj-story text, .qj-key.qj-story { fill: #9a4a08; color: #c26a12; }
+.qj-primary text, .qj-key.qj-primary { fill: #3c6c0c; color: #6a9a1e; }
+.qj-side text, .qj-key.qj-side { fill: #1d5f86; color: #3a8cc0; }
+.qj-coop text, .qj-key.qj-coop { fill: #6b2f86; color: #9a5ac0; }
+.md-typeset .qj-key { font-family: var(--mq-heading); }
+.qj .qj-focus { fill: #ffe0662e; stroke: var(--mq-banana); stroke-width: 3; opacity: 0; pointer-events: none; }
+.qj .qj-focus.on { opacity: 1; animation: wm-pulse 1.4s ease-in-out 3; }
+/* Questline list on the window's left side, rows in the game's quest button art. */
+.qj-list { height: 318px; overflow-y: auto; scrollbar-width: none; font-family: var(--mq-heading); }
+.qj-list::-webkit-scrollbar { display: none; }
+.md-typeset .qj-list ul { list-style: none; margin: 0; padding: 0; }
+.md-typeset .qj-list ul li { margin: 0; padding: 0; }
+.md-typeset .qj-list ul li::before { content: none; }
+.qj-list li { position: relative; display: flow-root; width: 264px; height: 77px; margin: 0; }
+.qj-list button { display: block; width: 210px; height: 56px; margin-top: 20px; padding: 4px 8px 4px 12px; border: 0; text-align: left; cursor: pointer;
+  background: url("theme/journal/V2_QuestJournal_QuestButton.webp") 0 -20px / 264px 77px no-repeat; color: #fff6d6; }
+.qj-list li::after { content: ""; position: absolute; left: 210px; top: 20px; width: 54px; height: 56px; pointer-events: none;
+  background: url("theme/journal/V2_QuestJournal_QuestButton.webp") -210px -20px / 264px 77px no-repeat; }
+.qj-list button:hover, .qj-list button.sel { filter: brightness(1.18); }
+.qj-list button b { display: block; font-weight: 400; font-size: 14px; line-height: 1.15; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+/* Like the game's quest rows: the type above the bar (QI_QuestType 21,0), the name in it (QI_Title 21,34). */
+.qj-list button span { position: absolute; left: 20px; top: 2px; font-size: 12px; color: var(--mq-lime); }
+.qj-list button b { padding-top: 12px; }
+.qj-list li a { position: absolute; z-index: 1; left: 216px; top: 28px; width: 38px; height: 38px; line-height: 36px; text-align: center;
+  color: var(--mq-banana); font-size: 24px; text-decoration: none; }
+.qj-list li a:hover { color: #fff6d6; }
+/* Cut-out on questline and quest pages. */
+.qj-cutout { max-width: 34rem; margin: .4rem 0 1rem; }
+.qj-cutout svg { border: 3px solid var(--mq-card-border); border-radius: .7rem; }
+.md-typeset .qj-cutout .qj-more { display: inline-block; margin-top: .3rem; font-size: .75rem; }

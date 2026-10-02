@@ -1,0 +1,57 @@
+/* Use the full window width: the database tables have many columns. */
+.md-grid { max-width: 100%; }
+
+/* Draw diagrams at natural size and scroll sideways instead of shrinking them. */
+.mermaid { overflow-x: auto; overflow-y: hidden; }
+
+/* Keep item icons aligned with the text in tables and lists. */
+.md-typeset img[width="20"], .md-typeset img[width="24"], .md-typeset img[width="32"] { vertical-align: middle; }
+
+/* Level-band grid (progression map) */
+.ladder { display: flex; gap: .6rem; overflow-x: auto; padding-bottom: .4rem; }
+.ladder .band { flex: 1 0 11rem; }
+.ladder .band-title { font-weight: 700; margin-bottom: .3rem; }
+.ladder a.zone { display: block; margin: .25rem 0; padding: .3rem .5rem; border: 1px solid #777; border-radius: .3rem; color: #111; text-decoration: none; font-size: .7rem; line-height: 1.3; }
+.ladder a.zone span { display: block; opacity: .75; }
+.ladder a.zone:hover { outline: 2px solid var(--md-accent-fg-color); }
+.ladder .b1 { background: #d8f3dc; } .ladder .b2 { background: #b7e4c7; } .ladder .b3 { background: #ffe8a3; }
+.ladder .b4 { background: #ffc58a; } .ladder .b5 { background: #ff9e7a; } .ladder .b6 { background: #e5989b; }
+
+/* Build calculator (guides/calculator.md, assets/build-calc.js) */
+.calc-form { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(16rem, 100%), 1fr)); gap: .8rem; margin: 1rem 0; }
+.calc-form fieldset { border: 1px solid var(--md-default-fg-color--lightest); border-radius: .3rem; padding: .5rem .8rem .8rem; margin: 0; min-width: 0; }
+.calc-form legend { font-weight: 700; padding: 0 .3rem; }
+.calc-form label { display: block; margin: .35rem 0; }
+.calc-form input[type=number], .calc-form select, .calc-form input[list] {
+  font: inherit; color: var(--md-default-fg-color); background: var(--md-default-bg-color);
+  border: 1px solid var(--md-default-fg-color--lighter); border-radius: .2rem; padding: .15rem .3rem; max-width: 100%; }
+.calc-form input[type=number] { width: 5rem; }
+.calc-form select, .calc-form input[list] { width: 100%; }
+.calc-row { display: flex; gap: .8rem; flex-wrap: wrap; }
+.calc-sub { margin-top: .5rem; font-size: .9em; }
+.calc-sps { display: grid; grid-template-columns: repeat(auto-fill, minmax(6.5rem, 1fr)); gap: .2rem .5rem; }
+.calc-sps label { margin: .2rem 0; }
+.calc-sps input { display: block; }
+.calc-dim { opacity: .7; font-size: .9em; }
+.calc-chip { display: inline-block; padding: .05rem .4rem; margin: .1rem 0; border-radius: 1rem; background: var(--md-code-bg-color); }
+.calc-chip button, .calc-x, .calc-link { border: 0; background: none; color: inherit; cursor: pointer; padding: 0 .15rem; font: inherit; }
+.calc-x { opacity: .35; font-size: .8em; }
+.calc-x:hover, .calc-chip button:hover { opacity: 1; color: var(--md-accent-fg-color); }
+.calc-link { text-decoration: underline; opacity: .8; }
+.calc-item { white-space: nowrap; }
+.calc-item img { vertical-align: middle; }
+.calc-tag { font-size: .75em; padding: 0 .3rem; border-radius: .2rem; background: var(--md-code-bg-color); }
+.calc-scroll { overflow-x: auto; }
+.md-typeset .calc-scroll table { display: table; font-size: .7rem; }
+.md-typeset tr.calc-pick { cursor: pointer; }
+.md-typeset tr.calc-pick:hover { background: var(--md-code-bg-color); }
+.md-typeset tr.calc-sel td { background: var(--md-accent-fg-color--transparent); font-weight: 600; }
+.md-typeset tr.calc-now td { background: var(--md-code-bg-color); }
+.calc-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(28rem, 100%), 1fr)); gap: 1.2rem; }
+.calc-cols > div { min-width: 0; }
+@media (max-width: 40rem) { .calc-cols { grid-template-columns: 1fr; } }
+.calc-indent { margin-left: 1.6rem !important; }
+.calc-card { border: 1px solid var(--md-default-fg-color--lightest); border-radius: .4rem; padding: .6rem .9rem; margin: 1rem 0; background: var(--md-code-bg-color); }
+.calc-card-title { font-weight: 700; margin-bottom: .4rem; }
+.calc-card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr)); gap: .5rem .9rem; font-size: .75rem; }
+.calc-card-grid .calc-item { white-space: normal; }

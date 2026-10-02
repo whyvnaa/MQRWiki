@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://whyvnaa.github.io/Monkey-Quest-Reborn-Wiki/sitemap.xml
