@@ -167,6 +167,10 @@
 .md-typeset img.quest-marker { height: .95em; width: auto; vertical-align: -.08em; margin-right: .35rem; }
 .md-typeset img.zone-pic { float: right; margin: 0 0 1rem 1.2rem; width: 160px; transform: rotate(2deg); border-radius: .6rem; border: 3px solid var(--mq-card-border);
                            box-shadow: 0 4px 0 rgba(0, 0, 0, .2); background: var(--mq-card); }
+.md-typeset img.monster-pic { float: right; margin: 0 0 1rem 1.2rem; width: 200px; height: 200px; border-radius: 50%;
+                               background: radial-gradient(circle at 50% 60%, var(--mq-card) 55%, var(--mq-card-border) 100%);
+                               border: 3px solid var(--mq-card-border); box-shadow: 0 4px 0 rgba(0, 0, 0, .2); }
+.md-typeset img.monster-thumb { width: 40px; height: 40px; vertical-align: middle; margin-right: .4rem; }
 .md-typeset img.zone-thumb { width: 40px; height: auto; vertical-align: middle; border-radius: .3rem; }
 .ladder a.zone img.ladder-pic { float: left; width: 36px; height: auto; margin: 0 .4rem .1rem 0; border-radius: .25rem; }
 
@@ -394,3 +398,34 @@ body:has(.mq-tribe-wild) { --mq-tribe: #3fb8c9; }
 .md-typeset .mq-ice { color: var(--mq-v-ice); }
 .md-typeset .mq-lightning { color: var(--mq-v-lightning); }
 .md-typeset .mq-blunt { color: var(--mq-v-blunt); }
+
+/* ---- Zone maps (build_wiki.LevelMap, assets/level-map.js): side view of a level with filterable markers ---- */
+.lm { margin: .6rem 0 1rem; }
+.lm-legend { display: flex; flex-wrap: wrap; gap: .25rem .9rem; align-items: center; font-size: .72rem; margin-bottom: .4rem; }
+.lm-legend label { display: inline-flex; align-items: center; gap: .25rem; cursor: pointer; white-space: nowrap; }
+.lm-legend input { margin: 0; accent-color: var(--mq-leaf); }
+.lm-legend .lm-n { opacity: .6; }
+.lm-legend .lm-planes { display: inline-flex; gap: .9rem; margin-left: auto; font-weight: 700; }
+.lm-frame { position: relative; border: 3px solid var(--mq-wood); border-radius: .7rem; overflow: hidden;
+  background: linear-gradient(#cfe9f5, #eef7e4); box-shadow: 0 4px 0 rgba(0, 0, 0, .2); }
+.lm-svg { display: block; width: 100%; height: auto; min-height: 16rem; max-height: 75vh; cursor: grab; touch-action: none; user-select: none; }
+.lm-svg:active { cursor: grabbing; }
+.lm-geo.lm-p0 { fill: #6b8f3a; stroke: #3d5a1c; stroke-width: .15; }
+.lm-geo.lm-p1 { fill: #a9bf8e; stroke: #7f9866; stroke-width: .15; opacity: .75; }
+.lm-m.lm-p1 { opacity: .7; }
+.lm-wall { fill: none; stroke: #3d5a1c; stroke-width: .12; stroke-dasharray: .6 .5; opacity: .45; }
+.lm-m { cursor: pointer; }
+.lm-m:hover { filter: drop-shadow(0 0 2px #fff) drop-shadow(0 0 3px #000); }
+.lm-help { position: absolute; right: .5rem; bottom: .3rem; font-size: .62rem; color: #2b2410; opacity: .65; pointer-events: none; }
+.lm.hide-p0 .lm-p0, .lm.hide-p1 .lm-p1 { display: none; }
+.lm.hide-enemy .lm-c-enemy, .lm.hide-spawner .lm-c-spawner, .lm.hide-chest .lm-c-chest, .lm.hide-harvest .lm-c-harvest,
+.lm.hide-breakable .lm-c-breakable, .lm.hide-quest .lm-c-quest, .lm.hide-idol .lm-c-idol, .lm.hide-banana .lm-c-banana,
+.lm.hide-portal .lm-c-portal, .lm.hide-npc .lm-c-npc, .lm.hide-arena .lm-c-arena, .lm.hide-checkpoint .lm-c-checkpoint,
+.lm.hide-hazard .lm-c-hazard, .lm.hide-move .lm-c-move { display: none; }
+.lm.lm-focus .lm-m:not(.lm-hl) { opacity: .15; }
+.lm .lm-m.lm-hl { display: inline; opacity: 1; filter: drop-shadow(0 0 3px #ffe14d) drop-shadow(0 0 3px #ffe14d); }
+.md-typeset table.lm-enemies tr[data-lm-key]:hover td { background: var(--mq-lime-light); }
+[data-md-color-scheme="slate"] .lm-frame { background: linear-gradient(#1d3140, #1f2a18); }
+[data-md-color-scheme="slate"] .lm-geo.lm-p0 { fill: #7fa548; stroke: #b7d27a; }
+[data-md-color-scheme="slate"] .lm-geo.lm-p1 { fill: #4d6338; stroke: #6f8a55; }
+[data-md-color-scheme="slate"] .lm-help { color: #e9f08a; }

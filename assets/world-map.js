@@ -7,7 +7,7 @@
     tip.className = "wm-tip";
     document.body.appendChild(tip);
     document.addEventListener("mouseover", function (e) {
-      var t = e.target.closest && e.target.closest(".wm [data-tip], .qj [data-tip]");
+      var t = e.target.closest && e.target.closest(".wm [data-tip], .qj [data-tip], .lm [data-tip]");
       if (!t) { tip.style.display = "none"; return; }
       tip.textContent = t.getAttribute("data-tip");
       tip.style.display = "block";
