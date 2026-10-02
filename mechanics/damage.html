@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Hit damage formula (base + weapon stat total), comparing weapons, stats-window caveat">
+        <meta name="description" content="How much a hit deals, with worked examples, and how to compare weapons">
       
       
       
@@ -51,7 +51,7 @@
     
       <link rel="stylesheet" href="../assets/extra.css?v=9edd169c">
     
-      <link rel="stylesheet" href="../assets/theme.css?v=62938989">
+      <link rel="stylesheet" href="../assets/theme.css?v=37d5d547">
     
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -414,10 +414,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#the-formula-confirmed-in-game" class="md-nav__link">
+  <a href="#blunt-and-element-damage" class="md-nav__link">
     <span class="md-ellipsis">
       
-        The formula (confirmed in-game)
+        Blunt and element damage
       
     </span>
   </a>
@@ -425,10 +425,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#rules" class="md-nav__link">
+  <a href="#comparing-weapons" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Rules
+        Comparing weapons
       
     </span>
   </a>
@@ -436,10 +436,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#elements" class="md-nav__link">
+  <a href="#weapon-effects" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Elements
+        Weapon effects
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#other-damage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Other damage
       
     </span>
   </a>
@@ -991,6 +1002,8 @@
       
         
       
+        
+      
     
     
     
@@ -1008,7 +1021,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../items/index.html" class="md-nav__link ">
+            <a href="../database/index.html" class="md-nav__link ">
               
   
   
@@ -1043,6 +1056,34 @@
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../items/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Items
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
               
             
               
@@ -1247,10 +1288,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#the-formula-confirmed-in-game" class="md-nav__link">
+  <a href="#blunt-and-element-damage" class="md-nav__link">
     <span class="md-ellipsis">
       
-        The formula (confirmed in-game)
+        Blunt and element damage
       
     </span>
   </a>
@@ -1258,10 +1299,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#rules" class="md-nav__link">
+  <a href="#comparing-weapons" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Rules
+        Comparing weapons
       
     </span>
   </a>
@@ -1269,10 +1310,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#elements" class="md-nav__link">
+  <a href="#weapon-effects" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Elements
+        Weapon effects
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#other-damage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Other damage
       
     </span>
   </a>
@@ -1297,39 +1349,118 @@
 
 
 <h1 id="damage">Damage<a class="headerlink" href="#damage" title="Permanent link">&para;</a></h1>
-<h2 id="the-formula-confirmed-in-game">The formula (confirmed in-game)<a class="headerlink" href="#the-formula-confirmed-in-game" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>hit damage = your base damage + weapon stat total
-base damage = ability power (10 × level) + all gear damage lines (blunt + element) + skill-point bonuses
-weapon stat total = the weapon's scaled blunt + element (see each weapon's page)
+<p>Every hit deals your base damage plus the stat total of the weapon you hit with.</p>
+<div class="highlight"><pre><span></span><code>hit = base damage + weapon stat total
 </code></pre></div>
-<p><strong>Worked example (measured 2026-10-01):</strong> a level-22 player had a base of 516.
-- Silver Stars (stat total 227) hit for <strong>743</strong> = 516 + 227.
-- Bo Staff (stat total 305) hit for <strong>821</strong> = 516 + 305.</p>
-<p><strong>How to compare weapons:</strong> a higher stat total always means a harder hit. Divide by the cooldown to estimate damage
-over time. The <a href="../items/weapons.html">weapons list</a> shows every weapon's stat total.</p>
-<div class="admonition warning">
-<p class="admonition-title">The stats window is misleading</p>
-<p>Your inventory damage stat shows your base plus only your <strong>strongest hotbar weapon</strong>. It doesn't show how hard your other weapons hit.</p>
-</div>
-<h2 id="rules">Rules<a class="headerlink" href="#rules" title="Permanent link">&para;</a></h2>
+<p>Your base damage is the sum of:</p>
 <ul>
-<li><strong>Ability power (part of base damage) is 10 × your level.</strong> <code>AP(L) = 10·L</code></li>
-<li><strong>Blunt damage counts toward every element. Blunt accessories raise the damage of elemental weapons too. Elemental lines add on top. All stats are additive (the original game's system).</strong></li>
-<li><strong>A weapon's catalog effect value (the 'bonus damage' in old patch notes, e.g. Silver Stars +50 air) is NOT added to hits. It only defines special effects such as life steal %, poison %, stun and the underwater bonus.</strong></li>
-<li><strong>Boom/TNT barrels can only be broken with fire-element weapons.</strong></li>
-<li><strong>A hit deals your base damage plus the scaled value of the weapon you are using. Base = ability power + all gear damage lines + skill-point bonuses. The weapon value is its scaled blunt + element (<code>scaled_stats</code> in items.json). There is no rounding surprise: the damage number equals the sum.</strong> <code>hit = base + weapon.scaled_blunt + weapon.scaled_element</code> <strong>Tip:</strong> To compare weapons, add each weapon's scaled_stats sum to your base. A higher sum always hits harder.</li>
-<li><strong>Ground melee hits everything in a box 3.6 units in front of you and 1 unit high, all at once. Ranged shots fly straight at about 10 units/s for 3 s and stop at walls (terrain collision since 1.6).</strong> <em>(not confirmed on MQReborn yet)</em></li>
-<li><strong>Every successful hit deals at least 1 damage.</strong> <em>(not confirmed on MQReborn yet)</em></li>
-<li><strong>There are no critical hits, misses or dodges. A hit lands when the attack box overlaps the enemy on the same plane. Apparent misses are lag or desync.</strong> <em>(not confirmed on MQReborn yet)</em></li>
-<li><strong>The inventory damage stat shows your base plus only the strongest weapon on your hotbar (by scaled sum). It does not tell you how hard your other weapons hit.</strong></li>
-<li><strong>Super stomp damage depends only on your level, not on gear.</strong> <code>stomp = ceil(10·L + 20) · 2</code> <em>(not confirmed on MQReborn yet)</em></li>
-<li><strong>Zone weapons (gas clouds) deal 50 % of your total damage per tick. The in-game tooltip shows 1/3.</strong> <code>tick = 0.5 · (base + weapon.scaled_sum)</code></li>
-<li><strong>Weapon side effects work on MQReborn: Stun Flower stuns 4 s (cooldown 10 s) and Dragon Mace 1 s; Snake Staff (150 % over 10 s, plus its impact hit), Scorpion Sword (150 % over 30 s) and Rotten Stick (25 % over 5 s) poison; Turkey Mace (10 %), Flytrap Staff and Voodoo Doll (15 % in live data, 20 % in patch 1.7.5) steal life. Healing Staff heals 25 % of your HP every 20 s (self only); Horn of Heroism gives +250 elemental defence for 25 s every 30 s; Smoke Bomb gives 15 s of invisibility. A build is a melee weapon, a ranged weapon and one utility item chosen for its role, not for its damage. Not confirmed yet: whether poison is a % of the whole hit or only its earth part; whether Drop bombs (Stink Bombs) hurt enemies.</strong> <strong>Tip:</strong> Open fights against tough enemies with a stun (Stun Flower) and finish with your fastest weapon: a 4 s stun covers about 8 swings of a 0.5 s weapon. Use the build calculator's utility slot to compare roles.</li>
+<li><span class="mq-hl mq-dmg">10</span> per level (your ability power),</li>
+<li>the damage of your Ears, Wrist and Tail,</li>
+<li>your Badge Book bonus (<span class="mq-hl mq-dmg">75</span> at badge level 1, <span class="mq-hl mq-dmg">+20</span> per further level), but only for weapons of that
+  tribe's element.</li>
 </ul>
-<h2 id="elements">Elements<a class="headerlink" href="#elements" title="Permanent link">&para;</a></h2>
-<p>Blunt counts for every element, so your total damage matters more than matching elements. Each tribe item also gets
-an element line on top. Weapons and accessories get 80 % blunt + 30 % element, so tribe gear is worth about 110 % of
-a Crossroads piece of the same level. See <a href="gear.html">Gear and stats</a>.</p>
+<p>The weapon's stat total is on its item page: its <span class="mq-hl mq-blunt">blunt</span> damage plus its element damage.</p>
+<div class="admonition example">
+<p class="admonition-title">Measured in-game</p>
+<p>A level <span class="mq-hl mq-val">22</span> monkey with a base damage of <span class="mq-hl mq-dmg">516</span>:</p>
+<ul>
+<li>Silver Stars (stat total <span class="mq-hl mq-dmg">227</span>) hit for <span class="mq-hl mq-dmg">743</span>.</li>
+<li>Bo Staff (stat total <span class="mq-hl mq-dmg">305</span>) hit for <span class="mq-hl mq-dmg">821</span>.</li>
+</ul>
+</div>
+<h2 id="blunt-and-element-damage">Blunt and element damage<a class="headerlink" href="#blunt-and-element-damage" title="Permanent link">&para;</a></h2>
+<p>Weapons and accessories give <span class="mq-hl mq-blunt">blunt</span> damage and, if they belong to a tribe, element damage. Blunt damage counts for
+every hit. Element damage only counts when you hit with a weapon of the same element.</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Brass Skull Earrings give <span class="mq-hl mq-blunt">52 blunt</span> damage and <span class="mq-hl mq-fire">20 Fire</span> damage.</p>
+<ul>
+<li>With Bo Staff, an <span class="mq-hl mq-air">Air</span> weapon, they add <span class="mq-hl mq-dmg">52</span> to each hit.</li>
+<li>With a <span class="mq-hl mq-fire">Fire</span> weapon they add <span class="mq-hl mq-dmg">72</span>.</li>
+</ul>
+</div>
+<p>Blunt makes up most of an item's damage, so the highest total usually wins even when the element doesn't match. Tribe
+items add element damage on top and are worth about <span class="mq-hl mq-val">110 %</span> of a Crossroads item of the same level
+(<a href="gear.html">gear and stats</a>).</p>
+<h2 id="comparing-weapons">Comparing weapons<a class="headerlink" href="#comparing-weapons" title="Permanent link">&para;</a></h2>
+<p>A higher stat total always hits harder. Fast weapons make up for smaller hits: Bo Staff can hit every <span class="mq-hl mq-t">0.5 s</span>,
+Silver Stars every <span class="mq-hl mq-t">0.8 s</span>. The <a href="../guides/calculator.html">build calculator</a> ranks weapons by how long they take to
+kill an enemy of your level, which accounts for both.</p>
+<div class="admonition warning">
+<p class="admonition-title">The stats window shows one weapon</p>
+<p>The damage number in your inventory is your base plus your strongest hotbar weapon. Every other weapon hits for
+your base plus its own stat total.</p>
+</div>
+<h2 id="weapon-effects">Weapon effects<a class="headerlink" href="#weapon-effects" title="Permanent link">&para;</a></h2>
+<p>Some weapons stun, poison or heal on top of their hit. The bonus numbers in old patch notes, like "Silver Stars +50
+Air", are the size of that effect and are not added to your hits.</p>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Stun Flower</td>
+<td>stuns for <span class="mq-hl mq-t">4 s</span>, cooldown <span class="mq-hl mq-t">10 s</span></td>
+</tr>
+<tr>
+<td>Dragon Mace</td>
+<td>stuns for <span class="mq-hl mq-t">1 s</span></td>
+</tr>
+<tr>
+<td>Snake Staff</td>
+<td>poison: <span class="mq-hl mq-dmg">150 %</span> over <span class="mq-hl mq-t">10 s</span>, on top of its normal hit</td>
+</tr>
+<tr>
+<td>Scorpion Sword</td>
+<td>poison: <span class="mq-hl mq-dmg">150 %</span> over <span class="mq-hl mq-t">30 s</span></td>
+</tr>
+<tr>
+<td>Rotten Stick</td>
+<td>poison: <span class="mq-hl mq-dmg">25 %</span> over <span class="mq-hl mq-t">5 s</span></td>
+</tr>
+<tr>
+<td>Turkey Mace</td>
+<td>life steal <span class="mq-hl mq-hp">10 %</span></td>
+</tr>
+<tr>
+<td>Flytrap Staff, Voodoo Doll</td>
+<td>life steal <span class="mq-hl mq-hp">15 %</span> (patch 1.7.5 said <span class="mq-hl mq-hp">20 %</span>)</td>
+</tr>
+<tr>
+<td>Healing Staff</td>
+<td>heals you for <span class="mq-hl mq-hp">25 %</span> of your max HP every <span class="mq-hl mq-t">20 s</span>, not your teammates</td>
+</tr>
+<tr>
+<td>Horn of Heroism</td>
+<td><span class="mq-hl mq-def">+250</span> resist against every element for <span class="mq-hl mq-t">25 s</span>, every <span class="mq-hl mq-t">30 s</span></td>
+</tr>
+<tr>
+<td>Smoke Bomb</td>
+<td>invisible for <span class="mq-hl mq-t">15 s</span></td>
+</tr>
+</tbody>
+</table>
+<p>Poison is a share of your hit. Whether it's the whole hit or only the <span class="mq-hl mq-earth">Earth</span> part isn't confirmed yet.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Open tough fights with Stun Flower and follow with your fastest weapon. A <span class="mq-hl mq-t">4 s</span> stun covers about <span class="mq-hl mq-val">8</span>
+swings of a <span class="mq-hl mq-t">0.5 s</span> weapon.</p>
+</div>
+<h2 id="other-damage">Other damage<a class="headerlink" href="#other-damage" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Gas clouds and other damage zones deal <span class="mq-hl mq-dmg">50 %</span> of your hit every tick. Their tooltip says a third, which is
+  wrong.</li>
+<li>Boom and TNT barrels only break with <span class="mq-hl mq-fire">Fire</span> weapons.</li>
+<li>Super stomp deals (10 × level + 20) × 2, whatever your gear: <span class="mq-hl mq-dmg">640</span> at level <span class="mq-hl mq-val">30</span>. <em>(not confirmed on
+  MQReborn yet)</em></li>
+<li>Melee hits every enemy in front of you at once. Ranged shots fly straight for about <span class="mq-hl mq-t">3 s</span> and stop at walls.
+  <em>(not confirmed on MQReborn yet)</em></li>
+<li>There are no critical hits, misses or dodges. A hit that seems to miss is lag. <em>(not confirmed on MQReborn yet)</em></li>
+</ul>
 
 
 
@@ -1399,7 +1530,7 @@ a Crossroads piece of the same level. See <a href="gear.html">Gear and stats</a>
       
         <script src="../assets/tables.js?v=a41ed08e"></script>
       
-        <script src="../assets/build-calc.js?v=ab9a9122"></script>
+        <script src="../assets/build-calc.js?v=24643ce1"></script>
       
         <script src="../assets/world-map.js?v=a085e0df"></script>
       

@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Level cap 60, ±4-level kill XP rule, XP sources, level-up rewards">
+        <meta name="description" content="Level cap, which enemies give full XP, the best XP sources and what a level-up gives">
       
       
       
@@ -51,7 +51,7 @@
     
       <link rel="stylesheet" href="../assets/extra.css?v=9edd169c">
     
-      <link rel="stylesheet" href="../assets/theme.css?v=62938989">
+      <link rel="stylesheet" href="../assets/theme.css?v=37d5d547">
     
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -498,10 +498,21 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#rules" class="md-nav__link">
+  <a href="#kill-xp" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Rules
+        Kill XP
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-xp-sources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best XP sources
       
     </span>
   </a>
@@ -980,6 +991,8 @@
       
         
       
+        
+      
     
     
     
@@ -997,7 +1010,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../items/index.html" class="md-nav__link ">
+            <a href="../database/index.html" class="md-nav__link ">
               
   
   
@@ -1032,6 +1045,34 @@
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../items/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Items
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
               
             
               
@@ -1236,10 +1277,21 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#rules" class="md-nav__link">
+  <a href="#kill-xp" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Rules
+        Kill XP
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-xp-sources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best XP sources
       
     </span>
   </a>
@@ -1275,23 +1327,28 @@
 
 
 <h1 id="xp-and-levels">XP and levels<a class="headerlink" href="#xp-and-levels" title="Permanent link">&para;</a></h1>
+<p>The level cap is <span class="mq-hl mq-val">60</span>. Each level gives <span class="mq-hl mq-dmg">+10</span> damage (ability power), <span class="mq-hl mq-def">+10</span> defence, <span class="mq-hl mq-hp">+100</span> max HP
+and skill points for the Badge Book. Every <span class="mq-hl mq-val">5</span> levels the level-up menu also gives you an MC Mall item.</p>
+<h2 id="kill-xp">Kill XP<a class="headerlink" href="#kill-xp" title="Permanent link">&para;</a></h2>
+<p>Enemies <span class="mq-hl mq-val">5</span> or more levels above or below you give much less XP, down to <span class="mq-hl mq-xp">1</span>. The team made it this way to
+stop farming in low zones. The exact curve isn't known.</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>At level <span class="mq-hl mq-val">20</span>, fight enemies of level <span class="mq-hl mq-val">16</span> to <span class="mq-hl mq-val">24</span>. A level-20 enemy gives a base of <span class="mq-hl mq-xp">145</span> XP. A
+level-30 enemy has a base of <span class="mq-hl mq-xp">195</span>, but it is <span class="mq-hl mq-val">10</span> levels above you, so you get far less.</p>
+</div>
+<p>In a group, every member gets kill XP, not just whoever lands the last hit. Each share depends on that member's own
+level.</p>
+<h2 id="best-xp-sources">Best XP sources<a class="headerlink" href="#best-xp-sources" title="Permanent link">&para;</a></h2>
 <ul>
-<li>The level cap is <strong>60</strong>.</li>
-<li>Each level gives +10 ability power, +10 defence, +100 max HP and skill points.</li>
-<li><strong>Kill enemies within ±4 levels of your own.</strong> Further away in either direction, kill XP falls off toward 1.</li>
-<li>The big XP sources are quests, dailies, idol-collector achievements (25k–100k XP) and the Warrior Games
-  (10 rewarded runs per day, scaled to your level).</li>
-<li>Elixirs of Wisdom add +20 % to everything except achievement XP.</li>
+<li>Quests. They pay most of your XP.</li>
+<li>Dailies, which reset at 00:00 UTC.</li>
+<li>Idol-collector achievements: <span class="mq-hl mq-xp">25,000</span> to <span class="mq-hl mq-xp">100,000</span> XP each, counted from level <span class="mq-hl mq-val">3</span>.</li>
+<li>The Warrior Games: <span class="mq-hl mq-val">10</span> rewarded runs per day, with XP scaled to your level. At level <span class="mq-hl mq-val">60</span> you get the
+  level-50 loot table, which is intended.</li>
 </ul>
-<h2 id="rules">Rules<a class="headerlink" href="#rules" title="Permanent link">&para;</a></h2>
-<ul>
-<li><strong>In a group, kill XP goes to every member, weighted by each member's own level (not just the killing blow).</strong></li>
-<li><strong>Kill XP falls off when the enemy is 5 or more levels above OR below you, down to 1 XP. This is intended, to stop farming low zones. The exact curve is unknown.</strong> <strong>Tip:</strong> Fight enemies within ±4 levels of your own.</li>
-<li><strong>The main XP sources are quests (rebalanced 1.6.4.1: more XP mid-game), dailies, idol-collector achievements (25k–100k XP each) and the Warrior Games.</strong></li>
-<li><strong>The level cap is 60.</strong></li>
-<li><strong>Each level gives +10 ability power, +10 defence, +100 max HP and skill points. The level-up menu shows the changes and grants an MC Mall item every 5 levels.</strong></li>
-<li><strong>Warrior Games runs grant real XP and items. XP scales with your level (since 1.7.5.1), limited to 10 rewarded runs per day. Level 60 gets the level-50 loot table on purpose.</strong></li>
-</ul>
+<p>Elixirs of Wisdom add <span class="mq-hl mq-xp">20 %</span> to all XP except achievement XP. They last from <span class="mq-hl mq-t">10 min</span> (Minor) to <span class="mq-hl mq-t">6 h</span>
+(Ultimate). Temporary XP events add to the elixir bonus.</p>
 <h2 id="base-numbers-by-level">Base numbers by level<a class="headerlink" href="#base-numbers-by-level" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -1425,8 +1482,7 @@
 </tr>
 </tbody>
 </table>
-<p>"Enemy base kill XP" is the table value before the level-difference falloff. The exact falloff curve on MQReborn is
-not measured yet.</p>
+<p>"Enemy base kill XP" is the XP before the level difference is applied.</p>
 
 
 
@@ -1496,7 +1552,7 @@ not measured yet.</p>
       
         <script src="../assets/tables.js?v=a41ed08e"></script>
       
-        <script src="../assets/build-calc.js?v=ab9a9122"></script>
+        <script src="../assets/build-calc.js?v=24643ce1"></script>
       
         <script src="../assets/world-map.js?v=a085e0df"></script>
       

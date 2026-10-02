@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Overview of all mechanics pages plus the base stat table per level">
+        <meta name="description" content="How MQReborn calculates damage, defence, XP, loot and more, plus the base stats for every level">
       
       
       
@@ -51,7 +51,7 @@
     
       <link rel="stylesheet" href="../assets/extra.css?v=9edd169c">
     
-      <link rel="stylesheet" href="../assets/theme.css?v=62938989">
+      <link rel="stylesheet" href="../assets/theme.css?v=37d5d547">
     
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -911,6 +911,8 @@
       
         
       
+        
+      
     
     
     
@@ -928,7 +930,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../items/index.html" class="md-nav__link ">
+            <a href="../database/index.html" class="md-nav__link ">
               
   
   
@@ -963,6 +965,34 @@
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../items/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Items
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
               
             
               
@@ -1160,6 +1190,25 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#base-stats-by-level" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Base stats by level
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1176,63 +1225,63 @@
 
 
 <h1 id="mechanics">Mechanics<a class="headerlink" href="#mechanics" title="Permanent link">&para;</a></h1>
-<p>Short, current explanations of how MQReborn works. Each page ends with the rules that apply. Rules marked
-<em>not confirmed yet</em> or <em>player reports</em> are still waiting for a test on MQReborn.</p>
+<p>How the game works on MQReborn, with the numbers behind it.</p>
 <table>
 <thead>
 <tr>
 <th>Page</th>
-<th>What it answers</th>
+<th>What it covers</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><a href="damage.html">Damage</a></td>
-<td>How much a hit deals, how to compare weapons</td>
+<td>How much a hit deals and how to compare weapons</td>
 </tr>
 <tr>
 <td><a href="defence.html">Defence and elements</a></td>
-<td>What reduces damage, elements and resists, skill points</td>
+<td>What reduces damage, elements and resists, the Badge Book</td>
 </tr>
 <tr>
 <td><a href="gear.html">Gear and stats</a></td>
-<td>How item stats are computed, slots, rarity, item level</td>
+<td>Where item stats come from: item level, tribe, rarity and slot</td>
 </tr>
 <tr>
 <td><a href="xp-and-levels.html">XP and levels</a></td>
-<td>Where XP comes from, the ±4-level rule, level-up rewards</td>
+<td>Where XP comes from, which enemies give full XP, what a level-up gives</td>
 </tr>
 <tr>
 <td><a href="loot.html">Loot</a></td>
-<td>Enemy drops, chests, group loot, rare drops</td>
+<td>Enemy drops, chests and group loot</td>
 </tr>
 <tr>
 <td><a href="buffs-and-healing.html">Buffs and healing</a></td>
-<td>Elixirs, potions, food, Healing Staff</td>
+<td>Elixirs, potions, food and the Healing Staff</td>
 </tr>
 <tr>
 <td><a href="pets.html">Pets</a></td>
-<td>Percentage damage, shields, co-op</td>
+<td>Pet damage, shields and heals</td>
 </tr>
 <tr>
 <td><a href="enemies.html">Enemies</a></td>
-<td>Enemy levels, HP, starred enemies, invisible enemies</td>
+<td>Enemy levels and HP, starred and invisible enemies</td>
 </tr>
 <tr>
 <td><a href="death-and-hazards.html">Death and hazards</a></td>
-<td>Knock-out penalty, hazards, drowning, known bugs</td>
+<td>Knock-outs, hazards, drowning and a known bug</td>
 </tr>
 <tr>
 <td><a href="quests-and-achievements.html">Quests and achievements</a></td>
-<td>Quest rules, dailies, achievements</td>
+<td>Quest rules, dailies and achievements</td>
 </tr>
 <tr>
 <td><a href="economy.html">Economy and travel</a></td>
-<td>Prices, selling, bananas, fast travel</td>
+<td>Bananas, MonkeyCash, vendors and fast travel</td>
 </tr>
 </tbody>
 </table>
-<p>The base numbers for every level:</p>
+<h2 id="base-stats-by-level">Base stats by level<a class="headerlink" href="#base-stats-by-level" title="Permanent link">&para;</a></h2>
+<p>Your own stats before gear, and those of an enemy of the same level:</p>
 <table>
 <thead>
 <tr>
@@ -1434,7 +1483,7 @@
       
         <script src="../assets/tables.js?v=a41ed08e"></script>
       
-        <script src="../assets/build-calc.js?v=ab9a9122"></script>
+        <script src="../assets/build-calc.js?v=24643ce1"></script>
       
         <script src="../assets/world-map.js?v=a085e0df"></script>
       

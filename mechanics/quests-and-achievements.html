@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Quest rules, daily reset, achievements from level 3">
+        <meta name="description" content="Quest rules, the daily reset and achievements">
       
       
       
@@ -51,7 +51,7 @@
     
       <link rel="stylesheet" href="../assets/extra.css?v=9edd169c">
     
-      <link rel="stylesheet" href="../assets/theme.css?v=62938989">
+      <link rel="stylesheet" href="../assets/theme.css?v=37d5d547">
     
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -666,10 +666,21 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#rules" class="md-nav__link">
+  <a href="#quests" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Rules
+        Quests
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#achievements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Achievements
       
     </span>
   </a>
@@ -969,6 +980,8 @@
       
         
       
+        
+      
     
     
     
@@ -986,7 +999,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../items/index.html" class="md-nav__link ">
+            <a href="../database/index.html" class="md-nav__link ">
               
   
   
@@ -1021,6 +1034,34 @@
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../items/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Items
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
               
             
               
@@ -1225,10 +1266,21 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#rules" class="md-nav__link">
+  <a href="#quests" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Rules
+        Quests
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#achievements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Achievements
       
     </span>
   </a>
@@ -1253,20 +1305,20 @@
 
 
 <h1 id="quests-and-achievements">Quests and achievements<a class="headerlink" href="#quests-and-achievements" title="Permanent link">&para;</a></h1>
+<h2 id="quests">Quests<a class="headerlink" href="#quests" title="Permanent link">&para;</a></h2>
 <ul>
-<li>You can hold <strong>one quest per NPC</strong> at a time.</li>
-<li><strong>Collect objectives</strong> count only items picked up while the quest is active.</li>
-<li><strong>Crafting objectives</strong> require crafting the item yourself.</li>
-<li><strong>Dailies</strong> reset at 00:00 UTC.</li>
-<li><strong>Achievements</strong> count only from level 3. "(Daily)" achievements pay once.</li>
+<li>You can have one quest per NPC at a time.</li>
+<li>Collect objectives only count items you pick up while the quest is active.</li>
+<li>Crafting objectives need you to craft the item yourself.</li>
+<li>If a patch changes a quest you had already accepted, you keep the old objectives.</li>
+<li>If a patch fixes a recipe, recipes you had already learned stay as they were.</li>
 </ul>
-<h2 id="rules">Rules<a class="headerlink" href="#rules" title="Permanent link">&para;</a></h2>
-<ul>
-<li><strong>Dailies reset at 00:00 UTC. The server restarts at the reset.</strong></li>
-<li><strong>You can hold one quest per NPC at a time. Collect objectives only count items picked up while the quest is active. Crafting objectives require crafting the item yourself. A quest edited by a patch keeps its old objectives if you had already accepted it. Recipe fixes don't apply to recipes you already learned.</strong></li>
-<li><strong>Achievements only count progress from level 3. "(Daily)" achievements are not implemented yet, so they pay only once.</strong> <strong>Tip:</strong> Don't count on idol achievements for idols collected before level 3.</li>
-</ul>
-<p>All quests by level: <a href="../quests/index.html">quests</a>. Each quest page links its objectives, rewards, prerequisites and follow-ups.</p>
+<p>Dailies reset at 00:00 UTC, when the server restarts.</p>
+<h2 id="achievements">Achievements<a class="headerlink" href="#achievements" title="Permanent link">&para;</a></h2>
+<p>Achievements only count from level <span class="mq-hl mq-val">3</span>. Idols you collect before that don't count toward the idol-collector
+achievements, which pay <span class="mq-hl mq-xp">25,000</span> to <span class="mq-hl mq-xp">100,000</span> XP. "(Daily)" achievements don't repeat yet, so they pay only
+once.</p>
+<p>Every quest by level, the quest journal of each tribe and all dailies: <a href="../quests/index.html">quests and questlines</a>.</p>
 
 
 
@@ -1336,7 +1388,7 @@
       
         <script src="../assets/tables.js?v=a41ed08e"></script>
       
-        <script src="../assets/build-calc.js?v=ab9a9122"></script>
+        <script src="../assets/build-calc.js?v=24643ce1"></script>
       
         <script src="../assets/world-map.js?v=a085e0df"></script>
       

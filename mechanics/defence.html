@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Defence, enemy minimum damage, tribes/elements/resists, skill points">
+        <meta name="description" content="Defence and resists, enemy elements, minimum damage and the Badge Book, with examples">
       
       
       
@@ -51,7 +51,7 @@
     
       <link rel="stylesheet" href="../assets/extra.css?v=9edd169c">
     
-      <link rel="stylesheet" href="../assets/theme.css?v=62938989">
+      <link rel="stylesheet" href="../assets/theme.css?v=37d5d547">
     
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -442,10 +442,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#elements-and-tribes" class="md-nav__link">
+  <a href="#elements" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Elements and tribes
+        Elements
       
     </span>
   </a>
@@ -453,21 +453,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#badge-book-skill-points" class="md-nav__link">
+  <a href="#badge-book" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Badge Book (skill points)
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#rules" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Rules
+        Badge Book
       
     </span>
   </a>
@@ -991,6 +980,8 @@
       
         
       
+        
+      
     
     
     
@@ -1008,7 +999,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../items/index.html" class="md-nav__link ">
+            <a href="../database/index.html" class="md-nav__link ">
               
   
   
@@ -1043,6 +1034,34 @@
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../items/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Items
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
               
             
               
@@ -1247,10 +1266,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#elements-and-tribes" class="md-nav__link">
+  <a href="#elements" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Elements and tribes
+        Elements
       
     </span>
   </a>
@@ -1258,21 +1277,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#badge-book-skill-points" class="md-nav__link">
+  <a href="#badge-book" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Badge Book (skill points)
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#rules" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Rules
+        Badge Book
       
     </span>
   </a>
@@ -1297,54 +1305,87 @@
 
 
 <h1 id="defence-and-elements">Defence and elements<a class="headerlink" href="#defence-and-elements" title="Permanent link">&para;</a></h1>
-<p>Your defence = 10 × level (base) + armour (Hat, Body, Legs, Backpack) + skill-point defence. Defence reduces enemy attack
-damage, but enemies always deal at least a level-based minimum. Hazards that take a percentage of your max HP ignore
-defence completely.</p>
-<h2 id="elements-and-tribes">Elements and tribes<a class="headerlink" href="#elements-and-tribes" title="Permanent link">&para;</a></h2>
+<p>Defence reduces the damage of enemy attacks. Your defence is the sum of:</p>
+<ul>
+<li><span class="mq-hl mq-def">10</span> per level (base defence),</li>
+<li>the defence of your armour: Hat, Body, Legs and Backpack,</li>
+<li>the resist of your armour against the attacker's element,</li>
+<li>your Badge Book defence bonus, which counts against every element.</li>
+</ul>
+<p>Enemies always deal at least a minimum that grows with their level, however high your defence is. Hazards that take a
+share of your max HP ignore defence completely.</p>
+<h2 id="elements">Elements<a class="headerlink" href="#elements" title="Permanent link">&para;</a></h2>
+<p>Every enemy attacks with its tribe's element. Crossroads enemies deal <span class="mq-hl mq-blunt">blunt</span> damage.</p>
 <table>
 <thead>
 <tr>
 <th>Tribe</th>
 <th>Element</th>
-<th>Resist that protects you</th>
+<th>What protects you</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Bone (Ootu)</td>
-<td>Earth</td>
-<td>Earth resist</td>
+<td>Shadow (Chim Foo, mist enemies)</td>
+<td><span class="mq-hl mq-air">Air</span></td>
+<td>defence + <span class="mq-hl mq-air">Air</span> resist</td>
+</tr>
+<tr>
+<td>Bone (Ootu Mystics)</td>
+<td><span class="mq-hl mq-earth">Earth</span></td>
+<td>defence + <span class="mq-hl mq-earth">Earth</span> resist</td>
 </tr>
 <tr>
 <td>Outlaw (Sea Dragons)</td>
-<td>Fire</td>
-<td>Fire resist</td>
+<td><span class="mq-hl mq-fire">Fire</span></td>
+<td>defence + <span class="mq-hl mq-fire">Fire</span> resist</td>
 </tr>
 <tr>
-<td>Shadow (Chim Foo, mist enemies)</td>
-<td>Air</td>
-<td>Air resist</td>
+<td>Wild (Ice Raiders)</td>
+<td><span class="mq-hl mq-ice">Ice</span></td>
+<td>defence + <span class="mq-hl mq-ice">Ice</span> resist</td>
 </tr>
 <tr>
-<td>Wild</td>
-<td>Ice</td>
-<td>Ice resist</td>
-</tr>
-<tr>
-<td>Grease</td>
-<td>Lightning</td>
-<td>Lightning resist</td>
+<td>Grease (Mek-Tek)</td>
+<td><span class="mq-hl mq-lightning">Lightning</span></td>
+<td>defence + <span class="mq-hl mq-lightning">Lightning</span> resist</td>
 </tr>
 <tr>
 <td>Crossroads</td>
-<td>none (blunt)</td>
-<td>Defence</td>
+<td><span class="mq-hl mq-blunt">blunt</span></td>
+<td>defence + every resist</td>
 </tr>
 </tbody>
 </table>
-<p>Enemies attack with their tribe's element, so wear the resist that matches the zone you are in.</p>
-<h2 id="badge-book-skill-points">Badge Book (skill points)<a class="headerlink" href="#badge-book-skill-points" title="Permanent link">&para;</a></h2>
-<p>Every 5 skill points in a tribe give one badge level. The damage bonus applies to weapons of that tribe's element. The defence bonus counts against all elements according to the team.</p>
+<p>Tribe armour gives defence plus resist against its own element. Crossroads armour gives only defence, a bit more of it.</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Padded Ninja Hat gives <span class="mq-hl mq-def">51</span> defence and <span class="mq-hl mq-air">18 Air</span> resist.</p>
+<ul>
+<li>Against an <span class="mq-hl mq-air">Air</span> enemy it counts <span class="mq-hl mq-def">69</span>.</li>
+<li>Against a <span class="mq-hl mq-fire">Fire</span> enemy it counts <span class="mq-hl mq-def">51</span>.</li>
+<li>Against a <span class="mq-hl mq-blunt">blunt</span> (Crossroads) enemy it counts <span class="mq-hl mq-def">69</span>, because every resist counts against blunt.</li>
+</ul>
+</div>
+<p>So wear armour of the tribe you are fighting. It resists their element and still counts in full against Crossroads
+enemies. The "Defence" number in your stats window includes all your resists.</p>
+<div class="admonition warning">
+<p class="admonition-title">Stay at the zone's level</p>
+<p>Being below a zone's level gets you knocked out in one hit even with good gear. Players have been one-shot in the
+Forbidden Keep arena with <span class="mq-hl mq-def">340</span> defence and <span class="mq-hl mq-hp">1,400</span> HP.</p>
+</div>
+<h2 id="badge-book">Badge Book<a class="headerlink" href="#badge-book" title="Permanent link">&para;</a></h2>
+<p>Skill points from levelling up go into the Badge Book. Every <span class="mq-hl mq-val">5</span> points in a tribe give one badge level:</p>
+<ul>
+<li><span class="mq-hl mq-dmg">+75</span> damage at badge level 1 and <span class="mq-hl mq-dmg">+20</span> per further level, only for weapons of that tribe's element,</li>
+<li><span class="mq-hl mq-def">+67</span> defence at badge level 1 and <span class="mq-hl mq-def">+24</span> per further level, against every element.</li>
+</ul>
+<p>You can switch tribes for free, so you can move your points to match your weapon or the zone.</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p><span class="mq-hl mq-val">20</span> skill points in Shadow make badge level <span class="mq-hl mq-val">4</span>: <span class="mq-hl mq-air">+135 Air</span> damage on <span class="mq-hl mq-air">Air</span> weapons and
+<span class="mq-hl mq-def">+139</span> defence against everything.</p>
+</div>
 <table>
 <thead>
 <tr>
@@ -1442,15 +1483,6 @@ defence completely.</p>
 </tbody>
 </table>
 <p>Same numbers for every element (Air, Earth, Fire, Ice, Lightning). Confirmed in-game for badge levels 1–4.</p>
-<h2 id="rules">Rules<a class="headerlink" href="#rules" title="Permanent link">&para;</a></h2>
-<ul>
-<li><strong>Base defence is 10 × level. Armour adds to it. Base max HP is 100 × level.</strong> <code>Def(L) = 10·L;  HP(L) = 100·L</code></li>
-<li><strong>Defence reduces damage from enemy attacks, but enemies always deal at least a level-based minimum. Percentage-of-max-HP hazards ignore defence.</strong></li>
-<li><strong>Armour stats are its scaled defence plus a resist line for tribe armour (e.g. Padded Ninja Hat: 51 defence + 18 Air resist; confirmed in-game). Against a given element, your defence = all defence + resist lines of that element. Against blunt (Crossroads) attackers, every resist line counts. The stats window's general "Defence" also includes all resist lines, and each element's defence counts only its own resist lines.</strong> <code>def_vs(E) = base_def + Σ armour.defence + Σ armour.resist[E] + badge_def;  def_vs(blunt) = base_def + Σ armour.(defence + resist) + badge_def</code> <strong>Tip:</strong> Wear armour of the enemy's tribe. It resists their element and still counts fully against blunt attacks.</li>
-<li><strong>Being below a zone's recommended level gets you one-shot even with good defence (e.g. 340 defence, 1,400 HP in the Forbidden Keep arena).</strong> <strong>Tip:</strong> Stay at or above the recommended level of a trail.</li>
-<li><strong>Enemies attack with their tribe's element. The matching resist protects you: mist (Chim Foo/Shadow) enemies → Air resist. Tribes and elements: Bone=Earth, Outlaw=Fire, Shadow=Air, Wild=Ice, Grease=Lightning.</strong> <strong>Tip:</strong> Wear the resist that matches the zone's tribe.</li>
-<li><strong>Skill points come from levelling up (Badge Book). Every 5 points in a tribe give one badge level. Badge level n gives +75 + 20·(n−1) damage of that tribe's element and +67 + 24·(n−1) defence (confirmed in-game for levels 1–4: 75/67, 95/91, 115/115, 135/139). The tables in the data run to badge level 65 and the server has no 40-point cap. The damage bonus only helps weapons of that element. The defence bonus is base defence and counts against all elements (confirmed in-game: +139 to both Defence and Air defence at badge level 4). You can switch tribes for free.</strong> <code>badge = floor(points / 5);  dmg_bonus = 75 + 20·(badge−1);  def_bonus = 67 + 24·(badge−1)</code> <strong>Tip:</strong> Put skill points into the tribe whose element your best weapon has. Compare weapons including the bonus (the build calculator does this).</li>
-</ul>
 
 
 
@@ -1520,7 +1552,7 @@ defence completely.</p>
       
         <script src="../assets/tables.js?v=a41ed08e"></script>
       
-        <script src="../assets/build-calc.js?v=ab9a9122"></script>
+        <script src="../assets/build-calc.js?v=24643ce1"></script>
       
         <script src="../assets/world-map.js?v=a085e0df"></script>
       

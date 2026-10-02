@@ -364,3 +364,33 @@ body:has(.mq-tribe-wild) { --mq-tribe: #3fb8c9; }
 .qj-cutout { max-width: 34rem; margin: .4rem 0 1rem; }
 .qj-cutout svg { border: 3px solid var(--mq-card-border); border-radius: .7rem; }
 .md-typeset .qj-cutout .qj-more { display: inline-block; margin-top: .3rem; font-size: .75rem; }
+
+/* ------------------------------------------------------------------ coloured values in prose ({{dmg:516}} etc., build_wiki.hl) */
+/* Like ability tooltips: damage orange, defence blue, healing green, XP pink, time slate, elements in their tribe colour. */
+:root {
+  --mq-v-dmg: #c2410c; --mq-v-def: #2563a8; --mq-v-hp: #1f8a3b; --mq-v-xp: #b0368a; --mq-v-t: #4f6475; --mq-v-v: #8f6400;
+  --mq-v-banana: #a87a00; --mq-v-mc: #23845a;
+  --mq-v-air: #5b54c4; --mq-v-earth: #4f7a12; --mq-v-fire: #c0392b; --mq-v-ice: #13879a; --mq-v-lightning: #b26a00;
+  --mq-v-blunt: #7d5f22;
+}
+[data-md-color-scheme="slate"] {
+  --mq-v-dmg: #ff9a4d; --mq-v-def: #86b8ff; --mq-v-hp: #72dd88; --mq-v-xp: #f08ad4; --mq-v-t: #bccad6; --mq-v-v: #f6d03f;
+  --mq-v-banana: #f6d03f; --mq-v-mc: #7fdcaa;
+  --mq-v-air: #b1abff; --mq-v-earth: #a6d655; --mq-v-fire: #ff7d6e; --mq-v-ice: #72e2f2; --mq-v-lightning: #ffd25a;
+  --mq-v-blunt: #dcbb72;
+}
+.md-typeset .mq-hl { font-weight: 700; white-space: nowrap; }
+.md-typeset .mq-dmg { color: var(--mq-v-dmg); }
+.md-typeset .mq-def { color: var(--mq-v-def); }
+.md-typeset .mq-hp { color: var(--mq-v-hp); }
+.md-typeset .mq-xp { color: var(--mq-v-xp); }
+.md-typeset .mq-t { color: var(--mq-v-t); }
+.md-typeset .mq-val { color: var(--mq-v-v); }
+.md-typeset .mq-banana { color: var(--mq-v-banana); }
+.md-typeset .mq-mc { color: var(--mq-v-mc); }
+.md-typeset .mq-air { color: var(--mq-v-air); }
+.md-typeset .mq-earth { color: var(--mq-v-earth); }
+.md-typeset .mq-fire { color: var(--mq-v-fire); }
+.md-typeset .mq-ice { color: var(--mq-v-ice); }
+.md-typeset .mq-lightning { color: var(--mq-v-lightning); }
+.md-typeset .mq-blunt { color: var(--mq-v-blunt); }

@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Currencies, vendor prices, banana multiplier, fast travel requirements">
+        <meta name="description" content="Bananas, MonkeyCash, vendor prices, the group banana bonus and fast travel">
       
       
       
@@ -51,7 +51,7 @@
     
       <link rel="stylesheet" href="../assets/extra.css?v=9edd169c">
     
-      <link rel="stylesheet" href="../assets/theme.css?v=62938989">
+      <link rel="stylesheet" href="../assets/theme.css?v=37d5d547">
     
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -694,10 +694,21 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#rules" class="md-nav__link">
+  <a href="#currencies" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Rules
+        Currencies
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fast-travel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fast travel
       
     </span>
   </a>
@@ -969,6 +980,8 @@
       
         
       
+        
+      
     
     
     
@@ -986,7 +999,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../items/index.html" class="md-nav__link ">
+            <a href="../database/index.html" class="md-nav__link ">
               
   
   
@@ -1021,6 +1034,34 @@
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../items/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Items
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
               
             
               
@@ -1225,10 +1266,21 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#rules" class="md-nav__link">
+  <a href="#currencies" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Rules
+        Currencies
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fast-travel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fast travel
       
     </span>
   </a>
@@ -1253,20 +1305,43 @@
 
 
 <h1 id="economy-and-travel">Economy and travel<a class="headerlink" href="#economy-and-travel" title="Permanent link">&para;</a></h1>
+<h2 id="currencies">Currencies<a class="headerlink" href="#currencies" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>Currencies:</strong> bananas (earned in game) and MonkeyCash (MC; from dailies, achievements and level-ups).</li>
-<li>Vendors sell at the catalog price and buy back at the sell price.</li>
-<li>A group playing close together gets a banana multiplier.</li>
-<li><strong>Fast travel:</strong> level 5 to start, level 10 to leave Crossroads, level 15 for tribe highways, and 10 idols for a trail. Travelling to a group member ignores idols.</li>
+<li>Bananas: you pick them up in trails and earn them from quests and selling.</li>
+<li>MonkeyCash (MC): from dailies, achievements and level-ups.</li>
 </ul>
-<h2 id="rules">Rules<a class="headerlink" href="#rules" title="Permanent link">&para;</a></h2>
-<ul>
-<li><strong>Playing close together in a group gives a banana multiplier.</strong></li>
-<li><strong>Vendors charge the catalog price × amount and buy back at the sell price × amount (bananas or MonkeyCash per item). Item sales (temporary discounts) exist since 1.7.7.</strong> <em>(not confirmed on MQReborn yet)</em></li>
-<li><strong>Fast travel needs level 5 (level 10 to leave Crossroads, level 15 for tribe highways) and 10 idols for trails. Travelling to a group member ignores idols.</strong></li>
-<li><strong>There is a single US game server, and desync is common. Re-entering a level fixes most enemy and hitbox desync.</strong></li>
-</ul>
-<p>Vendors and their stock: <a href="../npcs/index.html">vendors</a>.</p>
+<p>Vendors sell at the item's price and buy items back at its sell price; both are on every item page. Since version
+1.7.7 vendors sometimes run sales. A group playing close together gets more bananas, and an Elixir of Wealth adds
+<span class="mq-hl mq-banana">+50 %</span> (not on selling).</p>
+<h2 id="fast-travel">Fast travel<a class="headerlink" href="#fast-travel" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>You need</th>
+<th>To</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>level <span class="mq-hl mq-val">5</span></td>
+<td>use fast travel at all</td>
+</tr>
+<tr>
+<td>level <span class="mq-hl mq-val">10</span></td>
+<td>leave Crossroads</td>
+</tr>
+<tr>
+<td>level <span class="mq-hl mq-val">15</span></td>
+<td>travel to the tribe highways</td>
+</tr>
+<tr>
+<td><span class="mq-hl mq-val">10</span> idols</td>
+<td>travel to a trail</td>
+</tr>
+</tbody>
+</table>
+<p>Travelling to a group member ignores the idol requirement.</p>
+<p>Vendors and what they sell: <a href="../npcs/index.html">vendors</a>.</p>
 
 
 
@@ -1336,7 +1411,7 @@
       
         <script src="../assets/tables.js?v=a41ed08e"></script>
       
-        <script src="../assets/build-calc.js?v=ab9a9122"></script>
+        <script src="../assets/build-calc.js?v=24643ce1"></script>
       
         <script src="../assets/world-map.js?v=a085e0df"></script>
       

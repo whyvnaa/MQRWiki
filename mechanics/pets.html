@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Pet percentage damage, shields, heals, co-op partner">
+        <meta name="description" content="How pets deal a share of the enemy's max HP, shield and heal, with the numbers of every pet">
       
       
       
@@ -51,7 +51,7 @@
     
       <link rel="stylesheet" href="../assets/extra.css?v=9edd169c">
     
-      <link rel="stylesheet" href="../assets/theme.css?v=62938989">
+      <link rel="stylesheet" href="../assets/theme.css?v=37d5d547">
     
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -531,24 +531,6 @@
         
       
       
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Pets
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
       <a href="pets.html" class="md-nav__link md-nav__link--active">
         
   
@@ -565,36 +547,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#rules" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Rules
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
       
     </li>
   
@@ -969,6 +921,8 @@
       
         
       
+        
+      
     
     
     
@@ -986,7 +940,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../items/index.html" class="md-nav__link ">
+            <a href="../database/index.html" class="md-nav__link ">
               
   
   
@@ -1021,6 +975,34 @@
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../items/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Items
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
               
             
               
@@ -1218,25 +1200,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#rules" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Rules
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -1253,21 +1216,79 @@
 
 
 <h1 id="pets">Pets<a class="headerlink" href="#pets" title="Permanent link">&para;</a></h1>
+<p>Attack pets deal a share of the enemy's max HP with each hit, whatever gear you wear. That makes them strongest against
+enemies with lots of HP, such as bosses. <em>(not confirmed on MQReborn yet)</em></p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Kraklin hits once for <span class="mq-hl mq-dmg">127 %</span> of the enemy's max HP. A level-30 enemy has <span class="mq-hl mq-hp">2,160</span> HP, so one Kraklin
+attack defeats it. Taifune hits <span class="mq-hl mq-val">3</span> times for <span class="mq-hl mq-dmg">42.5 %</span> each, also over <span class="mq-hl mq-dmg">100 %</span> in total.</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>Pet</th>
+<th>Hits per use</th>
+<th>Damage per hit (share of max HP)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Kraklin</td>
+<td><span class="mq-hl mq-val">1</span></td>
+<td><span class="mq-hl mq-dmg">127 %</span></td>
+</tr>
+<tr>
+<td>Ripfin, Chillee</td>
+<td><span class="mq-hl mq-val">1</span></td>
+<td><span class="mq-hl mq-dmg">95 %</span></td>
+</tr>
+<tr>
+<td>Blackfish</td>
+<td><span class="mq-hl mq-val">2</span></td>
+<td><span class="mq-hl mq-dmg">47.5 %</span></td>
+</tr>
+<tr>
+<td>Taifune</td>
+<td><span class="mq-hl mq-val">3</span></td>
+<td><span class="mq-hl mq-dmg">42.5 %</span></td>
+</tr>
+<tr>
+<td>Timberbeak</td>
+<td><span class="mq-hl mq-val">3</span></td>
+<td><span class="mq-hl mq-dmg">42.5 %</span></td>
+</tr>
+<tr>
+<td>Jax</td>
+<td><span class="mq-hl mq-val">4</span></td>
+<td><span class="mq-hl mq-dmg">25 %</span></td>
+</tr>
+<tr>
+<td>Skyclaw</td>
+<td><span class="mq-hl mq-val">4</span></td>
+<td><span class="mq-hl mq-dmg">22.5 %</span></td>
+</tr>
+<tr>
+<td>Saberstrike</td>
+<td><span class="mq-hl mq-val">5</span></td>
+<td><span class="mq-hl mq-dmg">17.5 %</span></td>
+</tr>
+<tr>
+<td>Polarbite</td>
+<td><span class="mq-hl mq-val">7</span></td>
+<td><span class="mq-hl mq-dmg">9.25 %</span></td>
+</tr>
+</tbody>
+</table>
+<p>Other pets protect or heal you:</p>
 <ul>
-<li><strong>Attack pets</strong> deal a share of the <strong>enemy's max HP</strong> per hit (the "stat ratio"), whatever your gear. The strongest deal over 100 % of max HP per use, which makes pets excellent against high-HP enemies.</li>
-<li><strong>Shield pets:</strong> Croaker takes about 75 % off incoming damage (hazards included). Gravewing blocks damage while it attacks.</li>
-<li><strong>Heal pets</strong> heal a share of your max HP.</li>
-<li>A pet can count as the <strong>second player</strong> on 2-player co-op gates.</li>
-<li>Each pet ability has a cooldown and uses pet energy. Energy refills over time.</li>
+<li>Croaker's shield takes about <span class="mq-hl mq-val">75 %</span> off the damage you take, hazards included. <em>(player reports)</em></li>
+<li>Gravewing blocks damage while it attacks. <em>(player reports)</em></li>
+<li>Fireswoop heals <span class="mq-hl mq-hp">25 %</span> of your max HP.</li>
 </ul>
-<h2 id="rules">Rules<a class="headerlink" href="#rules" title="Permanent link">&para;</a></h2>
-<ul>
-<li><strong>A pet can count as the second player on 2-player co-op gates. Pets can also damage some targets that weapons can't.</strong></li>
-<li><strong>Pet attacks deal a percentage of the enemy's max HP per hit (itemEffectStatRatio in pet_abilities.json), regardless of your gear. Strong pets do over 100 % per use.</strong> <em>(not confirmed on MQReborn yet)</em></li>
-<li><strong>Croaker's shield takes about 75 % off incoming damage, hazards included. Gravewing's shield blocks damage while the pet attacks.</strong> <em>(player reports)</em></li>
-</ul>
-<p>All pets with their ability numbers: <a href="../items/pets.html">pets</a>.</p>
-<p>Whether MQReborn caps pet damage on bosses is still open.</p>
+<p>Each pet ability has a cooldown of <span class="mq-hl mq-t">5 s</span> and uses pet energy, which refills over time. A pet also counts as the
+second player on two-player co-op gates, and pets can damage some targets that weapons can't. Whether MQReborn limits
+pet damage on bosses isn't known yet.</p>
+<p>All pets and their abilities: <a href="../items/pets.html">pets</a>.</p>
 
 
 
@@ -1337,7 +1358,7 @@
       
         <script src="../assets/tables.js?v=a41ed08e"></script>
       
-        <script src="../assets/build-calc.js?v=ab9a9122"></script>
+        <script src="../assets/build-calc.js?v=24643ce1"></script>
       
         <script src="../assets/world-map.js?v=a085e0df"></script>
       

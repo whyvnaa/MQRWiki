@@ -47,7 +47,7 @@
     
       <link rel="stylesheet" href="../assets/extra.css?v=9edd169c">
     
-      <link rel="stylesheet" href="../assets/theme.css?v=62938989">
+      <link rel="stylesheet" href="../assets/theme.css?v=37d5d547">
     
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -905,6 +905,8 @@
       
         
       
+        
+      
     
     
     
@@ -922,7 +924,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="index.html" class="md-nav__link ">
+            <a href="../database/index.html" class="md-nav__link ">
               
   
   
@@ -957,6 +959,34 @@
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Items
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
               
             
               
@@ -1236,32 +1266,24 @@
 <table>
 <thead>
 <tr>
-<th>Ability type</th>
-<th>Cooldown (s)</th>
-<th>Duration (s)</th>
-<th>Hit interval (s)</th>
-<th>Stat ratio</th>
-<th>Max hits</th>
-<th>Heal ratio</th>
-<th>Defence ratio</th>
+<th>Cooldown</th>
+<th>Hits per use</th>
+<th>Damage per hit (share of enemy max HP)</th>
+<th>Heal (share of your max HP)</th>
 <th>Uses per full energy</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Damage over time</td>
-<td>5.0</td>
-<td>2.0</td>
-<td>0.7</td>
-<td>0.175</td>
+<td>5 s</td>
 <td>5</td>
-<td>0.0</td>
-<td>0.0</td>
+<td>17.5 %</td>
+<td></td>
 <td>10</td>
 </tr>
 </tbody>
 </table>
-<p>Attack pets deal <strong>stat ratio × the enemy's max HP</strong> per hit (<a href="../mechanics/pets.html">pets</a>).</p>
+<p>How pets work: <a href="../mechanics/pets.html">pets</a>.</p>
 <h2 id="how-to-get-it">How to get it<a class="headerlink" href="#how-to-get-it" title="Permanent link">&para;</a></h2>
 <p><strong>Quest reward</strong></p>
 <ul>
@@ -1336,7 +1358,7 @@
       
         <script src="../assets/tables.js?v=a41ed08e"></script>
       
-        <script src="../assets/build-calc.js?v=ab9a9122"></script>
+        <script src="../assets/build-calc.js?v=24643ce1"></script>
       
         <script src="../assets/world-map.js?v=a085e0df"></script>
       

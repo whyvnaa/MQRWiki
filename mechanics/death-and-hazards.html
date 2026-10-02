@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Knock-out banana loss, respawn, hazards, drowning, trail-entry bug">
+        <meta name="description" content="What a knock-out costs, hazards, drowning and the trail-entry bug">
       
       
       
@@ -51,7 +51,7 @@
     
       <link rel="stylesheet" href="../assets/extra.css?v=9edd169c">
     
-      <link rel="stylesheet" href="../assets/theme.css?v=62938989">
+      <link rel="stylesheet" href="../assets/theme.css?v=37d5d547">
     
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -638,10 +638,21 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#rules" class="md-nav__link">
+  <a href="#knock-outs" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Rules
+        Knock-outs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hazards" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hazards
       
     </span>
   </a>
@@ -969,6 +980,8 @@
       
         
       
+        
+      
     
     
     
@@ -986,7 +999,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../items/index.html" class="md-nav__link ">
+            <a href="../database/index.html" class="md-nav__link ">
               
   
   
@@ -1021,6 +1034,34 @@
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../items/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Items
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
               
             
               
@@ -1225,10 +1266,21 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#rules" class="md-nav__link">
+  <a href="#knock-outs" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Rules
+        Knock-outs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hazards" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hazards
       
     </span>
   </a>
@@ -1253,25 +1305,25 @@
 
 
 <h1 id="death-and-hazards">Death and hazards<a class="headerlink" href="#death-and-hazards" title="Permanent link">&para;</a></h1>
-<ul>
-<li><strong>Knock-out:</strong></li>
-<li>You lose some of the bananas you picked up in the trail since your last checkpoint. Quest and selling bananas are safe.</li>
-<li>You wait 5 s to respawn, then get brief invincibility.</li>
-<li>Long buffs survive.</li>
-<li><strong>Hazards</strong> (lava, spikes, smashers) take a percentage of your max HP and ignore defence.</li>
-<li><strong>Drowning</strong> starts when the air meter runs out. Water-breathing potions help.</li>
-</ul>
+<h2 id="knock-outs">Knock-outs<a class="headerlink" href="#knock-outs" title="Permanent link">&para;</a></h2>
+<p>When you are knocked out you lose some of the bananas you picked up in the trail since your last checkpoint. Bananas
+from quests and from selling are safe. You respawn after <span class="mq-hl mq-t">5 s</span> and are invincible for a moment. Long buffs such as
+Elixirs of Wisdom stay active.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Reach a checkpoint before a risky fight.</p>
+</div>
+<h2 id="hazards">Hazards<a class="headerlink" href="#hazards" title="Permanent link">&para;</a></h2>
+<p>Lava, spikes and smashers take a share of your max HP, often about <span class="mq-hl mq-hp">10 %</span> per tick, and ignore defence. Stompers
+can hit more than once. <em>(player reports)</em></p>
+<p>Drowning damage starts when your air meter runs out. Water-breathing potions help. The team says the timing is not
+fully fixed yet.</p>
 <div class="admonition warning">
 <p class="admonition-title">Known bug</p>
-<p>Entering some trails (Mushroom Hollow ↔ Swamp of Misery, Lost Fortress, Bonsai Peaks) can knock you out or take most of your HP. Heal or jump right after loading in.</p>
+<p>Entering some trails can knock you out or take most of your HP: Mushroom Hollow and Swamp of Misery (in both
+directions), Lost Fortress and Bonsai Peaks. Healing may stop working until you are knocked out for real or
+restart the game. Heal or jump right after loading in.</p>
 </div>
-<h2 id="rules">Rules<a class="headerlink" href="#rules" title="Permanent link">&para;</a></h2>
-<ul>
-<li><strong>Being knocked out costs some of the bananas you picked up in the trail since your last checkpoint. Quest and selling bananas are safe. You wait 5 s to respawn, then get brief invincibility. Long buffs (e.g. Wisdom) survive death.</strong> <strong>Tip:</strong> Reach checkpoints before risky fights.</li>
-<li><strong>Drowning damage starts when the air meter runs out. Its timing changed several times and is "not fully fixed". Water-breathing potions do affect it on MQReborn.</strong></li>
-<li><strong>Environmental hazards (lava, spikes, smashers) deal a percentage of your max HP (often about 10 % per tick) and ignore defence. Stompers can hit more than once.</strong> <em>(player reports)</em></li>
-<li><strong>Known recurring bug: entering some trails (Mushroom Hollow ↔ Swamp of Misery, Lost Fortress, Bonsai Peaks …) can knock you out or take most of your HP. Healing may stay disabled until a real death or a restart.</strong> <strong>Tip:</strong> Heal or jump right after loading into those trails.</li>
-</ul>
 
 
 
@@ -1341,7 +1393,7 @@
       
         <script src="../assets/tables.js?v=a41ed08e"></script>
       
-        <script src="../assets/build-calc.js?v=ab9a9122"></script>
+        <script src="../assets/build-calc.js?v=24643ce1"></script>
       
         <script src="../assets/world-map.js?v=a085e0df"></script>
       

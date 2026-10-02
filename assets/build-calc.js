@@ -429,7 +429,7 @@
       opt("auto", "Automatic (zone mix, or the target's element)", state.resist) +
       opt(MIX, "Zone mix around the target level", state.resist) +
       ELEMENTS.map(function (e) { return opt(e, e + " attackers", state.resist); }).join("") +
-      opt("blunt", "Blunt attackers (every resist line counts)", state.resist) +
+      opt("blunt", "Blunt attackers (every resist counts)", state.resist) +
       opt("any", "Worst case (only plain defence counts)", state.resist) + "</select></label>" +
       '<label>Utility slot <select name="utilFocus">' + opt("auto", "Automatic (stun first, then poison, sustain …)", state.utilFocus) +
       UTILITY_ROLES.map(function (r) { return opt(r, r, state.utilFocus); }).join("") + opt("none", "No utility item", state.utilFocus) + "</select></label>" +
@@ -614,7 +614,7 @@
     })));
     h.push("<h4>Accessories</h4>");
     h.push(slotTable(DAMAGE_SLOTS, chosen.acc, function (it) { return accScore(it, el); }));
-    h.push('<p class="calc-dim">Accessory score = blunt + ' + (el || "no") + " element line. Base damage for " + (el || "neutral") + " weapons " + chosen.base +
+    h.push('<p class="calc-dim">Accessory score = blunt damage + ' + (el || "no") + " element damage. Base damage for " + (el || "neutral") + " weapons " + chosen.base +
       " = ability power " + dmg.ap + " + accessories " + chosen.accTotal + " + badge " + chosen.bonus +
       ". Weapons of other elements only get the blunt part of the accessories and their own badge.</p>");
 
@@ -624,7 +624,7 @@
     if (mode === MIX) {
       h.push('<p class="calc-dim">Fight zones of levels ' + (target.level - 5) + "–" + (target.level + 5) + " attack with: " +
         Object.keys(dfn.mix).sort(function (a, b) { return dfn.mix[b] - dfn.mix[a]; }).map(function (k) { return k + " " + pct(dfn.mix[k]); }).join(", ") +
-        ". A resist line counts against its own element and against blunt attacks, so it is weighted by that share.</p>");
+        ". A resist counts against its own element and against blunt attacks, so it is weighted by that share.</p>");
     }
     h.push(slotTable(DEFENCE_SLOTS, dfn.arm, dfn.score));
     h.push(table(["Attacked with", "Zones nearby", "Your defence", "Damage per enemy hit", "Hits to knock you out"],
@@ -637,7 +637,7 @@
     h.push('<p class="calc-dim">Enemy attack ' + dfn.enemyAp + ", your HP " + dfn.hp + ". Defence = base " + dfn.base + " + armour + badges " + dfn.badge +
       ". When your defence beats the enemy attack you only take MQReborn's level-based minimum (size unknown).</p>");
     h.push("<h4>What the stats window should show</h4>");
-    h.push("<ul><li>Defence: <b>" + dfn.shown + "</b> (includes every resist line)</li>" +
+    h.push("<ul><li>Defence: <b>" + dfn.shown + "</b> (includes every resist)</li>" +
       (bm ? "<li>A hit with " + esc(bm.it.n) + ": <b>" + bm.hit + "</b></li>" : "") +
       (br ? "<li>A hit with " + esc(br.it.n) + ": <b>" + br.hit + "</b></li>" : "") + "</ul>");
 
@@ -651,9 +651,9 @@
     h.push('<p class="calc-dim">Rows marked <b>now</b> are the best you can wear at level ' + from + ". After that, every item that beats everything before it in its slot" +
       (gain ? " by at least " + gain + " %" : "") + ". Weapons: the weapon this build recommends at each level (" +
       (state.sameElement ? (el || "neutral") + " only" : "any element") + ", with your badges and that level's best " + (el || "neutral") +
-      " accessories, ranked by time per kill against enemies of that level; score = hit). Accessories: blunt + " + (el || "no") +
-      " line. Armour: " + (pmode === MIX ? "defence + resist weighted by the zone mix of levels " + Math.max(1, from - 5) + "–" + (to + 5)
-        : pmode === "any" ? "plain defence" : "defence + " + (pmode || "every") + " resist line") + ".</p>");
+      " accessories, ranked by time per kill against enemies of that level; score = hit). Accessories: blunt damage + " + (el || "no") +
+      " damage. Armour: " + (pmode === MIX ? "defence + resist weighted by the zone mix of levels " + Math.max(1, from - 5) + "–" + (to + 5)
+        : pmode === "any" ? "plain defence" : "defence + " + (pmode || "every") + " resist") + ".</p>");
     h.push(table(["Level", "Slot", "Item", "Tribe", "Score", "Gain", "Cooldown", "How to get"], rows.map(function (r) {
       return { attrs: r.now ? ' class="calc-now"' : "",
                cells: [r.now ? "now" : r.lv, esc(r.slot), itemRef(r.it), esc(r.it.tr || ""), r.score,

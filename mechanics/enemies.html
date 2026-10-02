@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Enemy level/HP/attack, starred and invisible enemies, spawners">
+        <meta name="description" content="Enemy level, HP and attack, starred and invisible enemies, spawners">
       
       
       
@@ -51,7 +51,7 @@
     
       <link rel="stylesheet" href="../assets/extra.css?v=9edd169c">
     
-      <link rel="stylesheet" href="../assets/theme.css?v=62938989">
+      <link rel="stylesheet" href="../assets/theme.css?v=37d5d547">
     
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -610,17 +610,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#rules" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Rules
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#hp-and-attack-by-level" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -980,6 +969,8 @@
       
         
       
+        
+      
     
     
     
@@ -997,7 +988,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../items/index.html" class="md-nav__link ">
+            <a href="../database/index.html" class="md-nav__link ">
               
   
   
@@ -1032,6 +1023,34 @@
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../items/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Items
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
               
             
               
@@ -1236,17 +1255,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#rules" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Rules
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#hp-and-attack-by-level" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1275,22 +1283,22 @@
 
 
 <h1 id="enemies">Enemies<a class="headerlink" href="#enemies" title="Permanent link">&para;</a></h1>
+<p>An enemy's HP and attack depend only on its level, not on what kind of enemy it is. Its level is the zone's level plus
+a small offset that depends on where it stands. Enemies have no defence, so every point of your damage counts.</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Every level-30 enemy has <span class="mq-hl mq-hp">2,160</span> HP and <span class="mq-hl mq-dmg">1,141</span> attack, whether it's a spider or a dragon. A level-30
+monkey has <span class="mq-hl mq-hp">3,000</span> HP and <span class="mq-hl mq-def">300</span> base defence.</p>
+</div>
 <ul>
-<li>An enemy's <strong>HP and attack depend on its level</strong>, not its type. Its level is the zone's difficulty plus a small per-placement offset.</li>
-<li>Enemy defence is 0.</li>
-<li><strong>Starred</strong> enemies are tougher and drop more.</li>
-<li><strong>Invisible</strong> enemies need Scrying Orb detection.</li>
-<li>Spawners break in 3 hits.</li>
-<li>Enemy types differ in behaviour: detection range, speed, and whether they shoot.</li>
+<li>Starred enemies are tougher and drop more. More stars mean better drops.</li>
+<li>Invisible enemies can only be seen and hit with the Scrying Orb. The same goes for invisible quest objects.</li>
+<li>Spawners break in <span class="mq-hl mq-val">3</span> hits.</li>
+<li>Poison and other damage over time don't make an enemy notice you.</li>
+<li>Enemy types differ in how far they see you, how fast they move and whether they shoot.</li>
 </ul>
-<h2 id="rules">Rules<a class="headerlink" href="#rules" title="Permanent link">&para;</a></h2>
-<ul>
-<li><strong>Invisible enemies (and invisible quest objects) can only be seen and damaged with the Scrying Orb's detection.</strong></li>
-<li><strong>An enemy's HP and damage come from its level (zone difficulty + a per-placement offset), not from its type. Enemy defence is 0 at every level in the live data.</strong></li>
-<li><strong>Damage over time (poison) does not make enemies aggressive.</strong></li>
-<li><strong>Spawners break in 3 hits.</strong></li>
-<li><strong>Starred enemies are tougher versions with a higher drop chance (more stars, better drops).</strong></li>
-</ul>
+<p>MQReborn runs on a single server in the US, and enemies or hitboxes sometimes get out of sync. Leaving and re-entering
+the level fixes most of it.</p>
 <h2 id="hp-and-attack-by-level">HP and attack by level<a class="headerlink" href="#hp-and-attack-by-level" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -1424,7 +1432,7 @@
 </tr>
 </tbody>
 </table>
-<p>Zones by difficulty: <a href="../zones/index.html">zones</a>. Enemy types: <a href="../monsters/index.html">monsters</a>.</p>
+<p>Zones by level: <a href="../zones/index.html">zones</a>. Enemy types: <a href="../monsters/index.html">monsters</a>.</p>
 
 
 
@@ -1494,7 +1502,7 @@
       
         <script src="../assets/tables.js?v=a41ed08e"></script>
       
-        <script src="../assets/build-calc.js?v=ab9a9122"></script>
+        <script src="../assets/build-calc.js?v=24643ce1"></script>
       
         <script src="../assets/world-map.js?v=a085e0df"></script>
       

@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Elixirs, Horn of Heroism, shielding, Healing Staff, food and potions, cooldowns">
+        <meta name="description" content="Elixirs, the Horn of Heroism, shielding, the Healing Staff, food and potions">
       
       
       
@@ -51,7 +51,7 @@
     
       <link rel="stylesheet" href="../assets/extra.css?v=9edd169c">
     
-      <link rel="stylesheet" href="../assets/theme.css?v=62938989">
+      <link rel="stylesheet" href="../assets/theme.css?v=37d5d547">
     
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -554,10 +554,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#rules" class="md-nav__link">
+  <a href="#healing" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Rules
+        Healing
       
     </span>
   </a>
@@ -969,6 +969,8 @@
       
         
       
+        
+      
     
     
     
@@ -986,7 +988,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../items/index.html" class="md-nav__link ">
+            <a href="../database/index.html" class="md-nav__link ">
               
   
   
@@ -1021,6 +1023,34 @@
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../items/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Items
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
               
             
               
@@ -1225,10 +1255,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#rules" class="md-nav__link">
+  <a href="#healing" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Rules
+        Healing
       
     </span>
   </a>
@@ -1253,27 +1283,57 @@
 
 
 <h1 id="buffs-and-healing">Buffs and healing<a class="headerlink" href="#buffs-and-healing" title="Permanent link">&para;</a></h1>
-<ul>
-<li><strong>Elixir of Wisdom:</strong> +20 % XP (not on achievement XP).</li>
-<li><strong>Elixir of Wealth:</strong> +50 % bananas (not when selling).</li>
-<li><strong>Horn of Heroism:</strong> +250 to all elemental resists for 25 s, 30 s cooldown.</li>
-<li><strong>Potion of Shielding:</strong> damage reduction.</li>
-<li><strong>Scrying Orb:</strong> turns you invisible and lets you see and hit invisible enemies.</li>
-<li><strong>Healing Staff:</strong> heals 25 % of max HP on a 20 s cooldown, on yourself only.</li>
-<li><strong>Food and potions</strong> heal fixed amounts, some over time. Healing power doesn't affect them.</li>
-</ul>
-<p>The stats window does <strong>not</strong> show active resist or shield buffs, but they work.</p>
-<h2 id="rules">Rules<a class="headerlink" href="#rules" title="Permanent link">&para;</a></h2>
-<ul>
-<li><strong>Whether damage elixirs (e.g. Elixir of Fire, +25 fire for 5 min) raise hit damage is not confirmed.</strong> <em>(not confirmed yet)</em></li>
-<li><strong>Only one buff of each type is active at a time. A new buff of the same type replaces the old one if it is at least as strong, even if it is shorter.</strong> <em>(not confirmed on MQReborn yet)</em></li>
-<li><strong>Resist and shield buffs work (Horn of Heroism: +250 all elemental resists for 25 s, 30 s cooldown; Potions of Shielding). The stats window does not show them.</strong> <strong>Tip:</strong> Don't judge buffs by the stats window. <em>(player reports)</em></li>
-<li><strong>Elixirs of Wealth give +50 % bananas, but not on bananas from selling items.</strong></li>
-<li><strong>Elixirs of Wisdom give +20 % XP for their duration (Minor 10 min … Ultimate 6 h). They do not apply to achievement XP. Temporary XP events stack additively.</strong></li>
-<li><strong>Food and potions heal fixed amounts (or heal over time, in ticks every 3 s). Healing power does not affect consumables.</strong></li>
-<li><strong>The Healing Staff heals 25 % of your max HP on a 20 s cooldown, on yourself only (it fails if a teammate is selected).</strong></li>
-<li><strong>Each item has its own cooldown (cooldown_time in items.json). There is no global cooldown, so rotating several weapons or consumables keeps damage flowing.</strong></li>
-</ul>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Elixir of Wisdom</td>
+<td><span class="mq-hl mq-xp">+20 %</span> XP, not on achievement XP, for <span class="mq-hl mq-t">10 min</span> (Minor) up to <span class="mq-hl mq-t">6 h</span> (Ultimate)</td>
+</tr>
+<tr>
+<td>Elixir of Wealth</td>
+<td><span class="mq-hl mq-banana">+50 %</span> bananas, not when selling items</td>
+</tr>
+<tr>
+<td>Horn of Heroism</td>
+<td><span class="mq-hl mq-def">+250</span> resist against every element for <span class="mq-hl mq-t">25 s</span>, cooldown <span class="mq-hl mq-t">30 s</span></td>
+</tr>
+<tr>
+<td>Potion of Shielding</td>
+<td>less damage taken <em>(player reports)</em></td>
+</tr>
+<tr>
+<td>Scrying Orb</td>
+<td>makes you invisible and lets you see and hit invisible enemies</td>
+</tr>
+<tr>
+<td>Smoke Bomb</td>
+<td>invisible for <span class="mq-hl mq-t">15 s</span></td>
+</tr>
+<tr>
+<td>Healing Staff</td>
+<td>heals <span class="mq-hl mq-hp">25 %</span> of your max HP, cooldown <span class="mq-hl mq-t">20 s</span>, only yourself</td>
+</tr>
+<tr>
+<td>Food and potions</td>
+<td>heal a fixed amount, some over time in ticks every <span class="mq-hl mq-t">3 s</span></td>
+</tr>
+</tbody>
+</table>
+<p>Your stats window doesn't show resist or shield buffs, but they still work.</p>
+<p>Only one buff of each type is active at a time. A new one replaces the old one if it is at least as strong, even if it
+is shorter. <em>(not confirmed on MQReborn yet)</em></p>
+<p>Whether damage elixirs such as Elixir of Fire (<span class="mq-hl mq-fire">+25 Fire</span> for <span class="mq-hl mq-t">5 min</span>) raise your hits isn't confirmed yet.</p>
+<h2 id="healing">Healing<a class="headerlink" href="#healing" title="Permanent link">&para;</a></h2>
+<p>The Healing Staff fails if a teammate is selected, so deselect them first. Food and potions always heal the same
+amount: healing power doesn't change them.</p>
+<p>Every item has its own cooldown and there is no global cooldown, so you can use a potion right after a weapon, or switch
+between weapons while one recharges.</p>
 <p>All consumables with their effects: <a href="../items/consumables.html">consumables</a>.</p>
 
 
@@ -1344,7 +1404,7 @@
       
         <script src="../assets/tables.js?v=a41ed08e"></script>
       
-        <script src="../assets/build-calc.js?v=ab9a9122"></script>
+        <script src="../assets/build-calc.js?v=24643ce1"></script>
       
         <script src="../assets/world-map.js?v=a085e0df"></script>
       

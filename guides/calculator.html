@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Interactive build calculator: enter level, skill points, target and filters to get the best build and upgrade path">
+        <meta name="description" content="Build calculator: enter your level, skill points and target to get the best build and your upgrade path">
       
       
       
@@ -51,7 +51,7 @@
     
       <link rel="stylesheet" href="../assets/extra.css?v=9edd169c">
     
-      <link rel="stylesheet" href="../assets/theme.css?v=62938989">
+      <link rel="stylesheet" href="../assets/theme.css?v=37d5d547">
     
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -808,10 +808,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#how-it-calculates" class="md-nav__link">
+  <a href="#how-it-picks" class="md-nav__link">
     <span class="md-ellipsis">
       
-        How it calculates
+        How it picks
       
     </span>
   </a>
@@ -971,6 +971,8 @@
       
         
       
+        
+      
     
     
     
@@ -988,7 +990,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../items/index.html" class="md-nav__link ">
+            <a href="../database/index.html" class="md-nav__link ">
               
   
   
@@ -1023,6 +1025,34 @@
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../items/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Items
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
               
             
               
@@ -1229,10 +1259,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#how-it-calculates" class="md-nav__link">
+  <a href="#how-it-picks" class="md-nav__link">
     <span class="md-ellipsis">
       
-        How it calculates
+        How it picks
       
     </span>
   </a>
@@ -1259,36 +1289,35 @@
 
 
 <h1 id="build-calculator">Build calculator<a class="headerlink" href="#build-calculator" title="Permanent link">&para;</a></h1>
-<p>Enter your level and skill points, choose filters, and the page works out your build: a <strong>melee</strong> and a <strong>ranged</strong>
-weapon, a <strong>utility</strong> item, three accessories and four armour pieces, plus your upgrade path. Results update as you type.</p>
+<p>Enter your level and skill points and the calculator picks your build: a melee weapon, a ranged weapon, a utility item,
+three accessories and four armour pieces. It also shows the upgrades ahead of you. Results update as you type.</p>
 <ul>
-<li>By default it makes an <strong>overall build</strong>: enemies of your level, with armour weighted by the attack elements of the
-  zones around your level. Pick an enemy element or a zone only when you want a build against something specific.</li>
-<li>Click <strong>✕</strong> next to any item to exclude it and see the next best alternative.</li>
-<li>Click a row in the build element comparison to build around that element.</li>
-<li>Your settings are remembered in this browser and kept in the page address, so you can bookmark a build.</li>
+<li>Without a target it builds for enemies of your level, with armour suited to the zones around your level. Pick an
+  enemy element or a zone to build against something specific.</li>
+<li>Click ✕ next to an item to exclude it and see the next best one.</li>
+<li>Click a row in the element comparison to build around that element.</li>
+<li>Your settings stay in this browser and in the page address, so you can bookmark a build.</li>
 </ul>
 <div id="build-calc"><p>This calculator needs JavaScript.</p></div>
 
-<h2 id="how-it-calculates">How it calculates<a class="headerlink" href="#how-it-calculates" title="Permanent link">&para;</a></h2>
-<p>It uses the same model as the <a href="build-progression.html">build progression</a> guide:</p>
-<ul>
-<li><strong>A hit deals your base damage plus the scaled value of the weapon you are using. Base = ability power + all gear damage lines + skill-point bonuses. The weapon value is its scaled blunt + element (<code>scaled_stats</code> in items.json). There is no rounding surprise: the damage number equals the sum.</strong> <code>hit = base + weapon.scaled_blunt + weapon.scaled_element</code> <strong>Tip:</strong> To compare weapons, add each weapon's scaled_stats sum to your base. A higher sum always hits harder.</li>
-<li><strong>Skill points come from levelling up (Badge Book). Every 5 points in a tribe give one badge level. Badge level n gives +75 + 20·(n−1) damage of that tribe's element and +67 + 24·(n−1) defence (confirmed in-game for levels 1–4: 75/67, 95/91, 115/115, 135/139). The tables in the data run to badge level 65 and the server has no 40-point cap. The damage bonus only helps weapons of that element. The defence bonus is base defence and counts against all elements (confirmed in-game: +139 to both Defence and Air defence at badge level 4). You can switch tribes for free.</strong> <code>badge = floor(points / 5);  dmg_bonus = 75 + 20·(badge−1);  def_bonus = 67 + 24·(badge−1)</code> <strong>Tip:</strong> Put skill points into the tribe whose element your best weapon has. Compare weapons including the bonus (the build calculator does this).</li>
-<li><strong>Armour stats are its scaled defence plus a resist line for tribe armour (e.g. Padded Ninja Hat: 51 defence + 18 Air resist; confirmed in-game). Against a given element, your defence = all defence + resist lines of that element. Against blunt (Crossroads) attackers, every resist line counts. The stats window's general "Defence" also includes all resist lines, and each element's defence counts only its own resist lines.</strong> <code>def_vs(E) = base_def + Σ armour.defence + Σ armour.resist[E] + badge_def;  def_vs(blunt) = base_def + Σ armour.(defence + resist) + badge_def</code> <strong>Tip:</strong> Wear armour of the enemy's tribe. It resists their element and still counts fully against blunt attacks.</li>
-<li><strong>Weapon side effects work on MQReborn: Stun Flower stuns 4 s (cooldown 10 s) and Dragon Mace 1 s; Snake Staff (150 % over 10 s, plus its impact hit), Scorpion Sword (150 % over 30 s) and Rotten Stick (25 % over 5 s) poison; Turkey Mace (10 %), Flytrap Staff and Voodoo Doll (15 % in live data, 20 % in patch 1.7.5) steal life. Healing Staff heals 25 % of your HP every 20 s (self only); Horn of Heroism gives +250 elemental defence for 25 s every 30 s; Smoke Bomb gives 15 s of invisibility. A build is a melee weapon, a ranged weapon and one utility item chosen for its role, not for its damage. Not confirmed yet: whether poison is a % of the whole hit or only its earth part; whether Drop bombs (Stink Bombs) hurt enemies.</strong> <strong>Tip:</strong> Open fights against tough enemies with a stun (Stun Flower) and finish with your fastest weapon: a 4 s stun covers about 8 swings of a 0.5 s weapon. Use the build calculator's utility slot to compare roles.</li>
-</ul>
-<p>Weapons are ranked by <strong>time per kill</strong> (hits to kill × cooldown, at least 0.5 s), so a fast weapon that one-shots
-beats a slow one that hits harder. Damage zones count 50 % of their damage per tick. Damage and defence never compete
-for a slot, so the best accessories and the best armour are picked independently.</p>
-<p>The <strong>build element</strong> is what your accessories and badges boost. Element lines on accessories only count for weapons of
-the same element, but blunt counts for all of them, so the best melee and ranged weapons can have different elements.
-For an overall build, each armour resist line is weighted by the share of nearby zones where it counts (zones of its
-own element plus Crossroads zones, whose enemies deal blunt damage).</p>
-<p>The <strong>utility slot</strong> is valued per role against your build rather than by damage: free hits of your main weapon
-during a stun, poison damage per use, HP healed per second, elemental damage saved per hit, or seconds of
-invisibility. "Automatic" picks the first role that has an item you don't already use, in the order crowd control,
-damage over time, sustain, defence buff, escape.</p>
+<h2 id="how-it-picks">How it picks<a class="headerlink" href="#how-it-picks" title="Permanent link">&para;</a></h2>
+<p>Each hit deals your base damage plus the weapon's stat total (<a href="../mechanics/damage.html">damage</a>). The calculator ranks
+weapons by how long they take to kill an enemy of your level: hits needed × cooldown, at least <span class="mq-hl mq-t">0.5 s</span>. A fast
+weapon that kills in two hits can beat a slower one that hits harder.</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Against an enemy with <span class="mq-hl mq-hp">2,000</span> HP, a weapon hitting for <span class="mq-hl mq-dmg">1,100</span> every <span class="mq-hl mq-t">0.5 s</span> needs <span class="mq-hl mq-val">2</span> hits and
+<span class="mq-hl mq-t">1 s</span>. A weapon hitting for <span class="mq-hl mq-dmg">1,500</span> every <span class="mq-hl mq-t">1.5 s</span> also needs <span class="mq-hl mq-val">2</span> hits but takes <span class="mq-hl mq-t">3 s</span>.</p>
+</div>
+<p>Damage zones count <span class="mq-hl mq-dmg">50 %</span> of your hit per tick. Damage and defence use different slots, so the best accessories
+and the best armour are picked separately.</p>
+<p>The build element is the element your accessories and badges boost. Element damage on accessories only counts for
+weapons of the same element, but <span class="mq-hl mq-blunt">blunt</span> damage counts for all of them, so your melee and ranged weapons can have
+different elements. Without a target, each armour resist counts by how many nearby zones use that element; Crossroads
+zones count for every resist.</p>
+<p>The utility slot is valued by what the item does for your build rather than by its damage: free hits during a stun,
+poison damage per use, HP healed per second, damage saved by a resist buff, or seconds of invisibility. "Automatic"
+takes the first of these you don't already have, in that order.</p>
 
 
 
@@ -1360,7 +1389,7 @@ damage over time, sustain, defence buff, escape.</p>
       
         <script src="../assets/tables.js?v=a41ed08e"></script>
       
-        <script src="../assets/build-calc.js?v=ab9a9122"></script>
+        <script src="../assets/build-calc.js?v=24643ce1"></script>
       
         <script src="../assets/world-map.js?v=a085e0df"></script>
       

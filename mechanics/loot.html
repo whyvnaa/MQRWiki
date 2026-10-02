@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Enemy drop chances and tiers, chest weights, group loot">
+        <meta name="description" content="Enemy drop chances and tiers, chest odds and group loot">
       
       
       
@@ -51,7 +51,7 @@
     
       <link rel="stylesheet" href="../assets/extra.css?v=9edd169c">
     
-      <link rel="stylesheet" href="../assets/theme.css?v=62938989">
+      <link rel="stylesheet" href="../assets/theme.css?v=37d5d547">
     
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -526,10 +526,32 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#rules" class="md-nav__link">
+  <a href="#enemy-drops" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Rules
+        Enemy drops
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#chests-and-other-loot-spots" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chests and other loot spots
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Groups
       
     </span>
   </a>
@@ -969,6 +991,8 @@
       
         
       
+        
+      
     
     
     
@@ -986,7 +1010,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../items/index.html" class="md-nav__link ">
+            <a href="../database/index.html" class="md-nav__link ">
               
   
   
@@ -1021,6 +1045,34 @@
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../items/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Items
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
               
             
               
@@ -1225,10 +1277,32 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#rules" class="md-nav__link">
+  <a href="#enemy-drops" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Rules
+        Enemy drops
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#chests-and-other-loot-spots" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chests and other loot spots
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Groups
       
     </span>
   </a>
@@ -1253,21 +1327,44 @@
 
 
 <h1 id="loot">Loot<a class="headerlink" href="#loot" title="Permanent link">&para;</a></h1>
-<ul>
-<li><strong>Enemies:</strong> 25 % base drop chance, higher on starred enemies. Each drop comes from a generic table plus the enemy's tribe table, plus species-specific parts. Higher-level enemies roll better tiers.</li>
-<li><strong>Chests and objects:</strong> each loot table rolls by weight. Zone pages list the best chance per item.</li>
-<li><strong>Groups:</strong> everyone in a group gets enemy loot and chest loot. There is no voting.</li>
-</ul>
-<h2 id="rules">Rules<a class="headerlink" href="#rules" title="Permanent link">&para;</a></h2>
-<ul>
-<li><strong>In a chest's loot table, the chance of an item is its weight ÷ the total weight. drop_tables.json → chance_per_pick.</strong> <code>P(item) = weight / Σ weights</code> <em>(not confirmed on MQReborn yet)</em></li>
-<li><strong>Enemies drop loot with a 25 % base chance (higher with more stars). The drop comes from a weighted merge of a generic (Crossroads) table and the enemy's tribe table, plus species-specific parts. Tier odds by enemy level: 20–39 → T1 66 % / T2 33 %; 40+ → T1 30 % / T2 60 % / T3 10 %.</strong></li>
-<li><strong>Everyone in a group gets enemy loot, whoever kills. Chests reward every group member. There is no loot voting.</strong></li>
-<li><strong>Jack-in-the-boxes only work on highways, Crossroads Path and the event area. The ones inside trails are disabled on purpose.</strong></li>
-<li><strong>A super-rare 4-piece armour set drops from high-level, high-star enemies.</strong></li>
-<li><strong>Polished/Refined Shadow Shards drop only from spawners in high-level trails (Forbidden Keep and up).</strong></li>
-</ul>
-<p>Item pages list every known source (vendor, recipe, quest reward, enemy drop, chest).</p>
+<h2 id="enemy-drops">Enemy drops<a class="headerlink" href="#enemy-drops" title="Permanent link">&para;</a></h2>
+<p>Every enemy has a <span class="mq-hl mq-val">25 %</span> base chance to drop something, more for starred enemies (more stars, better drops). The
+item comes from a general loot table, the enemy's tribe table and parts of its own species. Higher-level enemies roll
+better tiers:</p>
+<table>
+<thead>
+<tr>
+<th>Enemy level</th>
+<th>Tier 1</th>
+<th>Tier 2</th>
+<th>Tier 3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>20 to 39</td>
+<td><span class="mq-hl mq-val">66 %</span></td>
+<td><span class="mq-hl mq-val">33 %</span></td>
+<td></td>
+</tr>
+<tr>
+<td>40 and up</td>
+<td><span class="mq-hl mq-val">30 %</span></td>
+<td><span class="mq-hl mq-val">60 %</span></td>
+<td><span class="mq-hl mq-val">10 %</span></td>
+</tr>
+</tbody>
+</table>
+<p>High-level enemies with many stars can drop a very rare four-piece armour set. Polished and Refined Shadow Shards only
+drop from spawners in high-level trails, from Forbidden Keep up.</p>
+<h2 id="chests-and-other-loot-spots">Chests and other loot spots<a class="headerlink" href="#chests-and-other-loot-spots" title="Permanent link">&para;</a></h2>
+<p>Each chest rolls its own loot table. An item's chance is its weight divided by the weight of everything in the table.
+Zone pages list the best chance for every item found there.</p>
+<p>Jack-in-the-boxes only work on highways, Crossroads Path and the event area. The ones inside trails are switched off on
+purpose.</p>
+<h2 id="groups">Groups<a class="headerlink" href="#groups" title="Permanent link">&para;</a></h2>
+<p>Everyone in a group gets the loot from enemies and chests, whoever lands the kill. There is no loot voting.</p>
+<p>Every item page lists all the ways to get it: vendors, crafting, quest rewards, enemy drops and chests.</p>
 
 
 
@@ -1337,7 +1434,7 @@
       
         <script src="../assets/tables.js?v=a41ed08e"></script>
       
-        <script src="../assets/build-calc.js?v=ab9a9122"></script>
+        <script src="../assets/build-calc.js?v=24643ce1"></script>
       
         <script src="../assets/world-map.js?v=a085e0df"></script>
       

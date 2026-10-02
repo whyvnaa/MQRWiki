@@ -47,7 +47,7 @@
     
       <link rel="stylesheet" href="../assets/extra.css?v=9edd169c">
     
-      <link rel="stylesheet" href="../assets/theme.css?v=62938989">
+      <link rel="stylesheet" href="../assets/theme.css?v=37d5d547">
     
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -911,6 +911,8 @@
       
         
       
+        
+      
     
     
     
@@ -928,7 +930,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../items/index.html" class="md-nav__link ">
+            <a href="../database/index.html" class="md-nav__link ">
               
   
   
@@ -963,6 +965,34 @@
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../items/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Items
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
               
             
               
@@ -1200,10 +1230,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#chest-and-object-loot" class="md-nav__link">
+  <a href="#loot-from-chests" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Chest and object loot
+        Loot from chests
       
     </span>
   </a>
@@ -1237,18 +1267,18 @@
 <tr>
 <th>Type</th>
 <th>Tribe</th>
-<th>Difficulty (base enemy level)</th>
+<th>Enemy level</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>TrailNoIdol</td>
+<td>trail without idols</td>
 <td><span class="tribe"><img class="crest" src="../assets/theme/crests/crossroads.png" alt="" width="20" height="20" loading="lazy"> Crossroads</span></td>
 <td>1</td>
 </tr>
 </tbody>
 </table>
-<p>Enemies here are around level 1 (plus a per-placement offset). Enemy HP at level 1: <strong>50</strong>, attack power: <strong>20</strong>. Kill XP is best within ±4 levels of your own (<a href="../mechanics/xp-and-levels.html">XP</a>).</p>
+<p>Enemies here are level <span class="mq-hl mq-val">1</span> or a little higher. A level-1 enemy has <span class="mq-hl mq-hp">50</span> HP and <span class="mq-hl mq-dmg">20</span> attack. You get full kill XP while your level is within <span class="mq-hl mq-val">4</span> of theirs (<a href="../mechanics/xp-and-levels.html">XP</a>).</p>
 <h2 id="connects-to">Connects to<a class="headerlink" href="#connects-to" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="546-frostbeard-s-forest.html">Frostbeard's Forest</a></li>
@@ -1283,14 +1313,14 @@
 <ul>
 <li><a href="../quests/120103-winter-wonders.html">WINTER WONDERS</a> (level 1)</li>
 </ul>
-<h2 id="chest-and-object-loot">Chest and object loot<a class="headerlink" href="#chest-and-object-loot" title="Permanent link">&para;</a></h2>
-<p>35 loot objects. Best chance per roll (<a href="../mechanics/loot.html">loot</a>):</p>
+<h2 id="loot-from-chests">Loot from chests<a class="headerlink" href="#loot-from-chests" title="Permanent link">&para;</a></h2>
+<p>The best chance for each item over the 35 chests and other loot spots in this zone (<a href="../mechanics/loot.html">loot</a>):</p>
 <table>
 <thead>
 <tr>
 <th>Item</th>
 <th>Best chance</th>
-<th>In # objects</th>
+<th>Found in (spots)</th>
 </tr>
 </thead>
 <tbody>
@@ -1440,7 +1470,7 @@
       
         <script src="../assets/tables.js?v=a41ed08e"></script>
       
-        <script src="../assets/build-calc.js?v=ab9a9122"></script>
+        <script src="../assets/build-calc.js?v=24643ce1"></script>
       
         <script src="../assets/world-map.js?v=a085e0df"></script>
       
