@@ -1,0 +1,13 @@
+/* Styles for the public wiki only (loaded after theme.css, so rules here win). The local research wiki doesn't load
+   this file: put public polish here (icons, layout, spacing), shared look in wiki/src/assets/theme.css. */
+
+/* ------------------------------------------------------------------ page pictures (PAGE_ICONS in build_wiki.py) */
+/* Tiles on section pages ({{tiles}}): theme.css hides the first h1 of the tiled home page; section pages keep theirs. */
+.md-content:has(.mq-tiles-section) h1:first-of-type { position: static; width: auto; height: auto; overflow: visible; clip: auto; }
+.mq-tiles-section { margin-top: 1rem; }
+.md-typeset a.mq-tile { grid-template-columns: 3.6rem 1fr; }
+.md-typeset a.mq-tile img { width: 3.6rem; height: 3.2rem; }  /* pictures are trimmed to their visible part (page_icon) */
+.md-typeset a.mq-tile img.mq-photo { width: 3.2rem; justify-self: center; border-radius: .6rem; border: 2px solid var(--mq-card-border); object-fit: cover; }
+
+/* The page's picture beside its title: inline background image, size and position from title_icon() (3.4 x 2.8 rem). */
+.md-typeset h1.mq-titled { display: flex; align-items: center; min-height: 2.8rem; padding-left: 4rem; background-repeat: no-repeat; }
