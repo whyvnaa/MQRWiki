@@ -425,10 +425,10 @@ body:has(.mq-tribe-wild) { --mq-tribe: #3fb8c9; }
   background: linear-gradient(#cfe9f5, #eef7e4); box-shadow: 0 4px 0 rgba(0, 0, 0, .2); }
 .lm-svg { display: block; width: 100%; height: auto; min-height: 16rem; max-height: 75vh; cursor: grab; touch-action: none; user-select: none; }
 .lm-svg:active { cursor: grabbing; }
-/* the path on show (data-path) in full colour, the other one faded behind it */
-.lm-geo { stroke-width: .15; }
-.lm[data-path="0"] .lm-geo.lm-p0, .lm[data-path="1"] .lm-geo.lm-p1 { fill: #6b8f3a; stroke: #3d5a1c; }
-.lm[data-path="0"] .lm-geo.lm-p1, .lm[data-path="1"] .lm-geo.lm-p0 { fill: #a9bf8e; stroke: #7f9866; opacity: .55; }
+/* the path on show (data-path) as solid blocks with one outline, the other one as a grey shadow outline */
+.lm-geo { vector-effect: non-scaling-stroke; stroke-linejoin: round; }
+.lm[data-path="0"] .lm-geo.lm-p0, .lm[data-path="1"] .lm-geo.lm-p1 { fill: #6b8f3a; stroke: #3d5a1c; stroke-width: 1.2px; }
+.lm[data-path="0"] .lm-geo.lm-p1, .lm[data-path="1"] .lm-geo.lm-p0 { fill: #8a8f80; fill-opacity: .12; stroke: #6e7466; stroke-width: 1.4px; }
 .lm[data-path="0"] .lm-p1:not(.lm-geo), .lm[data-path="1"] .lm-p0:not(.lm-geo) { opacity: .45; }
 .lm-wall { fill: none; stroke: #3d5a1c; stroke-width: .12; stroke-dasharray: .6 .5; opacity: .45; }
 .lm-obst { fill: #a1887f; fill-opacity: .35; stroke: #6d4c41; stroke-width: .1; stroke-opacity: .5; }  /* doors, breakable blocks */
@@ -446,5 +446,5 @@ body:has(.mq-tribe-wild) { --mq-tribe: #3fb8c9; }
 .md-typeset table.lm-enemies tr[data-lm-key]:hover td { background: var(--mq-lime-light); }
 [data-md-color-scheme="slate"] .lm-frame { background: linear-gradient(#1d3140, #1f2a18); }
 [data-md-color-scheme="slate"] .lm[data-path="0"] .lm-geo.lm-p0, [data-md-color-scheme="slate"] .lm[data-path="1"] .lm-geo.lm-p1 { fill: #7fa548; stroke: #b7d27a; }
-[data-md-color-scheme="slate"] .lm[data-path="0"] .lm-geo.lm-p1, [data-md-color-scheme="slate"] .lm[data-path="1"] .lm-geo.lm-p0 { fill: #4d6338; stroke: #6f8a55; }
+[data-md-color-scheme="slate"] .lm[data-path="0"] .lm-geo.lm-p1, [data-md-color-scheme="slate"] .lm[data-path="1"] .lm-geo.lm-p0 { fill: #b0b5a8; fill-opacity: .07; stroke: #8e9486; }
 [data-md-color-scheme="slate"] .lm-help { color: #e9f08a; }
