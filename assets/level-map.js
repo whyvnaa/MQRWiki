@@ -1,6 +1,6 @@
 // Zone maps (drawn by build_wiki.LevelMap): pan and zoom the SVG viewBox, keep markers the same size on screen,
-// filter marker kinds and paths (both paths off = both shown), and highlight an enemy type when its row in
-// "Enemies here" is hovered.
+// filter marker kinds, switch between the front and back path (the path on show is drawn on top, the other one faded
+// behind it with smaller markers), and highlight an enemy type when its row in "Enemies here" is hovered.
 // Tooltips come from the data-tip attributes (assets/world-map.js).
 (function () {
   var MAX_ZOOM = 12;
@@ -16,10 +16,26 @@
       svg.setAttribute("viewBox", view.join(" "));
       var px = svg.getBoundingClientRect().width || 900;
       var k = Math.max(view[2] / px, view[3] / (svg.getBoundingClientRect().height || 400));
+      var other = root.getAttribute("data-path") === "1" ? "lm-p0" : "lm-p1";
       for (var i = 0; i < marks.length; i++) {
-        var m = marks[i];
-        m.setAttribute("transform", "translate(" + m.getAttribute("data-x") + " " + m.getAttribute("data-y") + ") scale(" + k.toFixed(4) + ")");
+        var m = marks[i], s = m.classList.contains(other) ? k * 0.75 : k;  // the other path's markers are smaller
+        m.setAttribute("transform", "translate(" + m.getAttribute("data-x") + " " + m.getAttribute("data-y") + ") scale(" + s.toFixed(4) + ")");
       }
+    }
+
+    function showPath(p) {
+      root.setAttribute("data-path", p);
+      var btns = root.querySelectorAll("[data-lm-path]");
+      for (var i = 0; i < btns.length; i++) btns[i].classList.toggle("on", btns[i].getAttribute("data-lm-path") === p);
+      // stacking: other path's ground, this path's ground, other path's markers, this path's markers, bridges
+      var order = [".lm-plane[data-plane]:not([data-plane='" + p + "'])", ".lm-plane[data-plane='" + p + "']",
+                   ".lm-marks[data-plane]:not([data-plane='" + p + "']):not([data-plane='b'])",
+                   ".lm-marks[data-plane='" + p + "']", ".lm-marks[data-plane='b']"];
+      for (var j = 0; j < order.length; j++) {
+        var g = svg.querySelector(order[j]);
+        if (g) svg.appendChild(g);
+      }
+      apply();
     }
 
     function toWorld(clientX, clientY) {
@@ -79,16 +95,14 @@
     root.addEventListener("change", function (e) {
       var t = e.target;
       if (t.hasAttribute("data-lm-cat")) root.classList.toggle("hide-" + t.getAttribute("data-lm-cat"), !t.checked);
-      if (t.hasAttribute("data-lm-plane")) {
-        // both paths off: nobody to follow on a web page (the overlay follows your path), so show both
-        var boxes = root.querySelectorAll("[data-lm-plane]"), any = false, i;
-        for (i = 0; i < boxes.length; i++) any = any || boxes[i].checked;
-        for (i = 0; i < boxes.length; i++) root.classList.toggle("hide-p" + boxes[i].getAttribute("data-lm-plane"), any && !boxes[i].checked);
-      }
+    });
+    root.addEventListener("click", function (e) {
+      var b = e.target.closest && e.target.closest("[data-lm-path]");
+      if (b) showPath(b.getAttribute("data-lm-path"));
     });
 
     window.addEventListener("resize", apply);
-    apply();
+    showPath(root.getAttribute("data-path") || "0");
     return { svg: svg, root: root };
   }
 
