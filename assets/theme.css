@@ -171,6 +171,17 @@
                                background: radial-gradient(circle at 50% 60%, var(--mq-card) 55%, var(--mq-card-border) 100%);
                                border: 3px solid var(--mq-card-border); box-shadow: 0 4px 0 rgba(0, 0, 0, .2); }
 .md-typeset img.monster-thumb { width: 40px; height: 40px; vertical-align: middle; margin-right: .4rem; }
+/* small picture in front of every link to a zone, enemy, vendor, quest or item (build_wiki.RefPics) */
+.md-typeset .ref { white-space: nowrap; }
+.md-typeset img.ref-pic { vertical-align: middle; margin: 0 .25em .15em 0; width: 1.45em; height: 1.45em; object-fit: contain; }
+.md-typeset img.ref-zone { width: 2.1em; height: 1.4em; object-fit: cover; border-radius: 4px; box-shadow: 0 0 0 1px rgba(0,0,0,.25); }
+.md-typeset img.ref-enemy, .md-typeset img.ref-vendor { width: 1.7em; height: 1.7em; border-radius: 50%; background: rgba(255,246,224,.35); }
+.md-typeset img.ref-quest { width: 1.1em; height: 1.3em; }
+.md-typeset img.ref-crest { width: 1.4em; height: 1.4em; }
+.md-typeset table img.ref-pic { width: 1.8em; height: 1.8em; }
+.md-typeset table img.ref-zone { width: 2.6em; height: 1.7em; }
+.md-typeset table img.ref-enemy, .md-typeset table img.ref-vendor { width: 2.1em; height: 2.1em; }
+.md-typeset table img.ref-quest { width: 1.3em; height: 1.5em; }
 .md-typeset img.zone-thumb { width: 40px; height: auto; vertical-align: middle; border-radius: .3rem; }
 .ladder a.zone img.ladder-pic { float: left; width: 36px; height: auto; margin: 0 .4rem .1rem 0; border-radius: .25rem; }
 
