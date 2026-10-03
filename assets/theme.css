@@ -430,7 +430,6 @@ body:has(.mq-tribe-wild) { --mq-tribe: #3fb8c9; }
 .lm[data-path="0"] .lm-geo.lm-p0, .lm[data-path="1"] .lm-geo.lm-p1 { fill: #6b8f3a; stroke: #3d5a1c; stroke-width: 1.2px; }
 .lm[data-path="0"] .lm-geo.lm-p1, .lm[data-path="1"] .lm-geo.lm-p0 { fill: #8a8f80; fill-opacity: .12; stroke: #6e7466; stroke-width: 1.4px; }
 .lm[data-path="0"] .lm-p1:not(.lm-geo), .lm[data-path="1"] .lm-p0:not(.lm-geo) { opacity: .45; }
-.lm-wall { fill: none; stroke: #3d5a1c; stroke-width: .12; stroke-dasharray: .6 .5; opacity: .45; }
 .lm-obst { fill: #a1887f; fill-opacity: .35; stroke: #6d4c41; stroke-width: .1; stroke-opacity: .5; }  /* doors, breakable blocks */
 .lm-m { cursor: pointer; }
 .lm-m:hover { filter: drop-shadow(0 0 2px #fff) drop-shadow(0 0 3px #000); }
