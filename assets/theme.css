@@ -431,7 +431,7 @@ body:has(.mq-tribe-wild) { --mq-tribe: #3fb8c9; }
 .lm-help { position: absolute; right: .5rem; bottom: .3rem; font-size: .62rem; color: #2b2410; opacity: .65; pointer-events: none; }
 .lm.hide-p0 .lm-p0, .lm.hide-p1 .lm-p1 { display: none; }
 .lm.hide-p0.hide-p1 .lm-pb { display: none; }
-.lm-water { fill: #29b6f6; fill-opacity: .3; stroke: #4fc3f7; stroke-width: .15; }  /* water you swim in */
+.lm-water { fill: #29b6f6; fill-opacity: .35; stroke: none; }  /* water you swim in */
 .lm-legend .lm-key { display: inline-flex; align-items: center; gap: .25rem; white-space: nowrap; }
 .lm.hide-enemy .lm-c-enemy, .lm.hide-spawner .lm-c-spawner, .lm.hide-chest .lm-c-chest, .lm.hide-harvest .lm-c-harvest,
 .lm.hide-breakable .lm-c-breakable, .lm.hide-quest .lm-c-quest, .lm.hide-idol .lm-c-idol, .lm.hide-banana .lm-c-banana,
