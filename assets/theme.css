@@ -414,6 +414,7 @@ body:has(.mq-tribe-wild) { --mq-tribe: #3fb8c9; }
 .lm-geo.lm-p1 { fill: #a9bf8e; stroke: #7f9866; stroke-width: .15; opacity: .75; }
 .lm-m.lm-p1 { opacity: .7; }
 .lm-wall { fill: none; stroke: #3d5a1c; stroke-width: .12; stroke-dasharray: .6 .5; opacity: .45; }
+.lm-obst { fill: #a1887f; fill-opacity: .35; stroke: #6d4c41; stroke-width: .1; stroke-opacity: .5; }  /* doors, breakable blocks */
 .lm-m { cursor: pointer; }
 .lm-m:hover { filter: drop-shadow(0 0 2px #fff) drop-shadow(0 0 3px #000); }
 .lm-help { position: absolute; right: .5rem; bottom: .3rem; font-size: .62rem; color: #2b2410; opacity: .65; pointer-events: none; }
