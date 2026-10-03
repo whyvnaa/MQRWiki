@@ -1,5 +1,6 @@
 // Zone maps (drawn by build_wiki.LevelMap): pan and zoom the SVG viewBox, keep markers the same size on screen,
-// filter marker kinds and paths, and highlight an enemy type when its row in "Enemies here" is hovered.
+// filter marker kinds and paths (both paths off = both shown), and highlight an enemy type when its row in
+// "Enemies here" is hovered.
 // Tooltips come from the data-tip attributes (assets/world-map.js).
 (function () {
   var MAX_ZOOM = 12;
@@ -78,7 +79,12 @@
     root.addEventListener("change", function (e) {
       var t = e.target;
       if (t.hasAttribute("data-lm-cat")) root.classList.toggle("hide-" + t.getAttribute("data-lm-cat"), !t.checked);
-      if (t.hasAttribute("data-lm-plane")) root.classList.toggle("hide-p" + t.getAttribute("data-lm-plane"), !t.checked);
+      if (t.hasAttribute("data-lm-plane")) {
+        // both paths off: nobody to follow on a web page (the overlay follows your path), so show both
+        var boxes = root.querySelectorAll("[data-lm-plane]"), any = false, i;
+        for (i = 0; i < boxes.length; i++) any = any || boxes[i].checked;
+        for (i = 0; i < boxes.length; i++) root.classList.toggle("hide-p" + boxes[i].getAttribute("data-lm-plane"), any && !boxes[i].checked);
+      }
     });
 
     window.addEventListener("resize", apply);
