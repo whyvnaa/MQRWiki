@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Build calculator: enter your level, skill points and target to get the best build and your upgrade path">
+        <meta name="description" content="Build calculator: the best weapons, accessories and armour for every level, with alternatives and how to get each item">
       
       
       
@@ -52,6 +52,8 @@
       <link rel="stylesheet" href="../assets/extra.css?v=9edd169c">
     
       <link rel="stylesheet" href="../assets/theme.css?v=34b7d574">
+    
+      <link rel="stylesheet" href="../assets/build-planner.css?v=c6f5ad8d">
     
       <link rel="stylesheet" href="../assets/public.css?v=d96a3d5c">
     
@@ -820,6 +822,28 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#the-three-progression-choices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The three progression choices
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-the-times-mean" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What the times mean
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -871,7 +895,7 @@
   <span class="md-ellipsis">
     
   
-    Build progression by element
+    Build progression
   
 
     
@@ -1271,6 +1295,28 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#the-three-progression-choices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The three progression choices
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-the-times-mean" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What the times mean
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1291,35 +1337,44 @@
 
 
 <h1 class="mq-titled" id="build-calculator" style="background-image: url('../assets/page-icons/COL_SHD_ScrollOpen01.png'); background-size: 2.86rem 2.80rem; background-position: 0.27rem center">Build calculator<a class="headerlink" href="#build-calculator" title="Permanent link">&para;</a></h1>
-<p>Enter your level and <a href="../mechanics/defence.html#badge-book">skill points</a> and the calculator picks your build: a melee weapon, a ranged weapon, a utility item,
-three accessories and four armour pieces. It also shows the upgrades ahead of you. Results update as you type.</p>
+<p>Enter your level and the calculator works out the best gear for every level from 1 to 60: a melee and a ranged
+weapon, three accessories and four armour pieces, all picked together. The timeline shows which item to wear at which
+levels. Below it you see one level in detail, with every other item you could wear in each slot and how to get it.</p>
 <ul>
-<li>Without a target it builds for enemies of your level, with armour suited to the zones around your level. Pick an
-  enemy element or a zone to build against something specific.</li>
-<li>Click ✕ next to an item to exclude it and see the next best one.</li>
-<li>Click a row in the element comparison to build around that element.</li>
-<li>Your settings stay in this browser and in the page address, so you can bookmark a build.</li>
+<li>Click anywhere on the timeline to look at that level.</li>
+<li><strong>Badge</strong> is where your <a href="../mechanics/defence.html#badge-book">skill points</a> go. Auto picks the badge that kills fastest at each level.</li>
+<li><strong>Hotbar</strong> adds a lane for each slot you carry. A Stun item is rated together with your weapons.</li>
+<li><strong>Enemies</strong> is what you fight. By default that is the zones around each level.</li>
+<li><strong>Items from</strong> leaves out ways to get items that you don't want to use.</li>
+<li>Click "I have it" on an item and the calculator plans around what you own.</li>
 </ul>
-<div id="build-calc"><p>This calculator needs JavaScript.</p></div>
+<p>Your settings stay in this browser and in the page address, so you can bookmark a build.</p>
+<div id="build-planner"><p>This calculator needs JavaScript.</p></div>
 
 <h2 id="how-it-picks">How it picks<a class="headerlink" href="#how-it-picks" title="Permanent link">&para;</a></h2>
-<p>Each hit deals your base damage plus the weapon's stat total (<a href="../mechanics/damage.html">damage</a>). The calculator ranks
-weapons by how long they take to kill an enemy of your level: hits needed × cooldown, at least <span class="mq-hl mq-t">0.5 s</span>. A fast
-weapon that kills in two hits can beat a slower one that hits harder.</p>
+<p>Each hit deals your base damage plus the weapon's stat total (<a href="../mechanics/damage.html">damage</a>). A set is rated by
+how long it takes to kill an enemy of your level and by how much damage you take from one hit. Weapons and accessories
+are picked together, because element damage on accessories only counts for weapons of the same element.</p>
 <div class="admonition example">
 <p class="admonition-title">Example</p>
 <p>Against an enemy with <span class="mq-hl mq-hp">2,000</span> HP, a weapon hitting for <span class="mq-hl mq-dmg">1,100</span> every <span class="mq-hl mq-t">0.5 s</span> needs <span class="mq-hl mq-val">2</span> hits and
 <span class="mq-hl mq-t">1 s</span>. A weapon hitting for <span class="mq-hl mq-dmg">1,500</span> every <span class="mq-hl mq-t">1.5 s</span> also needs <span class="mq-hl mq-val">2</span> hits but takes <span class="mq-hl mq-t">3 s</span>.</p>
 </div>
-<p>Damage zones count <span class="mq-hl mq-dmg">50 %</span> of your hit per tick. Damage and defence use different slots, so the best accessories
-and the best armour are picked separately.</p>
-<p>The build element is the element your accessories and badges boost. Element damage on accessories only counts for
-weapons of the same element, but <span class="mq-hl mq-blunt">blunt</span> damage counts for all of them, so your melee and ranged weapons can have
-different elements. Without a target, each armour resist counts by how many nearby zones use that element; Crossroads
-zones count for every resist.</p>
-<p>The utility slot is valued by what the item does for your build rather than by its damage: free hits during a stun,
-poison damage per use, HP healed per second, damage saved by a resist buff, or seconds of invisibility. "Automatic"
-takes the first of these you don't already have, in that order.</p>
+<p>Your badge gives <span class="mq-hl mq-val">1</span> badge level for every <span class="mq-hl mq-val">5</span> skill points. The calculator counts one skill point per level,
+all in one badge. Badge damage only counts for weapons of that tribe's element.</p>
+<h2 id="the-three-progression-choices">The three progression choices<a class="headerlink" href="#the-three-progression-choices" title="Permanent link">&para;</a></h2>
+<p><strong>When an item is replaced.</strong> The calculator looks at all levels at once. A new item has to make up for the change
+over the levels you keep it. With "Every upgrade" you see the strongest set of every level, even when an item is only
+a little better for a level or two. "Clear upgrades" and "Big upgrades only" leave those short stops out.</p>
+<p><strong>Time.</strong> "Time is irrelevant" only looks at strength. The other settings also make an item earn the hours it takes
+to get, so a slightly weaker item from a vendor can win over a long farm.</p>
+<p><strong>Effort.</strong> A hard limit. Items that take longer to get than this are left out.</p>
+<h2 id="what-the-times-mean">What the times mean<a class="headerlink" href="#what-the-times-mean" title="Permanent link">&para;</a></h2>
+<p>The time next to an item is an estimate of how long it takes to get: <a href="../mechanics/economy.html#currencies">bananas</a> to earn for a vendor, runs of a zone for
+a chest, kills for a drop, materials for crafting, or the <a href="../quests/index.html">quests</a> before a quest reward. Treat it as a way to compare
+items. A dashed item on the timeline has no known way to get it, and you only see those when you switch on "No known
+way".</p>
+<p>The first visit downloads about <span class="mq-hl mq-val">5</span> MB, because the calculator is the same program that runs in the MQR overlay.</p>
 
 
 
@@ -1391,7 +1446,7 @@ takes the first of these you don't already have, in that order.</p>
       
         <script src="../assets/tables.js?v=a41ed08e"></script>
       
-        <script src="../assets/build-calc.js?v=24643ce1"></script>
+        <script src="../assets/build-planner.js?v=cf319697"></script>
       
         <script src="../assets/world-map.js?v=b334911a"></script>
       
