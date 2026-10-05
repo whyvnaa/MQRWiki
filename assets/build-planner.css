@@ -1,4 +1,4 @@
-/* The build calculator and the build progression guide's timelines (assets/build-planner.js). */
+/* The build calculator (assets/build-planner.js). */
 
 /* controls */
 .bp-controls { display: flex; flex-wrap: wrap; gap: .5rem 1.1rem; align-items: center; margin: 1rem 0 .6rem;
@@ -71,6 +71,3 @@
 .bp-loss { color: var(--mq-terra); }
 [data-md-color-scheme="slate"] .bp-gain { color: #a6d84a; }
 [data-md-color-scheme="slate"] .bp-loss { color: #f08a6a; }
-
-/* the guide: a timeline per tribe, then the tables */
-.bp-guide { min-height: 12rem; }

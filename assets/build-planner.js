@@ -1,10 +1,8 @@
-/* The build calculator (guides/calculator.md) and the timelines of the build progression guide
- * (guides/build-progression.md).
+/* The build calculator (guides/calculator.md).
  *
  * The calculator runs the real planner in a web worker (build-planner-worker.js: Python in the browser), the same
  * code as the overlay's Build mode, so there is no second implementation to keep in step. This file only draws:
- * the controls, the timeline (one lane per slot over levels 1 to 60) and the card of one level.
- * The guide's timelines are worked out when the wiki is built (assets/build-guide-data.js) and need no worker. */
+ * the controls, the timeline (one lane per slot over levels 1 to 60) and the card of one level. */
 (function () {
   "use strict";
   var SCRIPT = document.currentScript || document.querySelector('script[src*="build-planner.js"]');
@@ -91,21 +89,6 @@
       opts.onLevel(level);
     };
     return { mark: mark };
-  }
-
-  /* ------------------------------------------------------------------ the guide's timelines (worked out at build time) */
-  function guide() {
-    var data = window.MQ_BUILD_GUIDE;
-    if (!data) return;
-    document.querySelectorAll(".bp-guide[data-tribe]").forEach(function (el) {
-      var tribe = el.getAttribute("data-tribe");
-      if (!data[tribe]) return;
-      var o = data[tribe].options;
-      timeline(el, data[tribe], { onLevel: function (level) {
-        window.location.href = href("guides/calculator.html") + "?level=" + level + "&tribe=" + encodeURIComponent(tribe) +
-          "&slots=" + o.slots.join(",") + "&switch=" + o["switch"] + (o.effort ? "&effort=" + o.effort : "");
-      } });
-    });
   }
 
   /* ------------------------------------------------------------------ the calculator */
@@ -324,7 +307,6 @@
       if (window.Worker && window.WebAssembly) calculator(mount);
       else mount.innerHTML = "<p>This calculator needs a current browser (web workers and WebAssembly).</p>";
     }
-    guide();
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
   else boot();
