@@ -4,7 +4,7 @@ import math
 from build_planner import DEFENCE_SLOTS, ELEMENTS, MIX, SLOT_NAMES, TRIBE_ELEMENT, Costs, Economy, Planner, Profile, effort
 AUTO = 'Auto'
 TRIBES = ['Shadow', 'Bone', 'Outlaw', 'Wild', 'Grease', 'Crossroads']
-DEFAULTS = {'level': 20, 'tribe': AUTO, 'slots': ['melee', 'ranged'], 'where': 'level', 'sources': ['vendor', 'chest', 'enemy', 'craft', 'quest'], 'effort': None, 'switch': 5.0, 'time': 0.0, 'owned': [], 'excluded': []}
+DEFAULTS = {'level': 20, 'tribe': AUTO, 'slots': ['melee', 'ranged'], 'prefer': 'both', 'where': 'level', 'sources': ['vendor', 'chest', 'enemy', 'craft', 'quest'], 'effort': None, 'switch': 5.0, 'time': 0.0, 'owned': [], 'excluded': []}
 ARMOUR = {SLOT_NAMES[s] for s in DEFENCE_SLOTS}
 UTILITY = ('stun', 'heal', 'poison', 'buff')
 
@@ -51,13 +51,14 @@ class Web:
         o['slots'] = [s for s in ('melee', 'ranged') + UTILITY if s in (o['slots'] or [])]
         if not {'melee', 'ranged'} & set(o['slots']):
             o['slots'].insert(0, 'melee')
+        o['prefer'] = o['prefer'] if o['prefer'] in ('melee', 'ranged') and o['prefer'] in o['slots'] else 'both'
         o['sources'] = sorted(set(o['sources'] or []))
         o['owned'] = sorted(set(o['owned'] or []))
         o['excluded'] = sorted(set(o['excluded'] or []))
         return o
 
     def setup(self, o: dict) -> tuple:
-        key = json.dumps([o['level'], o['sources'], o['slots'], o['where'], o['owned'], o['excluded']])
+        key = json.dumps([o['level'], o['sources'], o['slots'], o['prefer'], o['where'], o['owned'], o['excluded']])
         if key == self._key:
             return self._set
         where = o['where'] or 'level'
@@ -69,7 +70,7 @@ class Web:
             target_element = where
         elif where == 'blunt':
             target_element = None
-        profile = Profile(level=o['level'], owned={p: 1 for p in o['owned'] if p in self.bundle['items']}, skill_points=o['level'], mix_all=where == 'all', weapons=tuple((s for s in o['slots'] if s in ('melee', 'ranged'))), defence_weight=0.3, target_level=target_level, target_element=target_element)
+        profile = Profile(level=o['level'], owned={p: 1 for p in o['owned'] if p in self.bundle['items']}, skill_points=o['level'], mix_all=where == 'all', weapons=tuple((s for s in o['slots'] if s in ('melee', 'ranged'))), defence_weight=0.3, prefer=None if o['prefer'] == 'both' else o['prefer'], target_level=target_level, target_element=target_element)
         sources = set(o['sources'])
         eco = Economy(nick_cash='nick_cash' in sources, sources=frozenset(sources - {'nick_cash', 'unknown'}) | ({'tribe_drop'} if 'enemy' in sources else set()))
         costs = Costs(self.bundle, eco)

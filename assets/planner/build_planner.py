@@ -11,6 +11,7 @@ SLOT_NAMES = {'SlotEars': 'Ears', 'SlotWrist': 'Wrist', 'SlotTail': 'Tail', 'Slo
 ATTACK_ACTIONS = ('Melee', 'Throw', 'DamageZone')
 MIX = 'mix'
 WEAPON_CLASSES = ('melee', 'ranged')
+SIDE_WEIGHT = 0.02
 DAMAGE_FLOOR = 0.1
 REFERENCE_COOLDOWN = 1.0
 LEVEL_CAP = 60
@@ -23,6 +24,7 @@ class Profile:
     owned: dict[str, int] = field(default_factory=dict)
     skill_points: int = 0
     weapons: tuple[str, ...] = WEAPON_CLASSES
+    prefer: str | None = None
     defence_weight: float = 0.3
     target_level: int | None = None
     target_element: str | None = MIX
@@ -72,6 +74,9 @@ def pareto3(points: list, cost: Callable, a: Callable, b: Callable) -> list:
 
 def weapon_class(w: dict) -> str:
     return 'melee' if w.get('action_type') == 'Melee' else 'ranged'
+
+def weapon_weights(p: Profile) -> dict[str, float]:
+    return {c: 1.0 if p.prefer in (None, c) else SIDE_WEIGHT for c in p.weapons}
 
 class Model:
 
@@ -418,6 +423,7 @@ class Planner:
         slots = {s: self.options(lambda it, s=s: it['subcategory'] == s, p) for s in DAMAGE_SLOTS}
         weapons = {c: self.options(lambda it, c=c: it['is_weapon'] and it['action_type'] in ('Melee', 'Throw', 'DamageZone') and (weapon_class(it) == c), p) for c in p.weapons}
         results = []
+        weights = weapon_weights(p)
         for focus in ELEMENTS + [None]:
             acc = [((), 0.0, 0, 0)]
             for s in DAMAGE_SLOTS:
@@ -447,10 +453,10 @@ class Planner:
                             rows.append((o, hit, hits, t))
                         per_class[c] = pareto(rows, lambda r: r[0].hours, lambda r: -r[3])
                     combos = [((), ah, 0.0)]
-                    for c in p.weapons:
-                        combos = [(cs + ((c, r),), h + r[0].hours, t + r[3]) for cs, h, t in combos for r in per_class.get(c, [])]
+                    for c, weight in weights.items():
+                        combos = [(cs + ((c, r),), h + r[0].hours, t + weight * r[3]) for cs, h, t in combos for r in per_class.get(c, [])]
                     for cs, h, t in combos:
-                        results.append({'hours': h, 'kill_time': t / max(len(p.weapons), 1), 'tribe': tribe, 'acc': picks, 'weapons': cs})
+                        results.append({'hours': h, 'kill_time': t / max(sum(weights.values()), EPS), 'tribe': tribe, 'acc': picks, 'weapons': cs})
         return pareto(results, lambda r: r['hours'], lambda r: -r['kill_time'])
 
     def armour_frontier(self, p: Profile) -> list[dict]:
@@ -482,6 +488,7 @@ class Planner:
         accs = [picks[SLOT_NAMES[s]] for s in DAMAGE_SLOTS if picks.get(SLOT_NAMES[s])]
         armour = [picks[SLOT_NAMES[s]] for s in DEFENCE_SLOTS if picks.get(SLOT_NAMES[s])]
         weapons = [(c, picks.get(c.capitalize())) for c in p.weapons]
+        weights = weapon_weights(p)
         if tribe:
             tribes = {TRIBE_ELEMENT.get(tribe)}
         else:
@@ -498,9 +505,9 @@ class Planner:
                 else:
                     hit = ap + sum((self.opt.acc_score(a, None) for a in accs))
                     n, t = self.kill_time(hit, hp, REFERENCE_COOLDOWN)
-                times.append(t)
+                times.append(weights[c] * t)
                 hits[c] = {'hit': hit, 'hits': n, 'time': t}
-            kill = sum(times) / len(times) if times else self.reference(p)[0]
+            kill = sum(times) / sum(weights.values()) if times else self.reference(p)[0]
             taken = self.taken(armour, p, bdef)
             s = self.strength(kill, taken, p)
             if best is None or s > best['strength']:
@@ -531,7 +538,7 @@ class Planner:
         return kills * (eco.kill_overhead + ref_kill / strength) / 3600
 
     def menu_cached(self, p: Profile, min_gain: float) -> list[Build]:
-        key = (p.level, min_gain, p.weapons, p.defence_weight, p.skill_points, id(p.owned), p.target_level, p.target_element)
+        key = (p.level, min_gain, p.weapons, p.prefer, p.defence_weight, p.skill_points, id(p.owned), p.target_level, p.target_element)
         cache = self.__dict__.setdefault('_menus', {})
         if key not in cache:
             cache[key] = self.menu(p, min_gain)
@@ -781,13 +788,13 @@ class Planner:
         ap = self.opt.stat('AbilityPower', 'Player', p.level)
         accs = [picks[SLOT_NAMES[s]] for s in DAMAGE_SLOTS if picks.get(SLOT_NAMES[s])]
         total = 0.0
-        for c in p.weapons:
+        for c, weight in weapon_weights(p).items():
             w = picks.get(c.capitalize())
             if w:
                 base = ap + sum((self.opt.acc_score(a, w['element']) for a in accs)) + (badge_dmg if el and w['element'] == el else 0)
-                total += max(1.0, hp / max(self.weapon_hit(w, base), 1)) * max(w['cooldown'] or 0, 0.5)
+                total += weight * max(1.0, hp / max(self.weapon_hit(w, base), 1)) * max(w['cooldown'] or 0, 0.5)
             else:
-                total += max(1.0, hp / max(ap + sum((self.opt.acc_score(a, None) for a in accs)), 1)) * REFERENCE_COOLDOWN
+                total += weight * max(1.0, hp / max(ap + sum((self.opt.acc_score(a, None) for a in accs)), 1)) * REFERENCE_COOLDOWN
         return total
 
     def best_set(self, p: Profile, tribe: str, pool: dict[str, list[tuple[dict, float]]], prev: dict | None=None, min_gain: float=0.05) -> dict:

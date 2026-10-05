@@ -17,7 +17,8 @@
                  ["30", "Up to 30 h an item"]];
   var SWITCHES = [["0", "Every upgrade"], ["5", "Small upgrades too"], ["15", "Clear upgrades"], ["40", "Big upgrades only"]];
   var TIMES = [["0", "Time is irrelevant"], ["1", "Time counts a little"], ["4", "Time counts"], ["15", "Time counts a lot"]];
-  var DEFAULTS = { level: 20, tribe: "Auto", slots: ["melee", "ranged"], where: "level",
+  var STYLES = [["both", "Hybrid"], ["melee", "Melee build"], ["ranged", "Ranged build"]];
+  var DEFAULTS = { level: 20, tribe: "Auto", slots: ["melee", "ranged"], prefer: "both", where: "level",
                    sources: ["vendor", "chest", "enemy", "craft", "quest"], effort: null, "switch": 5, time: 0, owned: [],
                    excluded: [] };
   var SHOWN = 4;  // items on show per slot before "Show all"
@@ -101,6 +102,7 @@
     if (q.has("level")) state.level = parseInt(q.get("level"), 10) || state.level;
     if (q.has("tribe")) state.tribe = q.get("tribe");
     if (q.has("slots")) state.slots = list(q.get("slots"));
+    if (q.has("prefer")) state.prefer = q.get("prefer");
     if (q.has("where")) state.where = q.get("where");
     if (q.has("sources")) state.sources = list(q.get("sources"));
     if (q.has("effort")) state.effort = parseFloat(q.get("effort")) || null;
@@ -134,6 +136,7 @@
       p.set("level", state.level);
       p.set("tribe", state.tribe);
       if (state.slots.join() !== DEFAULTS.slots.join()) p.set("slots", state.slots.join(","));
+      if (state.prefer && state.prefer !== "both") p.set("prefer", state.prefer);
       if (state.where !== "level") p.set("where", state.where);
       if (state.sources.slice().sort().join() !== DEFAULTS.sources.slice().sort().join()) p.set("sources", state.sources.join(","));
       if (state.effort) p.set("effort", state.effort);
@@ -158,7 +161,8 @@
       '<div class="bp-controls">' +
         '<div class="bp-group"><label class="bp-cap" for="bp-level">Your level</label><input id="bp-level" type="number" min="1" max="60" value="' + state.level + '"></div>' +
         '<div class="bp-group"><span class="bp-cap">Badge</span><span class="bp-chips" id="bp-tribes"></span></div>' +
-        '<div class="bp-group"><span class="bp-cap">Hotbar</span><span class="bp-chips" id="bp-slots"></span></div>' +
+        '<div class="bp-group"><span class="bp-cap">Hotbar</span><span class="bp-chips" id="bp-slots"></span>' +
+          '<select id="bp-prefer" title="Build style: which weapon the accessories and the ranking serve. Hybrid: melee and ranged count the same. Melee or Ranged: that weapon decides, the other one is still picked for its own slot.">' + options(STYLES, state.prefer || "both") + "</select></div>" +
         '<div class="bp-group"><label class="bp-cap" for="bp-where">Enemies</label><select id="bp-where"></select></div>' +
         '<div class="bp-group"><span class="bp-cap">Items from</span><span class="bp-chips" id="bp-sources"></span></div>' +
         '<div class="bp-group"><span class="bp-cap">Progression</span>' +
@@ -306,6 +310,7 @@
       timer = setTimeout(function () { state.level = v; view = v; refresh(); }, 400);
     });
     $("bp-where").addEventListener("change", function () { state.where = this.value; refresh(); });
+    $("bp-prefer").addEventListener("change", function () { state.prefer = this.value; refresh(); });
     $("bp-switch").addEventListener("change", function () { state["switch"] = parseFloat(this.value) || 0; refresh(); });
     $("bp-time").addEventListener("change", function () { state.time = parseFloat(this.value) || 0; refresh(); });
     $("bp-effort").addEventListener("change", function () { state.effort = parseFloat(this.value) || null; refresh(); });
