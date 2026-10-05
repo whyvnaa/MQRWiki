@@ -781,7 +781,7 @@ class Planner:
     def slot_labels(self, p: Profile) -> list[str]:
         return [c.capitalize() for c in p.weapons] + [SLOT_NAMES[s] for s in DAMAGE_SLOTS + DEFENCE_SLOTS]
 
-    def smooth_kill(self, picks: dict[str, dict], p: Profile, tribe: str) -> float:
+    def smooth_kill(self, picks: dict[str, dict], p: Profile, tribe: str, only: str | None=None) -> float:
         el = TRIBE_ELEMENT.get(tribe)
         badge_dmg, _ = self.opt.badge_bonus(el, p.skill_points)
         _, hp, _ = self.enemy(p)
@@ -789,6 +789,10 @@ class Planner:
         accs = [picks[SLOT_NAMES[s]] for s in DAMAGE_SLOTS if picks.get(SLOT_NAMES[s])]
         total = 0.0
         for c, weight in weapon_weights(p).items():
+            if only:
+                if c != only:
+                    continue
+                weight = 1.0
             w = picks.get(c.capitalize())
             if w:
                 base = ap + sum((self.opt.acc_score(a, w['element']) for a in accs)) + (badge_dmg if el and w['element'] == el else 0)
@@ -1047,7 +1051,7 @@ class Planner:
                 continue
             h = prices.get(it['prefab'])
             ev = self.evaluate(picks | {label: it}, pl, tribe=tribe)
-            slots[label].append({'item': it, 'hours': h, 'owned': bool(p.owned.get(it['prefab'])), 'best': picks.get(label) is it, 'over': max_hours is not None and h is not None and (h > max_hours + EPS), 'kill_time': ev['kill_time'], 'hits': ev['hits'], 'damage_taken': ev['damage_taken'], 'smooth': self.smooth_kill(picks | {label: it}, pl, tribe)})
+            slots[label].append({'item': it, 'hours': h, 'owned': bool(p.owned.get(it['prefab'])), 'best': picks.get(label) is it, 'over': max_hours is not None and h is not None and (h > max_hours + EPS), 'kill_time': ev['kill_time'], 'hits': ev['hits'], 'damage_taken': ev['damage_taken'], 'smooth': self.smooth_kill(picks | {label: it}, pl, tribe, only=label.lower() if label in ('Melee', 'Ranged') else None)})
         for label, rows in slots.items():
             far = math.inf
             if label in armour:
