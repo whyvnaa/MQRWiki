@@ -13,6 +13,8 @@ MIX = 'mix'
 WEAPON_CLASSES = ('melee', 'ranged')
 DAMAGE_FLOOR = 0.1
 REFERENCE_COOLDOWN = 1.0
+LEVEL_CAP = 60
+CAP_WEIGHT = 1000000.0
 EPS = 1e-09
 
 @dataclass
@@ -73,11 +75,12 @@ def weapon_class(w: dict) -> str:
 
 class Model:
 
-    def __init__(self, bundle: dict):
+    def __init__(self, bundle: dict, exclude: frozenset=frozenset()):
         self.b = bundle
+        self.exclude = frozenset(exclude)
         blank = dict.fromkeys(('name', 'subcategory', 'element', 'action_type', 'currency', 'rarity'), None) | dict.fromkeys(('level_req', 'cooldown', 'price', 'scaled_blunt', 'scaled_element', 'scaled_defence', 'scaled_resist', 'scaled_sum', 'is_weapon', 'is_gear'), 0)
         self.item = {p: blank | it for p, it in bundle['items'].items()}
-        self.items = [it for it in self.item.values() if it['is_weapon'] and it['action_type'] in ATTACK_ACTIONS or it['subcategory'] in SLOT_NAMES]
+        self.items = [it for p, it in self.item.items() if p not in self.exclude and (it['is_weapon'] and it['action_type'] in ATTACK_ACTIONS or it['subcategory'] in SLOT_NAMES)]
 
     def stat(self, effect: str, grp: str, level: int) -> int:
         table = {('AbilityPower', 'Player'): ('player', 'ap'), ('Defence', 'Player'): ('player', 'defence'), ('IncreaseHitPoints', 'Player'): ('player', 'hp'), ('AbilityPower', 'Enemy'): ('enemy', 'ap'), ('IncreaseHitPoints', 'Enemy'): ('enemy', 'hp'), ('IncreaseExperience', 'Enemy'): ('enemy', 'xp')}[effect, grp]
@@ -268,7 +271,8 @@ class Costs:
             return []
         groups: dict = {}
         for r in self.b['ways'].get(prefab, []):
-            key = (r['zone'], r['cat'], bool(r.get('daily'))) if r['kind'] == 'chest' and r.get('chance') and r.get('zone') else id(r)
+            together = r['kind'] == 'chest' and r.get('chance') and r.get('zone') and (not (self.b['zones'].get(r['zone']) or {}).get('dungeon'))
+            key = (r['zone'], r['cat'], bool(r.get('daily'))) if together else id(r)
             groups.setdefault(key, []).append(r)
         out = [w for w in (self.price(rs[0], p, stack | {prefab}) if len(rs) == 1 else self.chests(rs) for rs in groups.values()) if w]
         return sorted(out, key=lambda w: (self.cost(w), w.nick_cash))
@@ -353,8 +357,8 @@ def effort(way: Way | None, hours: float | None) -> tuple[str, str]:
 
 class Planner:
 
-    def __init__(self, bundle: dict, hours: Callable[[dict, Profile], float | None], economy: Economy | None=None):
-        self.opt = Model(bundle)
+    def __init__(self, bundle: dict, hours: Callable[[dict, Profile], float | None], economy: Economy | None=None, exclude: frozenset=frozenset()):
+        self.opt = Model(bundle, exclude)
         self.hours = hours
         self.eco = economy or Economy()
         self.unknown = False
@@ -896,7 +900,7 @@ class Planner:
                     continue
                 best = rows[-1]
                 old = next((r for r in rows if r['item'] is held.get(slot)), None)
-                if old and switch_cost > 0 and (old['value'] >= best['value'] * 0.95):
+                if old and switch_cost > 0 and (old['value'] >= best['value'] * 0.95) and (pl.level < LEVEL_CAP):
                     best = old
                 held[slot] = best['item']
                 row['utility'][slot] = best
@@ -940,12 +944,13 @@ class Planner:
         bdefs = [self.opt.badge_bonus(TRIBE_ELEMENT.get(t), pl.skill_points)[1] for t, pl in zip(tribes, profs)]
         ref_kill = [max(self.smooth_kill(r['picks'], pl, t), EPS) for r, pl, t in zip(ideal, profs, tribes)]
         ref_taken = [max(self.taken([r['picks'][k] for k in armour if k in r['picks']], pl, b), EPS) for r, pl, b in zip(ideal, profs, bdefs)]
+        weight = [CAP_WEIGHT if pl.level >= LEVEL_CAP else 1.0 for pl in profs]
 
         def kill_loss(i: int, d: dict) -> float:
-            return 100 * (self.smooth_kill(d, profs[i], tribes[i]) / ref_kill[i] - 1)
+            return weight[i] * 100 * (self.smooth_kill(d, profs[i], tribes[i]) / ref_kill[i] - 1)
 
         def taken_loss(i: int, d: dict) -> float:
-            return 100 * (self.taken([d[k] for k in armour if k in d], profs[i], bdefs[i]) / ref_taken[i] - 1)
+            return weight[i] * 100 * (self.taken([d[k] for k in armour if k in d], profs[i], bdefs[i]) / ref_taken[i] - 1)
         for group, loss in ((damage, kill_loss), (armour, taken_loss)):
             cands = {label: self.candidates(label, pool, picks, profs, hour_cost > 0) for label in group}
             for _ in range(4):
@@ -1136,6 +1141,8 @@ class Planner:
         for it in self.opt.item.values():
             slot = self.utility_slot(it)
             if slot not in out or not it['name'] or it['action_type'] == 'Relic' or ((it['level_req'] or 0) > p.level):
+                continue
+            if it['prefab'] in self.opt.exclude:
                 continue
             if not (it['is_weapon'] or it['subcategory'] in ('Defensive', 'Bomb')):
                 continue
