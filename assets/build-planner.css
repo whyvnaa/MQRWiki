@@ -64,6 +64,9 @@
 .bp-right { flex: none; text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: .2rem; max-width: 40%; }
 .md-typeset .bp-own { font-size: .58rem; font-weight: 600; padding: 0 .45rem; opacity: .8; }
 .md-typeset .bp-more { margin: .1rem 0 .4rem; }
+.md-typeset #bp-excluded { font-size: .68rem; margin: .3rem 0; display: flex; flex-wrap: wrap; align-items: center; gap: .3rem .5rem; }
+.bp-excl { display: inline-flex; align-items: center; gap: .25rem; padding: .1rem .35rem; background: var(--mq-card);
+  border: 1.5px solid var(--mq-card-border); border-radius: .45rem; }
 .bp-dim { opacity: .7; }
 .bp-star { color: var(--mq-banana-dark); }
 [data-md-color-scheme="slate"] .bp-star { color: var(--mq-banana); }

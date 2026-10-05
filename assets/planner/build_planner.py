@@ -271,8 +271,7 @@ class Costs:
             return []
         groups: dict = {}
         for r in self.b['ways'].get(prefab, []):
-            together = r['kind'] == 'chest' and r.get('chance') and r.get('zone') and (not (self.b['zones'].get(r['zone']) or {}).get('dungeon'))
-            key = (r['zone'], r['cat'], bool(r.get('daily'))) if together else id(r)
+            key = (r['zone'], r['cat'], bool(r.get('daily'))) if r['kind'] == 'chest' and r.get('chance') and r.get('zone') else id(r)
             groups.setdefault(key, []).append(r)
         out = [w for w in (self.price(rs[0], p, stack | {prefab}) if len(rs) == 1 else self.chests(rs) for rs in groups.values()) if w]
         return sorted(out, key=lambda w: (self.cost(w), w.nick_cash))

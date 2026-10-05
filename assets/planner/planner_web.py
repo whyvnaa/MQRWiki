@@ -4,7 +4,7 @@ import math
 from build_planner import DEFENCE_SLOTS, ELEMENTS, MIX, SLOT_NAMES, TRIBE_ELEMENT, Costs, Economy, Planner, Profile, effort
 AUTO = 'Auto'
 TRIBES = ['Shadow', 'Bone', 'Outlaw', 'Wild', 'Grease', 'Crossroads']
-DEFAULTS = {'level': 20, 'tribe': AUTO, 'slots': ['melee', 'ranged'], 'where': 'level', 'sources': ['vendor', 'chest', 'enemy', 'craft', 'quest'], 'effort': None, 'switch': 5.0, 'time': 0.0, 'owned': []}
+DEFAULTS = {'level': 20, 'tribe': AUTO, 'slots': ['melee', 'ranged'], 'where': 'level', 'sources': ['vendor', 'chest', 'enemy', 'craft', 'quest'], 'effort': None, 'switch': 5.0, 'time': 0.0, 'owned': [], 'excluded': []}
 ARMOUR = {SLOT_NAMES[s] for s in DEFENCE_SLOTS}
 UTILITY = ('stun', 'heal', 'poison', 'buff')
 
@@ -53,10 +53,11 @@ class Web:
             o['slots'].insert(0, 'melee')
         o['sources'] = sorted(set(o['sources'] or []))
         o['owned'] = sorted(set(o['owned'] or []))
+        o['excluded'] = sorted(set(o['excluded'] or []))
         return o
 
     def setup(self, o: dict) -> tuple:
-        key = json.dumps([o['level'], o['sources'], o['slots'], o['where'], o['owned']])
+        key = json.dumps([o['level'], o['sources'], o['slots'], o['where'], o['owned'], o['excluded']])
         if key == self._key:
             return self._set
         where = o['where'] or 'level'
@@ -72,12 +73,13 @@ class Web:
         sources = set(o['sources'])
         eco = Economy(nick_cash='nick_cash' in sources, sources=frozenset(sources - {'nick_cash', 'unknown'}) | ({'tribe_drop'} if 'enemy' in sources else set()))
         costs = Costs(self.bundle, eco)
-        pl = Planner(self.bundle, costs.hours, eco)
+        exclude = frozenset(o['excluded'])
+        pl = Planner(self.bundle, costs.hours, eco, exclude)
         menu = pl.menu(profile)
         if menu:
             eco.kill_time = max(0.5, min(menu[0].kill_time, 10.0))
             costs = Costs(self.bundle, eco)
-            pl = Planner(self.bundle, costs.hours, eco)
+            pl = Planner(self.bundle, costs.hours, eco, exclude)
         pl.unknown = 'unknown' in sources
         self._key, self._set, self._prog = (key, (pl, costs, profile, pl.price_table(profile)), {})
         return self._set
@@ -111,7 +113,9 @@ class Web:
         for label, segs in prog['lanes'].items():
             lanes.append({'label': label, 'kind': 'armour' if label in ARMOUR else 'gear' if label in pl.slot_labels(profile) else 'utility', 'segs': [{'from': s['from'], 'to': s['to'], 'item': self.item(s['item'], items), **self.how(s['item'], prices.get(s['item']['prefab'], s['hours']), costs, profile)} for s in segs]})
         levels = [{'level': r['level'], 'tribe': r['badge_tribe'], 'kill': round(r['kill_time'], 3), 'taken': round(r['damage_taken'], 1), 'points': r['points']} for r in prog['levels']]
-        return {'options': o, 'lo': prog['lo'], 'hi': prog['hi'], 'lanes': lanes, 'badges': prog['badges'], 'changes': prog['changes'], 'levels': levels, 'items': items}
+        excluded = [self.item(pl.opt.item[x], items) for x in o['excluded'] if x in pl.opt.item]
+        excluded.sort(key=lambda x: items[x]['name'] or x)
+        return {'options': o, 'lo': prog['lo'], 'hi': prog['hi'], 'lanes': lanes, 'badges': prog['badges'], 'changes': prog['changes'], 'levels': levels, 'items': items, 'excluded': excluded}
 
     def stage(self, o: dict | None=None, level: int | None=None) -> dict:
         o = self.options(o)

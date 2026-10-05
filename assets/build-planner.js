@@ -18,7 +18,8 @@
   var SWITCHES = [["0", "Every upgrade"], ["5", "Small upgrades too"], ["15", "Clear upgrades"], ["40", "Big upgrades only"]];
   var TIMES = [["0", "Time is irrelevant"], ["1", "Time counts a little"], ["4", "Time counts"], ["15", "Time counts a lot"]];
   var DEFAULTS = { level: 20, tribe: "Auto", slots: ["melee", "ranged"], where: "level",
-                   sources: ["vendor", "chest", "enemy", "craft", "quest"], effort: null, "switch": 5, time: 0, owned: [] };
+                   sources: ["vendor", "chest", "enemy", "craft", "quest"], effort: null, "switch": 5, time: 0, owned: [],
+                   excluded: [] };
   var SHOWN = 4;  // items on show per slot before "Show all"
   var STORE = "mq-build-planner";
 
@@ -106,6 +107,7 @@
     if (q.has("switch")) state["switch"] = parseFloat(q.get("switch")) || 0;
     if (q.has("time")) state.time = parseFloat(q.get("time")) || 0;
     state.level = Math.max(1, Math.min(60, state.level || 20));
+    if (!Array.isArray(state.excluded)) state.excluded = [];
     var view = state.level;  // the level whose card is on show
     var open = {};  // slots with every item on show
     var prog = null, tl = null;
@@ -166,6 +168,7 @@
       "</div>" +
       '<p class="bp-status" id="bp-status"></p>' +
       '<p id="bp-owned" hidden></p>' +
+      '<p id="bp-excluded" hidden></p>' +
       '<div id="bp-timeline"></div>' +
       '<div id="bp-card"></div>';
     var $ = function (id) { return mount.querySelector("#" + id); };
@@ -189,6 +192,16 @@
       $("bp-owned").hidden = !n;
       $("bp-owned").innerHTML = n ? "Planning around " + n + (n === 1 ? " item" : " items") + ' you have. <button type="button" class="bp-more" data-forget="1">Forget them</button>' : "";
     }
+    /* The items you excluded, each with a button that takes it back in (names: the last progression's). */
+    function drawExcluded() {
+      var items = prog ? prog.items : {};
+      var list2 = prog ? prog.excluded : [];
+      $("bp-excluded").hidden = !list2.length;
+      $("bp-excluded").innerHTML = list2.length ? '<span class="bp-cap">Excluded items</span> ' + list2.map(function (p) {
+        return '<span class="bp-excl">' + pic(items[p], 18) + name(items[p]) + ' <button type="button" class="bp-own" data-exclude="' + esc(p) +
+          '" title="Suggest ' + esc(items[p].name) + ' again">Include again</button></span>';
+      }).join(" ") : "";
+    }
     function toggle(arr, v) {
       var i = arr.indexOf(v);
       if (i >= 0) arr.splice(i, 1); else arr.push(v);
@@ -203,6 +216,7 @@
       call("progression").then(function (r) {
         if (mine !== run) return;
         prog = r;
+        drawExcluded();
         tl = timeline($("bp-timeline"), r, { level: view, onLevel: function (level) { view = level; tl.mark(level); card(); } });
         return card(mine);
       }).catch(fail);
@@ -232,7 +246,8 @@
         '<div class="bp-main"><div class="bp-name">' + name(it) + " " + tags.join(" · ") + "</div>" +
         '<div class="bp-line">' + esc(r.line) + delta + "</div>" + way + "</div>" +
         '<div class="bp-right">' + right + '<button type="button" class="bp-own" data-own="' + esc(r.item) + '">' +
-        (r.owned ? "I don't have it" : "I have it") + "</button></div></div>";
+        (r.owned ? "I don't have it" : "I have it") + '</button><button type="button" class="bp-own" data-exclude="' + esc(r.item) +
+        '" title="Never suggest this item: it leaves every level and list. Excluded items are listed above the timeline.">Exclude</button></div></div>';
     }
     function slot(s, items, utility) {
       var sub = utility ? "with this level's set" : s.ways + " to choose from" + (s.none ? ", " + s.none + " more with no known way" : "");
@@ -279,6 +294,7 @@
       }
       else if (b.dataset.source) { toggle(state.sources, b.dataset.source); drawChips(); refresh(); }
       else if (b.dataset.own) { toggle(state.owned, b.dataset.own); drawOwned(); refresh(); }
+      else if (b.dataset.exclude) { toggle(state.excluded, b.dataset.exclude); refresh(); }
       else if (b.dataset.forget) { state.owned = []; drawOwned(); refresh(); }
       else if (b.dataset.more) { open[b.dataset.more] = !open[b.dataset.more]; if (last) drawCard(last); }
     });
