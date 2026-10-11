@@ -222,7 +222,8 @@
     var enemyAp = stat("Enemy.AbilityPower", target.level);
     var hp = stat("Player.IncreaseHitPoints", level);
     var perAttack = [null].concat(ELEMENTS).map(function (el) {
-      var d = base + bdef + worn.reduce(function (s, a) { return s + armourScore(a, el); }, 0);
+      // badge defence (bdef) is shown in the stats window but did not reduce hits in-game (2026-10-11, M20): only in "shown"
+      var d = base + worn.reduce(function (s, a) { return s + armourScore(a, el); }, 0);
       var raw = enemyAp - d;
       return { el: el, share: mix[el || "blunt"] || 0, defence: d, taken: Math.max(raw, 0), capped: raw <= 0,
                hitsToDie: raw > 0 ? Math.ceil(hp / raw) : null };

@@ -13,6 +13,7 @@ MIX = 'mix'
 WEAPON_CLASSES = ('melee', 'ranged')
 SIDE_WEIGHT = 0.02
 DAMAGE_FLOOR = 0.1
+BADGE_DEFENCE_COUNTS = False
 REFERENCE_COOLDOWN = 1.0
 LEVEL_CAP = 60
 CAP_WEIGHT = 1000000.0
@@ -416,7 +417,7 @@ class Planner:
 
     def taken(self, armour: list[dict], p: Profile, badge_def: int) -> float:
         _, _, enemy_ap = self.enemy(p)
-        base = self.opt.stat('Defence', 'Player', p.level) + badge_def
+        base = self.opt.stat('Defence', 'Player', p.level) + (badge_def if BADGE_DEFENCE_COUNTS else 0)
         total = 0.0
         for el, share in self.attack_mix(p).items():
             d = base + sum((self.opt.armour_score(a, el) for a in armour))
@@ -539,7 +540,7 @@ class Planner:
             _, bdef = self.opt.badge_bonus(next((el for el, tr in ELEMENT_TRIBE.items() if tr == ev['tribe']), None), p.skill_points)
             armour = [build[SLOT_NAMES[s]] for s in DEFENCE_SLOTS if build.get(SLOT_NAMES[s])]
             _, _, enemy_ap = self.enemy(p)
-            base = self.opt.stat('Defence', 'Player', p.level) + bdef
+            base = self.opt.stat('Defence', 'Player', p.level) + (bdef if BADGE_DEFENCE_COUNTS else 0)
             ev['taken_by'] = {el: max(DAMAGE_FLOOR * enemy_ap, enemy_ap - base - sum((self.opt.armour_score(a, el) for a in armour))) for el in self.attack_mix(p)}
             ev['item'] = build.get(slot)
             out[key] = ev
@@ -661,7 +662,7 @@ class Planner:
 
     def taken_by(self, armour: list[dict], p: Profile, badge_def: int) -> dict:
         _, _, enemy_ap = self.enemy(p)
-        base = self.opt.stat('Defence', 'Player', p.level) + badge_def
+        base = self.opt.stat('Defence', 'Player', p.level) + (badge_def if BADGE_DEFENCE_COUNTS else 0)
         out = {el: max(DAMAGE_FLOOR * enemy_ap, enemy_ap - base - sum((self.opt.armour_score(a, el) for a in armour))) for el in ELEMENTS + [None]}
         out['mix'] = sum((share * out[el] for el, share in self.attack_mix(p).items()))
         return out

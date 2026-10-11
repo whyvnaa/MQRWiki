@@ -1253,11 +1253,20 @@
 <ul>
 <li><span class="mq-hl mq-def">10</span> per level (base defence),</li>
 <li>the defence of your armour: Hat, Body, Legs and Backpack,</li>
-<li>the resist of your armour against the attacker's element,</li>
-<li>your Badge Book defence bonus, which counts against every element.</li>
+<li>the resist of your armour against the attacker's element.</li>
 </ul>
-<p>Enemies always deal at least a minimum that grows with their level, however high your defence is. <a href="death-and-hazards.html#hazards">Hazards</a> that take a
-share of your max HP ignore defence completely.</p>
+<p>A hit takes the enemy's attack value minus that defence, point for point. Enemies always deal at least a minimum that
+grows with their level, however high your defence is. <a href="death-and-hazards.html#hazards">Hazards</a> that take a share of your max HP ignore defence
+completely.</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>At level 34 with <span class="mq-hl mq-def">607</span> armour defence, a level 45 Sea Dragons dragon (attack <span class="mq-hl mq-dmg">1,721</span>) hits for
+<span class="mq-hl mq-dmg">774</span>: 1,721 minus <span class="mq-hl mq-def">340</span> base minus <span class="mq-hl mq-def">607</span>. Take off a <span class="mq-hl mq-def">177</span> cape and it hits for
+<span class="mq-hl mq-dmg">951</span>. Swap a <span class="mq-hl mq-def">141</span> shirt for one with <span class="mq-hl mq-def">124</span> defence and <span class="mq-hl mq-fire">44 Fire</span> resist and it hits
+for <span class="mq-hl mq-dmg">747</span>: the resist counts in full against a <span class="mq-hl mq-fire">Fire</span> enemy.</p>
+</div>
+<p>Your Badge Book defence bonus shows up in the stats window, but it did not reduce those hits: the defence that counted
+was base plus armour exactly. Whether it protects against the badge's own element is still being tested.</p>
 <h2 id="elements">Elements<a class="headerlink" href="#elements" title="Permanent link">&para;</a></h2>
 <p>Every enemy attacks with its tribe's element. Crossroads enemies deal <span class="mq-hl mq-blunt">blunt</span> damage.</p>
 <table>
@@ -1322,13 +1331,17 @@ enemies. The "Defence" number in your stats window includes all your resists.</p
 <p>Skill points from levelling up go into the Badge Book. Every <span class="mq-hl mq-val">5</span> points in a tribe give one badge level:</p>
 <ul>
 <li><span class="mq-hl mq-dmg">+75</span> damage at badge level 1 and <span class="mq-hl mq-dmg">+20</span> per further level, only for weapons of that tribe's element,</li>
-<li><span class="mq-hl mq-def">+67</span> defence at badge level 1 and <span class="mq-hl mq-def">+24</span> per further level, against every element.</li>
+<li><span class="mq-hl mq-def">+67</span> defence at badge level 1 and <span class="mq-hl mq-def">+24</span> per further level in the stats window. In a fight this bonus
+  did not reduce the hits of an enemy of another element (tested with a Shadow badge against a <span class="mq-hl mq-fire">Fire</span> dragon), so
+  count on the damage, not the defence.</li>
 </ul>
 <p>You can switch tribes for free, so you can move your points to match your weapon or the zone.</p>
 <div class="admonition example">
 <p class="admonition-title">Example</p>
-<p><span class="mq-hl mq-val">20</span> skill points in Shadow make badge level <span class="mq-hl mq-val">4</span>: <span class="mq-hl mq-air">+135 Air</span> damage on <span class="mq-hl mq-air">Air</span> weapons and
-<span class="mq-hl mq-def">+139</span> defence against everything.</p>
+<p><span class="mq-hl mq-val">20</span> skill points in Shadow make badge level <span class="mq-hl mq-val">4</span>: <span class="mq-hl mq-air">+135 Air</span> damage on <span class="mq-hl mq-air">Air</span> weapons. With a
+<span class="ref"><img class="ref-pic ref-item" src="../assets/icons/WPN_PRJ_TMNT_Sai01.png" alt="" loading="lazy"> <a href="../items/6043-sharpened-sai.html">Sharpened Sai</a></span> (<span class="mq-hl mq-air">Air</span>) and a <span class="ref"><img class="ref-pic ref-item" src="../assets/icons/WPN_MEL_FireSword01.png" alt="" loading="lazy"> <a href="../items/6041-dragon-flame-cutlass.html">Dragon Flame Cutlass</a></span> (<span class="mq-hl mq-fire">Fire</span>) on the hotbar at level 34, the Sai hits for
+<span class="mq-hl mq-dmg">1,478</span> and the <span class="ref"><img class="ref-pic ref-vendor" src="../assets/npcs/lv_out_market01-639.png" alt="" loading="lazy"> <a href="../npcs/274-639-cutlass.html">Cutlass</a></span> for <span class="mq-hl mq-dmg">1,423</span>, although the Cutlass has 154 more weapon damage: the badge and
+the <span class="mq-hl mq-air">Air</span> lines on accessories only count for <span class="mq-hl mq-air">Air</span> weapons.</p>
 </div>
 <table>
 <thead>
