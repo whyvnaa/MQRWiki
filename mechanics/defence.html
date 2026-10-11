@@ -1255,9 +1255,10 @@
 <li>the defence of your armour: Hat, Body, Legs and Backpack,</li>
 <li>the resist of your armour against the attacker's element.</li>
 </ul>
-<p>A hit takes the enemy's attack value minus that defence, point for point. Enemies always deal at least a minimum that
-grows with their level, however high your defence is. <a href="death-and-hazards.html#hazards">Hazards</a> that take a share of your max HP ignore defence
-completely.</p>
+<p>A hit takes the enemy's attack value minus that defence, point for point. Enemies always deal at least a minimum,
+however high your defence is: about <span class="mq-hl mq-val">5 %</span> of their attack value (or <span class="mq-hl mq-val">2</span> points per enemy level, which comes to
+the same), varying a little from hit to hit. A level 24 enemy with <span class="mq-hl mq-dmg">909</span> attack hits for <span class="mq-hl mq-dmg">43</span> to
+<span class="mq-hl mq-dmg">51</span> through <span class="mq-hl mq-def">947</span> defence. <a href="death-and-hazards.html#hazards">Hazards</a> that take a share of your max HP ignore defence completely.</p>
 <div class="admonition example">
 <p class="admonition-title">Example</p>
 <p>At level 34 with <span class="mq-hl mq-def">607</span> armour defence, a level 45 Sea Dragons dragon (attack <span class="mq-hl mq-dmg">1,721</span>) hits for
@@ -1265,8 +1266,9 @@ completely.</p>
 <span class="mq-hl mq-dmg">951</span>. Swap a <span class="mq-hl mq-def">141</span> shirt for one with <span class="mq-hl mq-def">124</span> defence and <span class="mq-hl mq-fire">44 Fire</span> resist and it hits
 for <span class="mq-hl mq-dmg">747</span>: the resist counts in full against a <span class="mq-hl mq-fire">Fire</span> enemy.</p>
 </div>
-<p>Your Badge Book defence bonus shows up in the stats window, but it did not reduce those hits: the defence that counted
-was base plus armour exactly. Whether it protects against the badge's own element is still being tested.</p>
+<p>Your Badge Book defence bonus shows up in the stats window, but it does not reduce hits: the defence that counted
+was base plus armour exactly, with a Shadow badge and with an Outlaw badge showing <span class="mq-hl mq-def">+187</span> Fire defence against
+that same <span class="mq-hl mq-fire">Fire</span> dragon.</p>
 <h2 id="elements">Elements<a class="headerlink" href="#elements" title="Permanent link">&para;</a></h2>
 <p>Every enemy attacks with its tribe's element. Crossroads enemies deal <span class="mq-hl mq-blunt">blunt</span> damage.</p>
 <table>
@@ -1331,9 +1333,9 @@ enemies. The "Defence" number in your stats window includes all your resists.</p
 <p>Skill points from levelling up go into the Badge Book. Every <span class="mq-hl mq-val">5</span> points in a tribe give one badge level:</p>
 <ul>
 <li><span class="mq-hl mq-dmg">+75</span> damage at badge level 1 and <span class="mq-hl mq-dmg">+20</span> per further level, only for weapons of that tribe's element,</li>
-<li><span class="mq-hl mq-def">+67</span> defence at badge level 1 and <span class="mq-hl mq-def">+24</span> per further level in the stats window. In a fight this bonus
-  did not reduce the hits of an enemy of another element (tested with a Shadow badge against a <span class="mq-hl mq-fire">Fire</span> dragon), so
-  count on the damage, not the defence.</li>
+<li><span class="mq-hl mq-def">+67</span> defence at badge level 1 and <span class="mq-hl mq-def">+24</span> per further level in the stats window only. In a fight this
+  bonus never reduces a hit, not even against its own element (tested with a Shadow and an Outlaw badge against a
+  <span class="mq-hl mq-fire">Fire</span> dragon), so pick your badge for the damage.</li>
 </ul>
 <p>You can switch tribes for free, so you can move your points to match your weapon or the zone.</p>
 <div class="admonition example">
