@@ -103,7 +103,13 @@ class Web:
         owned = bool(profile.owned.get(it['prefab']))
         way = None if hours is None else costs.best(it['prefab'], profile)
         kind, grade = effort(way, hours)
-        return {'hours': finite(hours), 'time': 'you have it' if owned else duration(hours), 'kind': kind, 'grade': grade, 'way': '' if owned else way_short(way), 'owned': owned}
+        off = [] if owned or hours is not None else costs.switched_off(it['prefab'])
+        if off:
+            kind, grade = (', '.join(off) + ' off', '')
+            way_text = 'Switched off under Items from: ' + ', '.join(off)
+        else:
+            way_text = way_short(way)
+        return {'hours': finite(hours), 'time': 'you have it' if owned else 'left out' if off else duration(hours), 'kind': kind, 'grade': grade, 'way': '' if owned else way_text, 'owned': owned, 'off': off}
 
     def progression(self, o: dict | None=None) -> dict:
         o = self.options(o)
@@ -145,7 +151,9 @@ class Web:
             none = [r for r in rows if r['hours'] is None]
             ref = next((r for r in rows if r['best']), None)
             order = rows if pl.unknown else ways + none
-            slots.append({'label': label, 'armour': label in ARMOUR, 'ways': len(ways), 'none': len(none), 'rows': [self.row(label, r, ref, costs, p, items) for r in order]})
+            built = [self.row(label, r, ref, costs, p, items) for r in order]
+            off = sum((1 for r in built if r['off']))
+            slots.append({'label': label, 'armour': label in ARMOUR, 'ways': len(ways), 'none': len(none) - off, 'off': off, 'rows': built})
         utility = []
         for slot, held in row['utility'].items():
             rows = pl.utility(pl.at_level(p, level), picks, (slot,), tribe=tribe)[slot]

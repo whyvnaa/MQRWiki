@@ -62,7 +62,7 @@
       var first = i > 0 && lane.kind !== data.lanes[i - 1].kind;
       segs = lane.segs.map(function (s) {
         var it = data.items[s.item];
-        var tip = it.name + " · " + levels(s.from, s.to) + " · " + (s.owned ? "you have it" : s.hours == null ? "no known way" : s.time + ", " + s.kind) +
+        var tip = it.name + " · " + levels(s.from, s.to) + " · " + (s.owned ? "you have it" : s.hours == null && !(s.off && s.off.length) ? "no known way" : s.time + ", " + s.kind) +
           (s.way ? " · " + s.way : "");
         return '<div class="bp-seg bp-el-' + esc((it.el || "blunt").toLowerCase()) + (s.owned ? " bp-owned" : "") + (s.hours == null && !s.owned ? " bp-unknown" : "") +
           '" style="left:' + left(s.from) + ";width:" + width(s.from, s.to) + '" title="' + esc(tip) + '">' + pic(it, 22) + "<span>" + esc(it.name) + "</span></div>";
@@ -242,10 +242,11 @@
       if (r.owned) tags.push('<span class="bp-gain">you have it</span>');
       if (r.over) tags.push('<span class="bp-dim">over your effort limit</span>');
       tags.push('<span class="bp-dim">level ' + it.lv + "</span>");
-      var right = r.owned ? '<b class="bp-gain">have</b>' : r.hours == null ? '<b class="bp-loss">no known way</b>'
-        : "<b>" + esc(r.time) + '</b> <span class="bp-dim">' + esc(r.kind) + "</span>";
+      var off = r.off && r.off.length > 0;  /* no way with your "Items from" choices, but not unknown */
+      var right = r.owned ? '<b class="bp-gain">have</b>' : r.hours == null && !off ? '<b class="bp-loss">no known way</b>'
+        : "<b" + (off ? ' class="bp-loss"' : "") + ">" + esc(r.time) + '</b> <span class="bp-dim">' + esc(r.kind) + "</span>";
       var delta = r.delta ? ' <span class="' + (r.delta[1] ? "bp-" + r.delta[1] : "bp-dim") + '">' + esc(r.delta[0]) + "</span>" : "";
-      var way = r.way && r.hours != null ? '<div class="bp-way">' + esc((r.grade ? r.grade + ": " : "") + r.way) + "</div>" : "";
+      var way = r.way && (r.hours != null || off) ? '<div class="bp-way">' + esc((r.grade ? r.grade + ": " : "") + r.way) + "</div>" : "";
       return '<div class="bp-row' + (r.best ? " bp-best" : "") + '">' + pic(it, 36) +
         '<div class="bp-main"><div class="bp-name">' + name(it) + " " + tags.join(" · ") + "</div>" +
         '<div class="bp-line">' + esc(r.line) + delta + "</div>" + way + "</div>" +
@@ -254,7 +255,8 @@
         '" title="Never suggest this item: it leaves every level and list. Excluded items are listed above the timeline.">Exclude</button></div></div>';
     }
     function slot(s, items, utility) {
-      var sub = utility ? "with this level's set" : s.ways + " to choose from" + (s.none ? ", " + s.none + " more with no known way" : "");
+      var sub = utility ? "with this level's set" : s.ways + " to choose from" + (s.none ? ", " + s.none + " more with no known way" : "") +
+        (s.off ? ", " + s.off + " left out under Items from" : "");
       var html = '<h3 class="bp-slot">' + esc(s.label) + ' <small class="bp-dim">' + sub + "</small></h3>";
       if (!s.rows.length) return html + '<p class="bp-dim">Nothing to wear here at this level.</p>';
       var all = open[s.label] || s.rows.length <= SHOWN;

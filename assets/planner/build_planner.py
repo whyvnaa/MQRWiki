@@ -346,6 +346,24 @@ class Costs:
         if all((r['kind'] == 'craft' for r in raw)) and all((not self.b['ways'].get(r['pattern']) for r in raw)):
             return 'pattern'
         return None
+    SOURCE_WORDS = {'vendor': 'vendors', 'nick_cash': 'the NickCash shop', 'chest': 'chests', 'enemy': 'enemies', 'craft': 'crafting', 'quest': 'quests'}
+
+    def switched_off(self, prefab: str) -> list[str]:
+        if self.why_not(prefab):
+            return []
+        out: list[str] = []
+        for r in self.b['ways'].get(prefab, []):
+            k = r['kind']
+            if k == 'vendor':
+                if r.get('currency') == 'Promo':
+                    continue
+                key, off = ('nick_cash', not self.eco.nick_cash) if r.get('currency') == 'NickCash' else ('vendor', k not in self.eco.sources)
+            else:
+                key, off = ('enemy' if k == 'tribe_drop' else k, k not in self.eco.sources)
+            word = self.SOURCE_WORDS.get(key)
+            if off and word and (word not in out):
+                out.append(word)
+        return out
 
 def effort(way: Way | None, hours: float | None) -> tuple[str, str]:
     if way is None or hours is None:
